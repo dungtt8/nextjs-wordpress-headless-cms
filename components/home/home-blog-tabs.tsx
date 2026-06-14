@@ -69,8 +69,8 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
                         key={tab.id}
                         type="button"
                         className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${activeTab === tab.slug
-                                ? "border-[#7C3AED] bg-[#7C3AED] text-white"
-                                : "border-slate-300 bg-white text-slate-700"
+                            ? "border-[#7C3AED] bg-[#7C3AED] text-white"
+                            : "border-slate-300 bg-white text-slate-700"
                             }`}
                         onClick={() => handleTabChange(tab.slug)}
                     >

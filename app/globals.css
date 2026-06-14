@@ -396,6 +396,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .scroll-hidden,
     .scroll-hidden-left,
     .scroll-hidden-right,
