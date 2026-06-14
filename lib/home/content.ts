@@ -17,6 +17,11 @@ export const fallbackHomeContent: HomeContent = {
         heading: "Về chúng tôi",
         body: "ChinaHack hỗ trợ học viên tối ưu hồ sơ và chiến lược học bổng.",
         highlightQuote: "Đúng lộ trình đúng, cơ hội học bổng mở rộng hơn.",
+        image: {
+            src: "/logo.svg",
+            alt: "ChinaHack visual",
+        },
+        imageCaption: "Có thể thay bằng ảnh đội ngũ, workshop hoặc hoạt động mentoring.",
     },
     whyChoose: [
         {

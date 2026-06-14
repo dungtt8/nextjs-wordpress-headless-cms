@@ -11,10 +11,17 @@ export interface HeroData {
     };
 }
 
+export interface HomeImageAsset {
+    src: string;
+    alt: string;
+}
+
 export interface AboutData {
     heading: string;
     body: string;
     highlightQuote: string;
+    image?: HomeImageAsset;
+    imageCaption?: string;
 }
 
 export interface WhyChooseItem {
@@ -22,6 +29,7 @@ export interface WhyChooseItem {
     title: string;
     description: string;
     icon: "book" | "medal" | "network" | "target";
+    image?: HomeImageAsset;
 }
 
 export interface MentorItem {
@@ -49,12 +57,14 @@ export interface ProcessStep {
     id: string;
     title: string;
     description: string;
+    image?: HomeImageAsset;
 }
 
 export interface ServicePlan {
     id: string;
     name: string;
     description: string;
+    image?: HomeImageAsset;
     audience: string;
     supportLabel: string;
     supportNote: string;

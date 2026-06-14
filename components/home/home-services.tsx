@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Compass, Crown, Sparkles } from "lucide-react";
+import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { ServicePlan } from "@/lib/home/types";
 
@@ -74,6 +75,15 @@ export function HomeServices({ plans }: HomeServicesProps) {
                         </div>
 
                         <p className="mt-3 text-sm leading-7 text-slate-600">{plan.description}</p>
+
+                        <div className="mt-4">
+                            <UploadReadyImage
+                                image={plan.image}
+                                title={`${plan.name} visual`}
+                                subtitle="Có thể thay bằng ảnh thực tế gói dịch vụ"
+                                ratioClassName="aspect-[16/10]"
+                            />
+                        </div>
 
                         <div
                             className={[

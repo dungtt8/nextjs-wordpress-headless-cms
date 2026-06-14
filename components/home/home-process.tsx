@@ -2,6 +2,7 @@
 
 import { ArrowDown, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import type { ProcessStep } from "@/lib/home/types";
 
 interface HomeProcessProps {
@@ -61,8 +62,8 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                         <div className={index % 2 === 0 ? "col-start-1" : "col-start-3"}>
                             <article
                                 className={`rounded-[28px] p-6 transition-all ${index <= activeIndex
-                                        ? "poster-card border-violet-300 shadow-[0_20px_50px_rgba(124,58,237,0.14)]"
-                                        : "border border-slate-200 bg-white shadow-sm"
+                                    ? "poster-card border-violet-300 shadow-[0_20px_50px_rgba(124,58,237,0.14)]"
+                                    : "border border-slate-200 bg-white shadow-sm"
                                     }`}
                             >
                                 <div className="flex items-center justify-between gap-4">
@@ -71,6 +72,14 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                 </div>
                                 <h3 className="mt-4 text-xl font-semibold text-[#1F2937]">{step.title}</h3>
                                 <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+                                <div className="mt-4">
+                                    <UploadReadyImage
+                                        image={step.image}
+                                        title="Process visual"
+                                        subtitle="Slot ảnh theo từng giai đoạn"
+                                        ratioClassName="aspect-[16/9]"
+                                    />
+                                </div>
                                 <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-violet-700">
                                     <Sparkles className="h-4 w-4" />
                                     {index <= activeIndex ? "Đang kích hoạt" : "Bước kế tiếp"}
@@ -81,8 +90,8 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                         <div className="col-start-2 flex flex-col items-center justify-center">
                             <div
                                 className={`flex h-14 w-14 items-center justify-center rounded-full border-4 bg-white text-sm font-bold transition-colors ${index <= activeIndex
-                                        ? "border-violet-500 text-violet-700 shadow-[0_0_0_8px_rgba(167,139,250,0.18)]"
-                                        : "border-slate-300 text-slate-500"
+                                    ? "border-violet-500 text-violet-700 shadow-[0_0_0_8px_rgba(167,139,250,0.18)]"
+                                    : "border-slate-300 text-slate-500"
                                     }`}
                             >
                                 0{index + 1}
@@ -108,6 +117,14 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                         />
                         <h3 className="text-lg font-semibold text-[#1F2937]">{step.title}</h3>
                         <p className="mt-1 text-sm leading-6 text-slate-600">{step.description}</p>
+                        <div className="mt-3">
+                            <UploadReadyImage
+                                image={step.image}
+                                title="Process visual"
+                                subtitle="Sẵn sàng cho ảnh upload"
+                                ratioClassName="aspect-[16/9]"
+                            />
+                        </div>
                     </div>
                 ))}
             </div>
