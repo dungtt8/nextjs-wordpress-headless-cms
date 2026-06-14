@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
 const font = FontSans({
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
   variable: "--font-sans",
 });
 

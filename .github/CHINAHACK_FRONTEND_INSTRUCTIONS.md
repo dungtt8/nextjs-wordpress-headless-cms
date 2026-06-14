@@ -18,8 +18,8 @@ Tài liệu này là bản instruction chính thức để đội UI/UX và Fron
 Cấu hình bắt buộc trong tailwind config/theme tokens:
 
 ### 3.1 Bảng màu
-- `primary`: `#9B1C1C` (Đỏ Burgundy)
-- `secondary`: `#D97706` (Vàng Hổ Phách/Gold)
+- `primary`: `#7C3AED` (Tím Violet)
+- `secondary`: `#6D28D9` (Tím Violet đậm/CTA)
 - `neutral-dark`: `#1F2937` (Màu chữ chính)
 - `neutral-light`: `#F9FAFB` (Nền phụ xen kẽ section)
 

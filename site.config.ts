@@ -5,7 +5,7 @@ type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  site_name: "next-wp",
-  site_description: "Starter template for Headless WordPress with Next.js",
+  site_name: "ChinaHack",
+  site_description: "Mentorship và scholarship application cho học sinh, sinh viên định hướng du học Trung Quốc.",
   site_domain: "https://next-wp.com",
 };

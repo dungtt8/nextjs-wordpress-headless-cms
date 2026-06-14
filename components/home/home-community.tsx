@@ -1,25 +1,88 @@
+"use client";
+
+import { ArrowUpRight, Globe2 } from "lucide-react";
+import Image from "next/image";
+import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { CommunityChannel } from "@/lib/home/types";
 
 interface HomeCommunityProps {
-  channels: CommunityChannel[];
+    channels: CommunityChannel[];
+}
+
+function getChannelLogo(name: string) {
+    const normalizedName = name.toLowerCase();
+
+    if (normalizedName.includes("facebook")) {
+        return { src: "/facebook.svg", alt: "Facebook logo" };
+    }
+
+    if (normalizedName.includes("tiktok")) {
+        return { src: "/tiktok.svg", alt: "TikTok logo" };
+    }
+
+    if (normalizedName.includes("youtube")) {
+        return { src: "/youtube.svg", alt: "YouTube logo" };
+    }
+
+    return null;
 }
 
 export function HomeCommunity({ channels }: HomeCommunityProps) {
-  return (
-    <section id="community" className="space-y-6">
-      <h2 className="text-3xl font-bold text-[#1F2937]">Community</h2>
-      <div className="grid gap-4 lg:grid-cols-3">
-        {channels.map((channel) => (
-          <a
-            key={channel.id}
+    const { ref, isVisible } = useScrollAnimation<HTMLElement>();
+    return (
+        <section id="community" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                    <p className="poster-eyebrow">Cộng đồng ChinaHack</p>
+                    <h2 className="mt-2 text-3xl font-bold text-[#1F2937]">Kết nối mentee qua các kênh đồng hành</h2>
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+                        Theo dõi scholarship updates, kinh nghiệm nộp hồ sơ và các chia sẻ thực tế từ cộng đồng mentee trên những kênh mà ChinaHack cập nhật mỗi ngày.
+                    </p>
+                </div>
+                <span className="poster-ribbon w-fit">Join the community</span>
+            </div>
+
+            <div className="grid gap-4 lg:grid-cols-3">
+                {channels.map((channel) => (
+                    <CommunityCard key={channel.id} channel={channel} />
+                ))}
+            </div>
+        </section>
+    );
+}
+
+function CommunityCard({ channel }: { channel: CommunityChannel }) {
+    const logo = getChannelLogo(channel.name);
+
+    return (
+        <a
             href={channel.href}
-            className="rounded-xl border bg-white p-5 transition hover:scale-[1.02]"
-          >
-            <h3 className="text-lg font-semibold text-[#1F2937]">{channel.name}</h3>
-            <p className="mt-2 text-sm text-slate-600">{channel.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  );
+            className="poster-card group rounded-[28px] p-5 transition duration-300 hover:-translate-y-1"
+        >
+            <div className="flex items-start justify-between gap-4">
+                <div className="rounded-2xl bg-violet-100 p-3 text-violet-700 transition duration-300 group-hover:bg-violet-600 group-hover:text-white">
+                    {logo ? (
+                        <Image
+                            src={logo.src}
+                            alt={logo.alt}
+                            width={20}
+                            height={20}
+                            className="h-5 w-5"
+                        />
+                    ) : (
+                        <Globe2 className="h-5 w-5" />
+                    )}
+                </div>
+                <span className="poster-badge">Social channel</span>
+            </div>
+
+            <h3 className="mt-5 text-xl font-semibold text-[#1F2937]">{channel.name}</h3>
+            <p className="mt-3 text-sm leading-7 text-slate-600">{channel.description}</p>
+
+            <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-violet-700">
+                Theo dõi ngay
+                <ArrowUpRight className="h-4 w-4" />
+            </div>
+        </a>
+    );
 }

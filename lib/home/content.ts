@@ -1,200 +1,234 @@
 import type { HomeContent } from "@/lib/home/types";
 
 export const fallbackHomeContent: HomeContent = {
-  hero: {
-    title: "Chinh phuc hoc bong Trung Quoc cung Mentor ChinaHack",
-    subtitle: "Lo trinh ca nhan hoa, tu ho so den phong van.",
-    ctaText: "Nhan tu van mien phi",
-    ctaHref: "#lead-form",
-    mentorImage: {
-      src: "/images/mentor-hero.webp",
-      alt: "Mentor ChinaHack",
-      width: 640,
-      height: 860,
+    hero: {
+        title: "Chinh phục học bổng Trung Quốc cùng Mentor ChinaHack",
+        subtitle: "Lộ trình cá nhân hóa, từ hồ sơ đến phỏng vấn.",
+        ctaText: "Nhận tư vấn miễn phí",
+        ctaHref: "#lead-form",
+        mentorImage: {
+            src: "/images/mentor-hero.webp",
+            alt: "Mentor ChinaHack",
+            width: 640,
+            height: 860,
+        },
     },
-  },
-  about: {
-    heading: "Ve chung toi",
-    body: "ChinaHack ho tro hoc vien toi uu ho so va chien luoc hoc bong.",
-    highlightQuote: "Dung lo trinh dung, co hoi hoc bong mo rong hon.",
-  },
-  whyChoose: [
-    {
-      id: "w1",
-      title: "Mentor thuc chien",
-      description: "Kinh nghiem tu ho so that",
-      icon: "book",
+    about: {
+        heading: "Về chúng tôi",
+        body: "ChinaHack hỗ trợ học viên tối ưu hồ sơ và chiến lược học bổng.",
+        highlightQuote: "Đúng lộ trình đúng, cơ hội học bổng mở rộng hơn.",
     },
-    {
-      id: "w2",
-      title: "Lo trinh ro rang",
-      description: "Bam sat moc thoi gian",
-      icon: "target",
+    whyChoose: [
+        {
+            id: "w1",
+            title: "Mentor thực chiến",
+            description: "Kinh nghiệm từ hồ sơ thật",
+            icon: "book",
+        },
+        {
+            id: "w2",
+            title: "Lộ trình rõ ràng",
+            description: "Bám sát mốc thời gian",
+            icon: "target",
+        },
+        {
+            id: "w3",
+            title: "Tài nguyên chất lượng",
+            description: "Mẫu bài và checklist",
+            icon: "medal",
+        },
+        {
+            id: "w4",
+            title: "Cộng đồng hỗ trợ",
+            description: "Đồng hành xuyên suốt",
+            icon: "network",
+        },
+    ],
+    mentors: [
+        {
+            id: "m1",
+            name: "Li Jiapeng",
+            role: "Cố vấn học thuật",
+            avatar: "/images/mentor-a.webp",
+            profileLabel: "Our Expert",
+            headline: "AI, Robotics và định hướng nghiên cứu tại Trung Quốc",
+            shortBio: "Đồng hành cùng mentee ở nhóm ngành kỹ thuật, AI và học bổng nghiên cứu.",
+            fullBio:
+                "Hỗ trợ chuyên sâu từ định hướng học thuật, xây hồ sơ nghiên cứu đến chiến lược xin học bổng cho các bạn theo đuổi nhóm ngành kỹ thuật tại Trung Quốc.",
+            focusAreas: ["Định hướng học thuật", "Hồ sơ nghiên cứu", "Học bổng kỹ thuật"],
+            achievements: [
+                "Theo đuổi hướng nghiên cứu AI và Computer Vision trong môi trường quốc tế.",
+                "Có kinh nghiệm với Robotics, mô hình thị giác máy tính và hệ thống thông minh.",
+                "Từng tham gia và dẫn dắt các dự án học thuật theo định hướng ứng dụng.",
+                "Phù hợp mentoring cho các hồ sơ cần chiều sâu học thuật và tư duy nghiên cứu.",
+            ],
+            quote:
+                "Một hồ sơ mạnh không chỉ cần điểm số, mà cần kể rõ định hướng học thuật và tiềm năng nghiên cứu của bạn.",
+        },
+        {
+            id: "m2",
+            name: "Lê Thị Phương Anh",
+            role: "ChinaHack - Marketing Manager",
+            avatar: "/images/mentor-b.webp",
+            profileLabel: "Our Expert",
+            headline: "Hình mẫu học thuật qua hoạt động ngoại khóa và học bổng",
+            shortBio: "Phụ trách định vị hồ sơ nổi bật, cân bằng giữa học thuật và hoạt động cá nhân.",
+            fullBio:
+                "Tập trung xây dựng câu chuyện hồ sơ rõ ràng, nhất quán, giúp mentee thể hiện được bản sắc cá nhân, năng lực học thuật và chiều sâu hoạt động ngoại khóa.",
+            focusAreas: ["Xây dựng personal story", "Hoạt động ngoại khóa", "Scholarship positioning"],
+            achievements: [
+                "IELTS 8.0 và nền tảng học thuật mạnh cho hồ sơ quốc tế.",
+                "Kinh nghiệm làm nổi bật hồ sơ qua truyền thông cá nhân và hoạt động cộng đồng.",
+                "Đồng hành cùng mentee trong cách kể câu chuyện hồ sơ thuyết phục và có chiều sâu.",
+                "Phù hợp với các hồ sơ cần tăng độ nổi bật ngoài điểm số thuần túy.",
+            ],
+            quote:
+                "Điểm mạnh thật sự của hồ sơ không nằm ở việc có thật nhiều thành tích, mà ở cách bạn kết nối chúng thành một câu chuyện có định hướng.",
+        },
+        {
+            id: "m3",
+            name: "ChinaHack Mentor Team",
+            role: "Mentorship & Scholarship Application",
+            avatar: "/images/mentor-c.webp",
+            profileLabel: "ChinaHack",
+            headline: "Định hướng học thuật, xây dựng hồ sơ và nộp học bổng",
+            shortBio: "Mentor team đồng hành xuyên suốt từ định hướng ban đầu đến vòng phỏng vấn cuối.",
+            fullBio:
+                "Đội ngũ mentor phối hợp theo từng giai đoạn: định hướng ngành học, chọn trường, tối ưu học bổng, viết hồ sơ và luyện phỏng vấn để mentee có một hành trình rõ ràng và chủ động.",
+            focusAreas: ["Chọn trường phù hợp", "Tối ưu học bổng", "Luyện phỏng vấn"],
+            achievements: [
+                "Mentoring theo mô hình đồng hành từng giai đoạn, không chỉ sửa hồ sơ đơn lẻ.",
+                "Tập trung vào sự phù hợp giữa năng lực, mục tiêu và chiến lược học bổng.",
+                "Ưu tiên phản hồi nhanh, checklist rõ ràng và lộ trình cá nhân hóa cho từng mentee.",
+                "Phù hợp với học sinh cần một người đồng hành sát sao từ đầu đến cuối.",
+            ],
+            quote:
+                "Mục tiêu của ChinaHack không phải chỉ giúp bạn nộp hồ sơ, mà là giúp bạn hiểu vì sao hồ sơ đó có thể chạm tới học bổng.",
+        },
+    ],
+    stats: [
+        { id: "s1", label: "Học viên", value: 120, suffix: "+" },
+        { id: "s2", label: "Học bổng", value: 85, suffix: "%" },
+        { id: "s3", label: "Đối tác", value: 30, suffix: "+" },
+        { id: "s4", label: "Năm kinh nghiệm", value: 6, suffix: "+" },
+    ],
+    process: [
+        {
+            id: "p1",
+            title: "Nhận hồ sơ",
+            description: "Thu thập thông tin đầu vào và mục tiêu.",
+        },
+        {
+            id: "p2",
+            title: "Đánh giá",
+            description: "Phân tích profile, GPA và mức học bổng.",
+        },
+        {
+            id: "p3",
+            title: "Lập lộ trình",
+            description: "Xây dựng các mốc hạn và phân công hạng mục.",
+        },
+        {
+            id: "p4",
+            title: "Hoàn thiện hồ sơ",
+            description: "Essay, CV, recommendation và phản hồi.",
+        },
+        {
+            id: "p5",
+            title: "Nộp đơn",
+            description: "Canh mốc submit và theo dõi kết quả.",
+        },
+        {
+            id: "p6",
+            title: "Phỏng vấn",
+            description: "Luyện tập và support trước buổi interview.",
+        },
+    ],
+    services: [
+        {
+            id: "sv1",
+            name: "Basic",
+            description: "Đánh giá hồ sơ cơ bản.",
+            features: ["Phân tích profile", "Gợi ý học bổng", "1 buổi tư vấn"],
+            ctaText: "Chọn Basic",
+            ctaHref: "#lead-form",
+        },
+        {
+            id: "sv2",
+            name: "Standard",
+            description: "Lộ trình chỉnh sửa hồ sơ.",
+            features: ["Essay review", "Checklist nộp đơn", "2 buổi coaching"],
+            ctaText: "Chọn Standard",
+            ctaHref: "#lead-form",
+            isFeatured: true,
+        },
+        {
+            id: "sv3",
+            name: "Premium",
+            description: "Đồng hành đến khi có kết quả.",
+            features: ["1-1 mentor", "Phỏng vấn thử", "Theo dõi sau nộp"],
+            ctaText: "Chọn Premium",
+            ctaHref: "#lead-form",
+        },
+    ],
+    universities: [
+        { id: "u1", name: "Tsinghua", logo: "/images/university-1.webp" },
+        {
+            id: "u2",
+            name: "Peking University",
+            logo: "/images/university-2.webp",
+        },
+        { id: "u3", name: "Fudan", logo: "/images/university-3.webp" },
+        { id: "u4", name: "SJTU", logo: "/images/university-4.webp" },
+    ],
+    successStories: [
+        {
+            id: "ss1",
+            studentName: "Minh Anh",
+            quote: "Hồ sơ được tối ưu rõ rệt và dễ hiểu hơn.",
+            outcome: "Nhận học bổng 80%",
+            avatar: "/images/student-1.webp",
+        },
+        {
+            id: "ss2",
+            studentName: "Quang Huy",
+            quote: "Phỏng vấn giảm cảm giác lo lắng rất nhiều.",
+            outcome: "Trúng tuyển chương trình thạc sĩ",
+            avatar: "/images/student-2.webp",
+        },
+    ],
+    blogTabs: [
+        { id: "all", label: "Tất cả", slug: "all" },
+        { id: "scholarship", label: "Học bổng", slug: "hoc-bong" },
+        { id: "guide", label: "Hướng dẫn", slug: "huong-dan" },
+    ],
+    community: [
+        {
+            id: "c1",
+            name: "Facebook",
+            description: "Cập nhật sàn học bổng và chia sẻ kinh nghiệm.",
+            href: "https://facebook.com",
+            bannerImage: "/images/community-facebook.webp",
+        },
+        {
+            id: "c2",
+            name: "TikTok",
+            description: "Video ngắn về quy trình và tips nhanh.",
+            href: "https://tiktok.com",
+            bannerImage: "/images/community-tiktok.webp",
+        },
+        {
+            id: "c3",
+            name: "YouTube",
+            description: "Hướng dẫn chi tiết và webinar.",
+            href: "https://youtube.com",
+            bannerImage: "/images/community-youtube.webp",
+        },
+    ],
+    leadForm: {
+        title: "Đăng ký đánh giá hồ sơ",
+        subtitle: "Nhận lộ trình cá nhân hóa trong 24h",
+        submitText: "Nhận đánh giá hồ sơ miễn phí",
+        loadingText: "Đang xử lý...",
     },
-    {
-      id: "w3",
-      title: "Tai nguyen chat luong",
-      description: "Mau bai va checklist",
-      icon: "medal",
-    },
-    {
-      id: "w4",
-      title: "Cong dong ho tro",
-      description: "Dong hanh xuyen suot",
-      icon: "network",
-    },
-  ],
-  mentors: [
-    {
-      id: "m1",
-      name: "Mentor A",
-      role: "Scholarship Mentor",
-      avatar: "/images/mentor-a.webp",
-      shortBio: "Phu trach ho so va hoc bong.",
-      fullBio: "Ho tro chuyen sau ve chien luoc ho so, essay va interview.",
-    },
-    {
-      id: "m2",
-      name: "Mentor B",
-      role: "Application Strategist",
-      avatar: "/images/mentor-b.webp",
-      shortBio: "Toi uu lo trinh nop ho so.",
-      fullBio:
-        "Tap trung vao mot lo trinh ca nhan hoa va moc thoi gian ro rang.",
-    },
-    {
-      id: "m3",
-      name: "Mentor C",
-      role: "Interview Coach",
-      avatar: "/images/mentor-c.webp",
-      shortBio: "Luyen phong van va story telling.",
-      fullBio:
-        "Luyen interview va phan hoi cau hoi kho de tang ty le chot hoc bong.",
-    },
-  ],
-  stats: [
-    { id: "s1", label: "Hoc vien", value: 120, suffix: "+" },
-    { id: "s2", label: "Hoc bong", value: 85, suffix: "%" },
-    { id: "s3", label: "Doi tac", value: 30, suffix: "+" },
-    { id: "s4", label: "Nam kinh nghiem", value: 6, suffix: "+" },
-  ],
-  process: [
-    {
-      id: "p1",
-      title: "Nhan ho so",
-      description: "Thu thap thong tin dau vao va muc tieu.",
-    },
-    {
-      id: "p2",
-      title: "Danh gia",
-      description: "Phan tich profile, GPA va muc hoc bong.",
-    },
-    {
-      id: "p3",
-      title: "Lap lo trinh",
-      description: "Xay dung cac moc han va phan cong hang muc.",
-    },
-    {
-      id: "p4",
-      title: "Hoan thien ho so",
-      description: "Essay, CV, recommendation va phan hoi.",
-    },
-    {
-      id: "p5",
-      title: "Nop don",
-      description: "Canh moc submit va theo doi ket qua.",
-    },
-    {
-      id: "p6",
-      title: "Phong van",
-      description: "Luyen tap va support truoc buoi interview.",
-    },
-  ],
-  services: [
-    {
-      id: "sv1",
-      name: "Basic",
-      description: "Danh gia ho so co ban.",
-      features: ["Phan tich profile", "Goi y hoc bong", "1 buoi tu van"],
-      ctaText: "Chon Basic",
-      ctaHref: "#lead-form",
-    },
-    {
-      id: "sv2",
-      name: "Standard",
-      description: "Lo trinh chinh sua ho so.",
-      features: ["Essay review", "Checklist nop don", "2 buoi coaching"],
-      ctaText: "Chon Standard",
-      ctaHref: "#lead-form",
-      isFeatured: true,
-    },
-    {
-      id: "sv3",
-      name: "Premium",
-      description: "Dong hanh den khi co ket qua.",
-      features: ["1-1 mentor", "Phong van thu", "Theo doi sau nop"],
-      ctaText: "Chon Premium",
-      ctaHref: "#lead-form",
-    },
-  ],
-  universities: [
-    { id: "u1", name: "Tsinghua", logo: "/images/university-1.webp" },
-    {
-      id: "u2",
-      name: "Peking University",
-      logo: "/images/university-2.webp",
-    },
-    { id: "u3", name: "Fudan", logo: "/images/university-3.webp" },
-    { id: "u4", name: "SJTU", logo: "/images/university-4.webp" },
-  ],
-  successStories: [
-    {
-      id: "ss1",
-      studentName: "Minh Anh",
-      quote: "Ho so duoc toi uu ro ret va de hieu hon.",
-      outcome: "Nhan hoc bong 80%",
-      avatar: "/images/student-1.webp",
-    },
-    {
-      id: "ss2",
-      studentName: "Quang Huy",
-      quote: "Phong van giam cam giac lo lang rat nhieu.",
-      outcome: "Trung tuyen chuong trinh thac si",
-      avatar: "/images/student-2.webp",
-    },
-  ],
-  blogTabs: [
-    { id: "all", label: "Tat ca", slug: "all" },
-    { id: "scholarship", label: "Hoc bong", slug: "hoc-bong" },
-    { id: "guide", label: "Huong dan", slug: "huong-dan" },
-  ],
-  community: [
-    {
-      id: "c1",
-      name: "Facebook",
-      description: "Cap nhat san hoc bong va chia se kinh nghiem.",
-      href: "https://facebook.com",
-      bannerImage: "/images/community-facebook.webp",
-    },
-    {
-      id: "c2",
-      name: "TikTok",
-      description: "Video ngan ve quy trinh va tips nhanh.",
-      href: "https://tiktok.com",
-      bannerImage: "/images/community-tiktok.webp",
-    },
-    {
-      id: "c3",
-      name: "YouTube",
-      description: "Huong dan chi tiet va webinar.",
-      href: "https://youtube.com",
-      bannerImage: "/images/community-youtube.webp",
-    },
-  ],
-  leadForm: {
-    title: "Dang ky danh gia ho so",
-    subtitle: "Nhan lo trinh ca nhan hoa trong 24h",
-    submitText: "Nhan danh gia ho so mien phi",
-    loadingText: "Dang xu ly...",
-  },
 };

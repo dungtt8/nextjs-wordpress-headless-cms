@@ -16,7 +16,7 @@ interface NavProps {
 export function Nav({ className, children, id }: NavProps) {
   return (
     <nav
-      className={cn("sticky z-50 top-0 bg-background", "border-b", className)}
+      className={cn("sticky z-50 top-0 bg-violet-50 border-violet-200", "border-b", className)}
       id={id}
     >
       <div
@@ -48,8 +48,8 @@ export function Nav({ className, children, id }: NavProps) {
               </Button>
             ))}
           </div>
-          <Button asChild className="hidden sm:flex">
-            <Link href="https://github.com/9d8dev/next-wp">Get Started</Link>
+          <Button asChild className="hidden sm:flex bg-[#7C3AED] hover:bg-[#6D28D9]">
+            <Link href="/#lead-form">Get Started</Link>
           </Button>
           <MobileNav />
         </div>
