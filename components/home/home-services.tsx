@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight, Compass, Crown, Sparkles } from "lucide-react";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { ServicePlan } from "@/lib/home/types";
 
@@ -9,29 +10,144 @@ interface HomeServicesProps {
 
 export function HomeServices({ plans }: HomeServicesProps) {
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
+
     return (
         <section id="services" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
-            <h2 className="text-3xl font-bold text-[#1F2937]">Services</h2>
-            <div className="grid gap-4 lg:grid-cols-3">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+                <div>
+                    <p className="poster-eyebrow">Gói đồng hành</p>
+                    <h2 className="mt-2 text-3xl font-bold text-[#1F2937]">Ba cấp độ hỗ trợ, ba cách đồng hành khác nhau</h2>
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+                        Mỗi gói được thiết kế cho một mức độ sẵn sàng khác nhau, từ định hướng ban đầu đến mentoring sát sao ở các mốc quan trọng.
+                    </p>
+                </div>
+                <span className="poster-ribbon w-fit">Choose your track</span>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-3 lg:items-start">
                 {plans.map((plan, index) => (
                     <article
                         key={plan.id}
-                        className={`rounded-xl border border-violet-100 bg-violet-50 p-5 shadow-sm ${index === 1 ? "lg:scale-105" : ""
-                            }`}
+                        className={[
+                            "flex h-full flex-col overflow-hidden transition-transform duration-300",
+                            plan.id === "sv1"
+                                ? "rounded-[28px] border border-violet-100 bg-white p-6 shadow-sm"
+                                : plan.id === "sv2"
+                                    ? "poster-card rounded-[32px] p-7 shadow-[0_24px_60px_rgba(109,40,217,0.14)] lg:-translate-y-3"
+                                    : "rounded-[32px] border border-violet-200 bg-[radial-gradient(circle_at_top_right,rgba(196,181,253,0.26),transparent_30%),linear-gradient(180deg,#faf7ff,#ffffff)] p-7 shadow-[0_26px_70px_rgba(91,33,182,0.12)]"
+                        ].join(" ")}
                     >
-                        <h3 className="text-xl font-semibold text-[#1F2937]">{plan.name}</h3>
-                        <p className="mt-2 text-sm text-slate-600">{plan.description}</p>
-                        <ul className="mt-4 space-y-2 text-sm text-slate-600">
-                            {plan.features.map((feature) => (
-                                <li key={feature}>- {feature}</li>
-                            ))}
-                        </ul>
+                        <div className="flex items-start justify-between gap-4">
+                            <div>
+                                <span
+                                    className={[
+                                        "inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]",
+                                        plan.id === "sv1"
+                                            ? "bg-violet-50 text-violet-700"
+                                            : plan.id === "sv2"
+                                                ? "bg-violet-700 text-white"
+                                                : "bg-white/80 text-violet-800 ring-1 ring-violet-200"
+                                    ].join(" ")}
+                                >
+                                    {plan.supportLabel}
+                                </span>
+                                <h3 className="mt-4 text-2xl font-semibold text-[#1F2937]">{plan.name}</h3>
+                            </div>
+
+                            {plan.id === "sv1" ? (
+                                <div className="rounded-2xl bg-violet-50 p-3 text-violet-700">
+                                    <Compass className="h-5 w-5" />
+                                </div>
+                            ) : null}
+
+                            {plan.id === "sv2" ? (
+                                <div className="text-right">
+                                    <span className="poster-badge">{plan.highlightLabel}</span>
+                                </div>
+                            ) : null}
+
+                            {plan.id === "sv3" ? (
+                                <div className="rounded-2xl bg-white/80 p-3 text-violet-700 ring-1 ring-violet-200">
+                                    <Crown className="h-5 w-5" />
+                                </div>
+                            ) : null}
+                        </div>
+
+                        <p className="mt-3 text-sm leading-7 text-slate-600">{plan.description}</p>
+
+                        <div
+                            className={[
+                                "mt-5 rounded-2xl",
+                                plan.id === "sv1"
+                                    ? "bg-slate-50 px-4 py-4"
+                                    : plan.id === "sv2"
+                                        ? "poster-panel px-4 py-4"
+                                        : "border border-violet-200 bg-white/80 px-4 py-4"
+                            ].join(" ")}
+                        >
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Phù hợp với ai</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-700">{plan.audience}</p>
+                        </div>
+
+                        <div className="mt-5 flex-1">
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Bao gồm</p>
+                            <ul className="mt-3 space-y-3 text-sm text-slate-700">
+                                {plan.features.map((feature) => (
+                                    <li key={feature} className="flex items-start gap-3">
+                                        <span
+                                            className={[
+                                                "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full",
+                                                plan.id === "sv1"
+                                                    ? "bg-violet-100 text-violet-700"
+                                                    : plan.id === "sv2"
+                                                        ? "bg-violet-700 text-white"
+                                                        : "bg-violet-200/70 text-violet-800"
+                                            ].join(" ")}
+                                        >
+                                            <Sparkles className="h-3 w-3" />
+                                        </span>
+                                        <span className="leading-6">{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div
+                            className={[
+                                "mt-6",
+                                plan.id === "sv3" ? "rounded-[24px] border border-violet-200 bg-white/85 p-4" : ""
+                            ].join(" ")}
+                        >
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Mức độ đồng hành</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-700">{plan.supportNote}</p>
+
+                            {plan.premiumNote ? (
+                                <p className="mt-4 border-l-2 border-violet-300 pl-4 text-sm leading-7 text-violet-900">
+                                    {plan.premiumNote}
+                                </p>
+                            ) : null}
+                        </div>
+
                         <a
                             href={plan.ctaHref}
-                            className="mt-5 inline-flex rounded-md bg-[#6D28D9] px-4 py-2 text-sm font-medium text-white transition active:scale-95"
+                            className={[
+                                "mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition active:scale-95",
+                                plan.id === "sv1"
+                                    ? "border border-violet-200 bg-white text-violet-700 hover:border-violet-300"
+                                    : plan.id === "sv2"
+                                        ? "bg-[#6D28D9] text-white shadow-[0_14px_30px_rgba(109,40,217,0.22)]"
+                                        : "bg-[#1F1636] text-white shadow-[0_14px_30px_rgba(31,22,54,0.18)]"
+                            ].join(" ")}
                         >
                             {plan.ctaText}
+                            <ArrowRight className="h-4 w-4" />
                         </a>
+
+                        {plan.id === "sv2" && index === 1 ? (
+                            <p className="mt-4 text-xs font-medium text-violet-700">
+                                Cân bằng tốt giữa chiến lược hồ sơ, coaching và khả năng tự triển khai.
+                            </p>
+                        ) : null}
                     </article>
                 ))}
             </div>

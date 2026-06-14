@@ -55,10 +55,15 @@ export interface ServicePlan {
     id: string;
     name: string;
     description: string;
+    audience: string;
+    supportLabel: string;
+    supportNote: string;
     features: string[];
     ctaText: string;
     ctaHref: string;
+    highlightLabel?: string;
     isFeatured?: boolean;
+    premiumNote?: string;
 }
 
 export interface UniversityLogo {
