@@ -1,11 +1,50 @@
 "use client";
 
 import { GraduationCap, Medal, Quotes, Sparkle, X } from "@phosphor-icons/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { MentorItem } from "@/lib/home/types";
 
 interface HomeMentorsProps {
     mentors: MentorItem[];
+}
+
+function getMentorInitials(name: string): string {
+    return name
+        .split(" ")
+        .map((part) => part[0])
+        .slice(0, 2)
+        .join("")
+        .toUpperCase();
+}
+
+interface MentorPortraitProps {
+    mentor: MentorItem;
+    className: string;
+    initialsClassName: string;
+    sizes?: string;
+}
+
+function MentorPortrait({ mentor, className, initialsClassName, sizes = "(max-width: 1024px) 50vw, 160px" }: MentorPortraitProps) {
+    return (
+        <div className={`${className} relative overflow-hidden border border-violet-200/80 bg-violet-50/80 shadow-sm`}>
+            {mentor.avatar ? (
+                <Image
+                    src={mentor.avatar}
+                    alt={`Chân dung mentor ${mentor.name}`}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes={sizes}
+                />
+            ) : (
+                <div className={`flex h-full w-full items-center justify-center bg-linear-to-br from-violet-600 to-fuchsia-600 ${initialsClassName}`}>
+                    {getMentorInitials(mentor.name)}
+                </div>
+            )}
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-white/40" />
+        </div>
+    );
 }
 
 export function HomeMentors({ mentors }: HomeMentorsProps) {
@@ -51,20 +90,22 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                         key={mentor.id}
                         className="poster-card min-w-[82%] snap-start rounded-[28px] p-5 sm:min-w-[52%] lg:min-w-0"
                     >
-                        <div className="flex items-start justify-between gap-4">
+                        <div className="space-y-4">
+                            <MentorPortrait
+                                mentor={mentor}
+                                className="mx-auto aspect-[3/4] w-full max-w-[210px] rounded-[24px]"
+                                initialsClassName="text-4xl font-semibold text-white"
+                                sizes="(max-width: 640px) 60vw, (max-width: 1024px) 34vw, 210px"
+                            />
+                            <div className="pointer-events-none -mt-16 mx-auto w-full max-w-[210px] rounded-b-[24px] bg-linear-to-t from-slate-950/80 via-slate-950/45 to-transparent px-4 pb-4 pt-8 text-white">
+                                <h3 className="text-base font-semibold leading-tight">{mentor.name}</h3>
+                                <p className="mt-1 text-xs font-medium text-violet-100">{mentor.role}</p>
+                            </div>
+
                             <div>
                                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-500">
                                     {mentor.profileLabel}
                                 </p>
-                                <h3 className="mt-2 text-xl font-semibold text-[#1F2937]">{mentor.name}</h3>
-                                <p className="mt-1 text-sm font-medium text-violet-700">{mentor.role}</p>
-                            </div>
-                            <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-600 text-base font-semibold text-white shadow-sm">
-                                {mentor.name
-                                    .split(" ")
-                                    .map((part) => part[0])
-                                    .slice(0, 2)
-                                    .join("")}
                             </div>
                         </div>
 
@@ -150,20 +191,19 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                         <div className="mt-6 grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
                             <aside className="overflow-hidden rounded-[28px] bg-linear-to-br from-violet-700 via-violet-600 to-purple-700 p-6 text-white shadow-lg">
                                 <div className="flex items-center justify-between gap-4">
-                                    <div>
+                                    <div className="space-y-4">
                                         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-200">
                                             ChinaHack Mentor Profile
                                         </p>
+                                        <MentorPortrait
+                                            mentor={selectedMentor}
+                                            className="aspect-[3/4] w-[168px] rounded-3xl border-white/30"
+                                            initialsClassName="text-3xl font-semibold text-white"
+                                            sizes="168px"
+                                        />
                                         <p className="mt-3 text-lg font-semibold leading-7">
                                             {selectedMentor.headline}
                                         </p>
-                                    </div>
-                                    <div className="inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-3xl bg-white/15 text-xl font-semibold text-white backdrop-blur-sm">
-                                        {selectedMentor.name
-                                            .split(" ")
-                                            .map((part) => part[0])
-                                            .slice(0, 2)
-                                            .join("")}
                                     </div>
                                 </div>
 

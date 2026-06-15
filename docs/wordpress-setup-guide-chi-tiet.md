@@ -1,16 +1,17 @@
 # Hướng Dẫn Thiết Lập WordPress Chi Tiết Cho Frontend ChinaHack
 
-Ngày cập nhật: 2026-06-14
+Ngày cập nhật: 2026-06-16
 Mục tiêu: Chuẩn hóa cách nhập dữ liệu và upload ảnh trên WordPress để frontend hiển thị đúng, ổn định, dễ mở rộng.
 
 ## 1) Tổng quan kiến trúc hiện tại
 
 Frontend Next.js đang có 2 luồng dữ liệu:
 - Luồng bài viết và taxonomy: lấy trực tiếp từ WordPress REST API.
-- Luồng nội dung homepage section: hiện đang dùng fallback local trong mã nguồn.
+- Luồng nội dung homepage section: phần lớn vẫn dùng fallback local trong mã nguồn, riêng section Mentor đã lấy từ WordPress và có fallback tĩnh.
 
 Ý nghĩa vận hành:
 - Bạn có thể quản trị blog/post/category/tag hoàn toàn trong WordPress ngay.
+- Bạn có thể quản trị dữ liệu Mentor từ WordPress ngay (nếu endpoint mentor hoạt động).
 - Nếu muốn quản trị toàn bộ homepage bằng WordPress, cần thêm bước bridge ở frontend để đọc Home Content từ WordPress và map vào cấu trúc hiện có.
 
 ## 2) Checklist cài đặt WordPress bắt buộc
@@ -22,6 +23,7 @@ Frontend Next.js đang có 2 luồng dữ liệu:
    - /wp-json/wp/v2/categories
    - /wp-json/wp/v2/tags
    - /wp-json/wp/v2/users
+   - /wp-json/wp/v2/mentor hoặc /wp-json/wp/v2/mentors (cho section Mentor)
 3. Cài plugin revalidation tại plugin/next-revalidate.
 4. Vào Settings > Next.js Revalidation:
    - Nhập Next.js URL (không có dấu / cuối).
@@ -44,13 +46,15 @@ Khuyến nghị:
 ### 4.1 Tỉ lệ ảnh đề xuất
 - Hero hoặc ảnh chân dung chính: 4:5 hoặc 3:4
 - Ảnh card/section: 16:10 hoặc 16:9
-- Avatar mentor/success story: 1:1
+- Ảnh chân dung mentor (card + detail modal): 3:4
+- Avatar success story: 1:1
 - Logo: nền trong suốt, khung vuông hoặc ngang ổn định
 
 ### 4.2 Kích thước tối thiểu
 - Hero: chiều dài tối thiểu 1200px
 - Ảnh section/card: chiều dài tối thiểu 960px
-- Avatar: 512x512 trở lên
+- Ảnh chân dung mentor 3:4: tối thiểu 900x1200
+- Avatar vuông: 512x512 trở lên
 
 ### 4.3 Quy tắc upload
 - Định dạng ưu tiên: WebP, JPG chất lượng cao
@@ -104,6 +108,15 @@ Khuyến nghị dùng ACF PRO để quản trị Home Content theo nhóm field.
 - focusAreas (Repeater text)
 - achievements (Repeater text)
 - quote (Textarea)
+
+Ghi chú triển khai hiện tại:
+- Frontend đang hỗ trợ lấy mentor từ custom post type qua endpoint `mentor` hoặc `mentors`.
+- Mapping hiện hỗ trợ cả field top-level và field trong `acf` với các key thông dụng:
+   - `role`, `profileLabel` hoặc `profile_label`, `headline`
+   - `shortBio` hoặc `short_bio`, `fullBio` hoặc `full_bio`
+   - `focusAreas` hoặc `focus_areas`, `achievements`, `quote`, `avatar`
+- Nếu có featured image, frontend có thể lấy ảnh từ `_embedded.wp:featuredmedia[0].source_url`.
+- Nếu endpoint lỗi/rỗng hoặc field thiếu, frontend tự fallback về dữ liệu tĩnh để không vỡ giao diện.
 
 #### Stats (Repeater)
 - id (Text)
@@ -187,6 +200,12 @@ Khuyến nghị dùng ACF PRO để quản trị Home Content theo nhóm field.
 - Danh sách repeater không mất thứ tự
 - Không có block trắng hoặc khung ảnh rỗng bất thường
 
+Checklist bổ sung cho section Mentor:
+- Ảnh chân dung hiển thị đúng tỉ lệ dọc 3:4 ở cả card và detail modal
+- Chủ thể không bị cắt mất mặt ở card
+- Tên + role đọc rõ trên card (overlay)
+- Nếu thiếu ảnh từ WordPress, card vẫn hiển thị fallback chữ viết tắt (initials)
+
 ## 9) Xử lý lỗi thường gặp
 
 ### Lỗi 1: Sửa nội dung WordPress nhưng frontend chưa đổi
@@ -215,6 +234,18 @@ Cách xử lý:
 ### Lỗi 3: Layout section bị lệch khi thiếu ảnh
 Hiện frontend đã có cơ chế placeholder upload-ready cho nhiều section.
 Nếu chưa có ảnh thật, khung placeholder vẫn hiển thị để giữ bố cục ổn định.
+
+### Lỗi 4: Mentor không lên dữ liệu từ WordPress
+Nguyên nhân thường gặp:
+- Chưa tạo đúng custom post type REST endpoint (`mentor` hoặc `mentors`)
+- ACF field key không trùng naming frontend đang map
+- Endpoint trả về rỗng hoặc không kèm ảnh `_embedded`
+
+Cách xử lý:
+1. Kiểm tra endpoint thực tế trong trình duyệt: `/wp-json/wp/v2/mentor` và `/wp-json/wp/v2/mentors`
+2. Kiểm tra dữ liệu JSON đã có các field chính (name/title, role, bio, avatar)
+3. Nếu dùng featured image, đảm bảo request hỗ trợ `_embed` và post đã có thumbnail
+4. Nếu naming field khác chuẩn đang map, cập nhật mapping ở frontend
 
 ## 10) Khuyến nghị triển khai tiếp theo
 

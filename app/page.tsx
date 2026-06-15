@@ -11,7 +11,7 @@ import { HomeSuccessStories } from "@/components/home/home-success-stories";
 import { HomeUniversitiesMarquee } from "@/components/home/home-universities-marquee";
 import { HomeWhyChoose } from "@/components/home/home-why-choose";
 import { normalizeHomeContent } from "@/lib/home/normalize";
-import { getPostsPaginated } from "@/lib/wordpress";
+import { getMentorProfiles, getPostsPaginated } from "@/lib/wordpress";
 
 export const HOME_SECTION_IDS = [
   "hero",
@@ -29,12 +29,15 @@ export const HOME_SECTION_IDS = [
 ] as const;
 
 export default async function HomePage() {
-  const postsResponse = await getPostsPaginated(1, 9).catch(() => ({
-    data: [],
-    headers: { total: 0, totalPages: 0 },
-  }));
+  const [postsResponse, mentorProfiles] = await Promise.all([
+    getPostsPaginated(1, 9).catch(() => ({
+      data: [],
+      headers: { total: 0, totalPages: 0 },
+    })),
+    getMentorProfiles(),
+  ]);
 
-  const content = normalizeHomeContent();
+  const content = normalizeHomeContent({ mentors: mentorProfiles });
 
   return (
     <main className="home-stage px-5 py-12 sm:px-7 lg:px-10 lg:py-16">

@@ -11,6 +11,7 @@ import type {
   Author,
   FeaturedMedia,
 } from "./wordpress.d";
+import type { MentorItem } from "@/lib/home/types";
 
 // Single source of truth for WordPress configuration
 const baseUrl = process.env.WORDPRESS_URL;
@@ -46,6 +47,147 @@ export interface WordPressResponse<T> {
 
 const USER_AGENT = "Next.js WordPress Client";
 const CACHE_TTL = 3600; // 1 hour
+const MENTOR_ENDPOINTS = ["/wp-json/wp/v2/mentor", "/wp-json/wp/v2/mentors"];
+
+interface WPMentorRecord {
+  id: number | string;
+  title?: { rendered?: string };
+  excerpt?: { rendered?: string };
+  content?: { rendered?: string };
+  acf?: Record<string, unknown>;
+  role?: string;
+  profileLabel?: string;
+  profile_label?: string;
+  headline?: string;
+  shortBio?: string;
+  short_bio?: string;
+  fullBio?: string;
+  full_bio?: string;
+  focusAreas?: unknown;
+  focus_areas?: unknown;
+  achievements?: unknown;
+  quote?: string;
+  avatar?: string;
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{ source_url?: string }>;
+  };
+}
+
+function stripHtmlTags(value: string): string {
+  return value.replace(/<[^>]*>/g, "").trim();
+}
+
+function readString(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function readStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => (typeof item === "string" ? item.trim() : ""))
+      .filter(Boolean);
+  }
+
+  if (typeof value === "string") {
+    return value
+      .split(/\r?\n|,/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
+function mapWPMentor(record: WPMentorRecord): MentorItem | null {
+  const acf = record.acf ?? {};
+  const name =
+    readString(record.title?.rendered) ||
+    readString(acf.name) ||
+    `Mentor ${record.id}`;
+
+  if (!name) return null;
+
+  const shortBio =
+    readString(record.shortBio) ||
+    readString(record.short_bio) ||
+    readString(acf.shortBio) ||
+    readString(acf.short_bio) ||
+    stripHtmlTags(readString(record.excerpt?.rendered));
+
+  const fullBio =
+    readString(record.fullBio) ||
+    readString(record.full_bio) ||
+    readString(acf.fullBio) ||
+    readString(acf.full_bio) ||
+    stripHtmlTags(readString(record.content?.rendered)) ||
+    shortBio;
+
+  const focusAreaCandidates = [
+    readStringArray(record.focusAreas),
+    readStringArray(record.focus_areas),
+    readStringArray(acf.focusAreas),
+    readStringArray(acf.focus_areas),
+  ];
+  const focusAreas =
+    focusAreaCandidates.find((items) => items.length > 0) ?? [];
+
+  const achievementCandidates = [
+    readStringArray(record.achievements),
+    readStringArray(acf.achievements),
+  ];
+  const achievements =
+    achievementCandidates.find((items) => items.length > 0) ?? [];
+
+  const avatar =
+    readString(record.avatar) ||
+    readString(acf.avatar) ||
+    readString(acf.photo) ||
+    readString(record._embedded?.["wp:featuredmedia"]?.[0]?.source_url);
+
+  return {
+    id: `wp-${record.id}`,
+    name: stripHtmlTags(name),
+    role:
+      readString(record.role) || readString(acf.role) || "Mentor ChinaHack",
+    avatar,
+    profileLabel:
+      readString(record.profileLabel) ||
+      readString(record.profile_label) ||
+      readString(acf.profileLabel) ||
+      readString(acf.profile_label) ||
+      "Our Expert",
+    headline:
+      readString(record.headline) ||
+      readString(acf.headline) ||
+      shortBio ||
+      "Đồng hành xây dựng hồ sơ học bổng.",
+    shortBio:
+      shortBio || "Mentor đồng hành cùng bạn trong hành trình ứng tuyển học bổng.",
+    fullBio,
+    focusAreas: focusAreas.length > 0 ? focusAreas : ["Mentorship", "Scholarship strategy"],
+    achievements:
+      achievements.length > 0
+        ? achievements
+        : ["Đồng hành cùng mentee trong các mốc chuẩn bị hồ sơ học bổng."],
+    quote:
+      readString(record.quote) ||
+      readString(acf.quote) ||
+      "Mỗi bộ hồ sơ đều cần một chiến lược rõ ràng và phù hợp với mục tiêu của bạn.",
+  };
+}
+
+async function getMentorsFromEndpoint(path: string): Promise<MentorItem[]> {
+  const data = await wordpressFetchGraceful<WPMentorRecord[]>(
+    path,
+    [],
+    { _embed: true, per_page: 20 },
+    ["wordpress", "mentors"]
+  );
+
+  return data
+    .map((record) => mapWPMentor(record))
+    .filter((mentor): mentor is MentorItem => Boolean(mentor));
+}
 
 // Core fetch - throws on error (for functions that require data)
 async function wordpressFetch<T>(
@@ -215,6 +357,17 @@ export async function getRecentPosts(filterParams?: {
     "wordpress",
     "posts",
   ]);
+}
+
+export async function getMentorProfiles(): Promise<MentorItem[]> {
+  for (const endpoint of MENTOR_ENDPOINTS) {
+    const mentors = await getMentorsFromEndpoint(endpoint);
+    if (mentors.length > 0) {
+      return mentors;
+    }
+  }
+
+  return [];
 }
 
 export async function getPostById(id: number): Promise<Post> {

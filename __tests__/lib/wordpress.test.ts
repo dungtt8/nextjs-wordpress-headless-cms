@@ -220,6 +220,73 @@ describe("WordPress API", () => {
     });
   });
 
+  describe("getMentorProfiles", () => {
+    it("maps mentor data from WordPress custom post type", async () => {
+      mockFetch.mockResolvedValueOnce(
+        mockResponse([
+          {
+            id: 77,
+            title: { rendered: "Nguyen Bao" },
+            excerpt: { rendered: "<p>Mentor profile short bio</p>" },
+            content: { rendered: "<p>Long mentor profile content</p>" },
+            acf: {
+              role: "Scholarship Strategist",
+              profileLabel: "Core Mentor",
+              headline: "Hồ sơ học bổng thiên về định hướng học thuật",
+              focusAreas: ["Essay strategy", "Interview coaching"],
+              achievements: ["Mentored 100+ students"],
+              quote: "Chiến lược rõ ràng sẽ giúp hồ sơ đi xa hơn.",
+            },
+            _embedded: {
+              "wp:featuredmedia": [{ source_url: "https://example.com/mentor.jpg" }],
+            },
+          },
+        ])
+      );
+
+      const { getMentorProfiles } = await import("@/lib/wordpress");
+      const mentors = await getMentorProfiles();
+
+      expect(mentors).toHaveLength(1);
+      expect(mentors[0]).toMatchObject({
+        id: "wp-77",
+        name: "Nguyen Bao",
+        role: "Scholarship Strategist",
+        avatar: "https://example.com/mentor.jpg",
+        profileLabel: "Core Mentor",
+      });
+      expect(mentors[0].focusAreas).toEqual(["Essay strategy", "Interview coaching"]);
+      expect(mentors[0].achievements).toEqual(["Mentored 100+ students"]);
+    });
+
+    it("falls back to secondary endpoint when primary endpoint returns empty", async () => {
+      mockFetch.mockResolvedValueOnce(mockResponse([]));
+      mockFetch.mockResolvedValueOnce(
+        mockResponse([
+          {
+            id: 11,
+            title: { rendered: "Fallback Mentor" },
+            excerpt: { rendered: "<p>Fallback bio</p>" },
+            content: { rendered: "<p>Fallback long bio</p>" },
+          },
+        ])
+      );
+
+      const { getMentorProfiles } = await import("@/lib/wordpress");
+      const mentors = await getMentorProfiles();
+
+      expect(mentors).toHaveLength(1);
+      expect(mentors[0].name).toBe("Fallback Mentor");
+      expect(mockFetch).toHaveBeenCalledTimes(2);
+
+      const firstCallUrl = mockFetch.mock.calls[0][0] as string;
+      const secondCallUrl = mockFetch.mock.calls[1][0] as string;
+
+      expect(firstCallUrl).toContain("/wp-json/wp/v2/mentor");
+      expect(secondCallUrl).toContain("/wp-json/wp/v2/mentors");
+    });
+  });
+
   describe("WordPressAPIError", () => {
     it("includes status and endpoint", async () => {
       mockFetch.mockResolvedValue(
