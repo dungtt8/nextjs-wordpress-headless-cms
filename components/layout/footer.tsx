@@ -1,5 +1,5 @@
 import { Section, Container } from "@/components/craft";
-import { ArrowUpRight, Facebook, Mail, Phone, Sparkles } from "lucide-react";
+import { ArrowUpRight, EnvelopeSimple, FacebookLogo, Phone, Sparkle } from "@phosphor-icons/react/ssr";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { siteConfig } from "@/site.config";
 import Logo from "@/public/logo.svg";
@@ -38,14 +38,14 @@ export function Footer() {
                 />
                 <div>
                   <p className="poster-eyebrow">ChinaHack</p>
-                  <p className="mt-1 text-lg font-semibold text-[#1F2937]">Mentorship & Scholarship Application</p>
+                  <p className="font-display mt-1 text-xl font-semibold text-[#1F2937]">Mentorship & Scholarship Application</p>
                 </div>
               </Link>
 
               <p className="mt-5 text-sm leading-7 text-slate-600">{siteConfig.site_description}</p>
 
-              <div className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-sm">
-                <Sparkles className="h-4 w-4" />
+              <div className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-[#6e59b1] px-4 py-2 text-sm font-semibold text-white shadow-sm">
+                <Sparkle weight="thin" className="h-4 w-4" />
                 Du học Trung Quốc cùng lộ trình cá nhân hóa
               </div>
             </div>
@@ -59,7 +59,7 @@ export function Footer() {
                 key={item.href}
                 href={item.href}
               >
-                <ArrowUpRight className="h-3.5 w-3.5" />
+                <ArrowUpRight weight="thin" className="h-3.5 w-3.5" />
                 {item.label}
               </Link>
             ))}
@@ -73,7 +73,7 @@ export function Footer() {
                 key={item.href}
                 href={item.href}
               >
-                <ArrowUpRight className="h-3.5 w-3.5" />
+                <ArrowUpRight weight="thin" className="h-3.5 w-3.5" />
                 {item.label}
               </Link>
             ))}
@@ -87,21 +87,21 @@ export function Footer() {
               target="_blank"
               rel="noreferrer"
             >
-              <Facebook className="h-4 w-4" />
+              <FacebookLogo weight="thin" className="h-4 w-4" />
               facebook.com/chinahackduhoctq
             </a>
             <a
               className="inline-flex items-center gap-3 text-slate-600 transition hover:text-violet-700"
               href="tel:0962094058"
             >
-              <Phone className="h-4 w-4" />
+              <Phone weight="thin" className="h-4 w-4" />
               0962 094 058
             </a>
             <a
               className="inline-flex items-center gap-3 text-slate-600 transition hover:text-violet-700"
               href="mailto:hello@chinahack.vn"
             >
-              <Mail className="h-4 w-4" />
+              <EnvelopeSimple weight="thin" className="h-4 w-4" />
               hello@chinahack.vn
             </a>
             <p className="mt-2 text-sm leading-7 text-slate-500">

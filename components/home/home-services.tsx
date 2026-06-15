@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Compass, Crown, Sparkles } from "lucide-react";
+import { ArrowRight, Compass, Crown, Sparkle } from "@phosphor-icons/react";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { ServicePlan } from "@/lib/home/types";
@@ -16,8 +16,8 @@ export function HomeServices({ plans }: HomeServicesProps) {
         <section id="services" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                    <p className="poster-eyebrow">Gói đồng hành</p>
-                    <h2 className="mt-2 text-3xl font-bold text-[#1F2937]">Ba cấp độ hỗ trợ, ba cách đồng hành khác nhau</h2>
+                    <p className="poster-eyebrow">Service Matrix</p>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">Ba cấp độ hỗ trợ, ba cách đồng hành khác nhau</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
                         Mỗi gói được thiết kế cho một mức độ sẵn sàng khác nhau, từ định hướng ban đầu đến mentoring sát sao ở các mốc quan trọng.
                     </p>
@@ -57,7 +57,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
 
                             {plan.id === "sv1" ? (
                                 <div className="rounded-2xl bg-violet-50 p-3 text-violet-700">
-                                    <Compass className="h-5 w-5" />
+                                    <Compass weight="thin" className="h-5 w-5" />
                                 </div>
                             ) : null}
 
@@ -69,7 +69,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
 
                             {plan.id === "sv3" ? (
                                 <div className="rounded-2xl bg-white/80 p-3 text-violet-700 ring-1 ring-violet-200">
-                                    <Crown className="h-5 w-5" />
+                                    <Crown weight="thin" className="h-5 w-5" />
                                 </div>
                             ) : null}
                         </div>
@@ -103,7 +103,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
                             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Bao gồm</p>
                             <ul className="mt-3 space-y-3 text-sm text-slate-700">
                                 {plan.features.map((feature) => (
-                                    <li key={feature} className="flex items-start gap-3">
+                                    <li key={feature} className="flex items-start gap-3 border-b border-violet-100/70 pb-3 last:border-b-0 last:pb-0">
                                         <span
                                             className={[
                                                 "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full",
@@ -114,7 +114,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
                                                         : "bg-violet-200/70 text-violet-800"
                                             ].join(" ")}
                                         >
-                                            <Sparkles className="h-3 w-3" />
+                                            <Sparkle weight="thin" className="h-3 w-3" />
                                         </span>
                                         <span className="leading-6">{feature}</span>
                                     </li>
@@ -150,7 +150,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
                             ].join(" ")}
                         >
                             {plan.ctaText}
-                            <ArrowRight className="h-4 w-4" />
+                            <ArrowRight weight="thin" className="h-4 w-4" />
                         </a>
 
                         {plan.id === "sv2" && index === 1 ? (

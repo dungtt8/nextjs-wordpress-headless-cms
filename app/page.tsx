@@ -37,7 +37,7 @@ export default async function HomePage() {
   const content = normalizeHomeContent();
 
   return (
-    <main className="space-y-16 px-6 py-10 lg:px-10">
+    <main className="home-stage px-5 py-12 sm:px-7 lg:px-10 lg:py-16">
       <HomeHero data={content.hero} />
       <HomeAbout data={content.about} />
       <HomeWhyChoose items={content.whyChoose} />

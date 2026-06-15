@@ -6,7 +6,7 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 
 // Utility Imports
-import { Menu, ArrowRightSquare } from "lucide-react";
+import { ArrowSquareRight, List } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
 // Component Imports
@@ -34,7 +34,7 @@ export function MobileNav() {
           variant="ghost"
           className="px-0 border w-10 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
-          <Menu />
+          <List weight="thin" />
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
@@ -46,7 +46,7 @@ export function MobileNav() {
               className="flex items-center"
               onOpenChange={setOpen}
             >
-              <ArrowRightSquare className="mr-2 h-4 w-4" />
+              <ArrowSquareRight weight="thin" className="mr-2 h-4 w-4" />
               <span>{siteConfig.site_name}</span>
             </MobileLink>
           </SheetTitle>

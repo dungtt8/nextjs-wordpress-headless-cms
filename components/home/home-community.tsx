@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, Globe2 } from "lucide-react";
+import { ArrowUpRight, Globe } from "@phosphor-icons/react";
 import Image from "next/image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { CommunityChannel } from "@/lib/home/types";
@@ -34,7 +34,7 @@ export function HomeCommunity({ channels }: HomeCommunityProps) {
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                     <p className="poster-eyebrow">Cộng đồng ChinaHack</p>
-                    <h2 className="mt-2 text-3xl font-bold text-[#1F2937]">Kết nối mentee qua các kênh đồng hành</h2>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">Kết nối mentee qua các kênh đồng hành</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
                         Theo dõi scholarship updates, kinh nghiệm nộp hồ sơ và các chia sẻ thực tế từ cộng đồng mentee trên những kênh mà ChinaHack cập nhật mỗi ngày.
                     </p>
@@ -70,18 +70,18 @@ function CommunityCard({ channel }: { channel: CommunityChannel }) {
                             className="h-5 w-5"
                         />
                     ) : (
-                        <Globe2 className="h-5 w-5" />
+                        <Globe weight="thin" className="h-5 w-5" />
                     )}
                 </div>
                 <span className="poster-badge">Social channel</span>
             </div>
 
-            <h3 className="mt-5 text-xl font-semibold text-[#1F2937]">{channel.name}</h3>
+            <h3 className="poster-title mt-5 text-xl font-semibold text-[#1F2937]">{channel.name}</h3>
             <p className="mt-3 text-sm leading-7 text-slate-600">{channel.description}</p>
 
-            <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-violet-700">
+            <div className="mt-5 border-t border-violet-100/80 pt-4 flex items-center gap-2 text-sm font-semibold text-violet-700">
                 Theo dõi ngay
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight weight="thin" className="h-4 w-4" />
             </div>
         </a>
     );

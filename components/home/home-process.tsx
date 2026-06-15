@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkle } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import type { ProcessStep } from "@/lib/home/types";
@@ -39,7 +39,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                     <p className="poster-eyebrow">Lộ trình đồng hành</p>
-                    <h2 className="mt-2 text-3xl font-bold text-[#1F2937]">Từng bước rõ ràng, theo đúng flow của hồ sơ học bổng</h2>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">Từng bước rõ ràng, theo đúng flow của hồ sơ học bổng</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
                         Mỗi giai đoạn đều có đầu ra cụ thể để mentee biết mình đang ở đâu, cần chuẩn bị gì tiếp theo và khi nào nên chuyển sang bước kế tiếp.
                     </p>
@@ -68,9 +68,9 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                             >
                                 <div className="flex items-center justify-between gap-4">
                                     <span className="poster-badge">Step {index + 1}</span>
-                                    {index < steps.length - 1 ? <ArrowDown className="h-4 w-4 text-violet-400" /> : null}
+                                    {index < steps.length - 1 ? <ArrowDown weight="thin" className="h-4 w-4 text-violet-400" /> : null}
                                 </div>
-                                <h3 className="mt-4 text-xl font-semibold text-[#1F2937]">{step.title}</h3>
+                                    <h3 className="poster-title mt-4 text-xl font-semibold text-[#1F2937]">{step.title}</h3>
                                 <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
                                 <div className="mt-4">
                                     <UploadReadyImage
@@ -81,7 +81,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                     />
                                 </div>
                                 <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-violet-700">
-                                    <Sparkles className="h-4 w-4" />
+                                        <Sparkle weight="thin" className="h-4 w-4" />
                                     {index <= activeIndex ? "Đang kích hoạt" : "Bước kế tiếp"}
                                 </div>
                             </article>
@@ -116,7 +116,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                 }`}
                         />
                         <h3 className="text-lg font-semibold text-[#1F2937]">{step.title}</h3>
-                        <p className="mt-1 text-sm leading-6 text-slate-600">{step.description}</p>
+                        <p className="mt-1 text-sm leading-7 text-slate-600">{step.description}</p>
                         <div className="mt-3">
                             <UploadReadyImage
                                 image={step.image}

@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import { Inter as FontSans } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
@@ -11,16 +11,26 @@ import { cn } from "@/lib/utils";
 
 import type { Metadata } from "next";
 
-const font = FontSans({
+const fontSans = Manrope({
   subsets: ["latin", "vietnamese"],
-  variable: "--font-sans",
+  variable: "--font-body",
+});
+
+const fontDisplay = Playfair_Display({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
-  title: "WordPress & Next.js Starter by 9d8",
+  title: "ChinaHack | Mentorship & Scholarship Application",
   description:
-    "A starter template for Next.js with WordPress as a headless CMS.",
+    "Mentorship và scholarship application cho học sinh, sinh viên định hướng du học Trung Quốc.",
   metadataBase: new URL(siteConfig.site_domain),
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
   alternates: {
     canonical: "/",
   },
@@ -34,7 +44,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={cn("min-h-screen font-sans antialiased", font.variable)}>
+      <body
+        className={cn(
+          "min-h-screen font-sans antialiased",
+          fontSans.variable,
+          fontDisplay.variable,
+        )}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

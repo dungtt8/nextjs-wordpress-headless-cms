@@ -34,9 +34,10 @@ export function HomeAbout({ data }: HomeAboutProps) {
     const { ref: leftRef, isVisible: leftVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
     const { ref: rightRef, isVisible: rightVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2, delay: 150 });
     return (
-        <section id="about" ref={ref} className="grid gap-6 lg:grid-cols-2">
+        <section id="about" ref={ref} className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
             <div ref={leftRef} className={`space-y-4 scroll-hidden-left ${leftVisible ? 'scroll-visible' : ''}`}>
-                <h2 className="text-3xl font-bold text-[#1F2937]">{data.heading}</h2>
+                <p className="poster-eyebrow">About ChinaHack</p>
+                <h2 className="poster-title text-3xl font-semibold leading-tight lg:text-[2.3rem]">{data.heading}</h2>
                 <UploadReadyImage
                     image={data.image}
                     title="Ảnh giới thiệu"
@@ -45,9 +46,9 @@ export function HomeAbout({ data }: HomeAboutProps) {
                 />
             </div>
             <div ref={rightRef} className={`space-y-4 text-slate-600 scroll-hidden-right ${rightVisible ? 'scroll-visible' : ''}`}>
-                <p>{data.body}</p>
+                <p className="text-sm leading-8 lg:text-base">{data.body}</p>
                 <blockquote
-                    className={`rounded-xl border-l-4 border-[#7C3AED] bg-[#F5F3FF] p-4 text-[#1F2937] transition-opacity duration-700 ${visible ? "opacity-100 chinahack-fade-up" : "opacity-0"
+                    className={`poster-quote-card rounded-[24px] border-l-4 border-[#7C3AED] p-5 text-[#1F2937] transition-opacity duration-700 ${visible ? "opacity-100 chinahack-fade-up" : "opacity-0"
                         }`}
                 >
                     {data.highlightQuote}

@@ -89,15 +89,18 @@ export function HomeLeadForm({ data }: HomeLeadFormProps) {
 
     return (
         <section id="lead-form" className="mx-auto max-w-3xl space-y-6">
-            <h2 className="text-center text-3xl font-bold text-[#1F2937]">{data.title}</h2>
-            <p className="text-center text-sm text-slate-600">{data.subtitle}</p>
+            <div className="space-y-3 text-center">
+                <p className="poster-eyebrow">Application Support</p>
+                <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.4rem]">{data.title}</h2>
+                <p className="text-sm leading-7 text-slate-600">{data.subtitle}</p>
+            </div>
 
             {isSuccess ? (
                 <div className="success-fade-in rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-800">
                     {feedback}
                 </div>
             ) : (
-                <form className="space-y-4" onSubmit={onSubmit} noValidate>
+                <form className="poster-card space-y-4 rounded-[28px] p-5 sm:p-6" onSubmit={onSubmit} noValidate>
                     <Field
                         id="fullName"
                         label="Họ và tên"
@@ -136,7 +139,7 @@ export function HomeLeadForm({ data }: HomeLeadFormProps) {
                         <textarea
                             id="note"
                             rows={4}
-                            className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/20"
+                            className="w-full rounded-xl border border-violet-200 bg-white/95 px-3 py-2 text-sm outline-none transition focus:border-[#6e59b1] focus:ring-2 focus:ring-[#6e59b1]/20"
                             value={values.note}
                             placeholder="Mục tiêu và thời gian dự kiến của bạn"
                             onChange={(event) => updateField("note", event.target.value)}
@@ -148,7 +151,7 @@ export function HomeLeadForm({ data }: HomeLeadFormProps) {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className={`inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#6D28D9] px-6 py-3 text-sm font-semibold text-white transition ${isLoading ? "pointer-events-none opacity-50" : ""
+                        className={`inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#6e59b1] px-6 py-3 text-sm font-semibold text-white transition ${isLoading ? "pointer-events-none opacity-50" : "hover:-translate-y-0.5"
                             }`}
                     >
                         {isLoading ? (
@@ -187,7 +190,7 @@ function Field({ id, label, placeholder, value, onChange, error }: FieldProps) {
                 placeholder={placeholder}
                 aria-describedby={error ? errorId : undefined}
                 onChange={(event) => onChange(event.target.value)}
-                className={`w-full rounded-xl border bg-white px-3 py-2 text-sm outline-none transition focus:ring-2 focus:ring-[#7C3AED]/20 ${error ? "border-red-500" : "border-gray-300 focus:border-[#7C3AED]"
+                className={`w-full rounded-xl border bg-white/95 px-3 py-2 text-sm outline-none transition focus:ring-2 focus:ring-[#6e59b1]/20 ${error ? "border-red-500" : "border-violet-200 focus:border-[#6e59b1]"
                     }`}
             />
             {error ? (

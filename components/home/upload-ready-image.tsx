@@ -1,4 +1,4 @@
-import { ImagePlus } from "lucide-react";
+import { ImageSquare } from "@phosphor-icons/react/ssr";
 import Image from "next/image";
 
 interface UploadReadyImageSource {
@@ -44,7 +44,7 @@ export function UploadReadyImage({
                     {subtitle ? <p className="mt-1 text-xs text-white/85">{subtitle}</p> : null}
                 </div>
                 <div className="rounded-xl bg-white/20 p-2 backdrop-blur-sm">
-                    <ImagePlus className="h-4 w-4" />
+                    <ImageSquare weight="thin" className="h-4 w-4" />
                 </div>
             </div>
         </div>

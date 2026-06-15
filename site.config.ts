@@ -6,6 +6,6 @@ type SiteConfig = {
 
 export const siteConfig: SiteConfig = {
   site_name: "ChinaHack",
-  site_description: "Mentorship và scholarship application cho học sinh, sinh viên định hướng du học Trung Quốc.",
+  site_description: "Mentorship và quy trình ứng tuyển học bổng cho học sinh, sinh viên định hướng du học Trung Quốc.",
   site_domain: "https://next-wp.com",
 };

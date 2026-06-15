@@ -53,11 +53,14 @@ export function HomeStats({ stats }: HomeStatsProps) {
 
     return (
         <section id="stats" ref={rootRef} className="space-y-6">
-            <h2 className="text-3xl font-bold text-[#1F2937]">Stats</h2>
+            <div className="space-y-3">
+                <p className="poster-eyebrow">Impact Snapshot</p>
+                <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.2rem]">Thành quả nổi bật từ hành trình mentee</h2>
+            </div>
             <div className="grid grid-cols-2 gap-4 lg:flex lg:gap-6">
                 {displayValues.map((stat) => (
-                    <article key={stat.id} className="flex-1 rounded-2xl border border-slate-200 bg-white p-5">
-                        <p className="text-3xl font-bold text-[#7C3AED] md:text-4xl">
+                    <article key={stat.id} className="poster-card flex-1 rounded-[24px] p-5">
+                        <p className="poster-title text-3xl font-semibold text-[#6d4fb6] md:text-4xl">
                             {stat.display}
                             {stat.suffix ? <span className="ml-1 text-lg">{stat.suffix}</span> : null}
                         </p>

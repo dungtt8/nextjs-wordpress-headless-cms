@@ -61,7 +61,10 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
 
     return (
         <section id="blog" className="space-y-6">
-            <h2 className="text-3xl font-bold text-[#1F2937]">Blog</h2>
+            <div className="space-y-3">
+                <p className="poster-eyebrow">Editorial Notes</p>
+                <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.2rem]">Blog học bổng & kinh nghiệm hồ sơ</h2>
+            </div>
 
             <div className="flex flex-wrap gap-2">
                 {tabs.map((tab) => (
@@ -85,7 +88,7 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
                         <div key={`skeleton-${index}`} className="skeleton-shimmer h-56 rounded-2xl border border-slate-200 bg-white" />
                     ))
                     : cards.map((post) => (
-                        <article key={post.id} className="rounded-2xl border border-violet-100 bg-violet-50 p-5 shadow-sm">
+                        <article key={post.id} className="poster-card rounded-[24px] p-5 shadow-sm">
                             <p className="text-xs uppercase tracking-[0.16em] text-slate-500">
                                 {new Date(post.date).toLocaleDateString("en-US")}
                             </p>

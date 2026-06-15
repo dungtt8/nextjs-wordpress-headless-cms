@@ -15,13 +15,10 @@ interface NavProps {
 
 export function Nav({ className, children, id }: NavProps) {
   return (
-    <nav
-      className={cn("sticky z-50 top-0 bg-violet-50 border-violet-200", "border-b", className)}
-      id={id}
-    >
+    <nav className={cn("sticky top-0 z-50 px-4 pt-4", className)} id={id}>
       <div
         id="nav-container"
-        className="max-w-5xl mx-auto py-4 px-6 sm:px-8 flex justify-between items-center"
+        className="poster-card max-w-6xl mx-auto flex items-center justify-between rounded-full px-5 py-3 sm:px-7"
       >
         <Link
           className="hover:opacity-75 transition-all flex gap-4 items-center"
@@ -35,7 +32,7 @@ export function Nav({ className, children, id }: NavProps) {
             width={42}
             height={26.44}
           />
-          <h2 className="text-sm">{siteConfig.site_name}</h2>
+          <h2 className="font-display text-lg leading-none tracking-tight text-[#2a2355]">{siteConfig.site_name}</h2>
         </Link>
         {children}
         <div className="flex items-center gap-2">
@@ -48,7 +45,7 @@ export function Nav({ className, children, id }: NavProps) {
               </Button>
             ))}
           </div>
-          <Button asChild className="hidden sm:flex bg-[#7C3AED] hover:bg-[#6D28D9]">
+          <Button asChild className="hidden sm:flex rounded-full bg-[#6e59b1] px-5 hover:bg-[#5f4b9f]">
             <Link href="/#lead-form">Get Started</Link>
           </Button>
           <MobileNav />

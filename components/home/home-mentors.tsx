@@ -1,6 +1,6 @@
 "use client";
 
-import { Award, GraduationCap, Quote, Sparkles, X } from "lucide-react";
+import { GraduationCap, Medal, Quotes, Sparkle, X } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import type { MentorItem } from "@/lib/home/types";
 
@@ -37,7 +37,13 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
 
     return (
         <section id="mentors" className="space-y-6">
-            <h2 className="text-3xl font-bold text-[#1F2937]">Team Mentors</h2>
+            <div className="space-y-4">
+                <p className="poster-eyebrow">Mentor Profiles</p>
+                <h2 className="poster-title text-3xl font-semibold leading-tight lg:text-[2.35rem]">Đội ngũ chuyên gia đồng hành trực tiếp</h2>
+                <p className="max-w-3xl text-sm leading-7 text-slate-600">
+                    Mỗi mentor đại diện cho một năng lực cốt lõi: định hướng học thuật, xây dựng chiến lược hồ sơ và tối ưu hiệu quả từng vòng xét tuyển.
+                </p>
+            </div>
 
             <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 lg:grid lg:grid-cols-3 lg:overflow-visible">
                 {mentors.map((mentor) => (
@@ -78,12 +84,16 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
 
                         <div className="poster-quote-card mt-5 rounded-2xl p-4">
                             <div className="flex items-center gap-2 text-sm font-semibold text-violet-700">
-                                <Award className="h-4 w-4" />
+                                <Medal weight="thin" className="h-4 w-4" />
                                 Thành tích nổi bật
                             </div>
-                            <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">
-                                {mentor.achievements[0]}
-                            </p>
+                            <ul className="mt-2 space-y-2">
+                                {mentor.achievements.slice(0, 2).map((achievement) => (
+                                    <li key={achievement} className="poster-list-item text-sm leading-6 text-slate-600">
+                                        {achievement}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
                         <button
@@ -94,7 +104,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                                 setSelectedMentor(mentor);
                             }}
                         >
-                            <Sparkles className="h-4 w-4" />
+                            <Sparkle weight="thin" className="h-4 w-4" />
                             Xem hồ sơ chi tiết
                         </button>
                     </article>
@@ -133,7 +143,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                                 className="rounded-xl border border-violet-200 bg-violet-50 p-2 text-violet-700 transition hover:bg-violet-100"
                                 onClick={() => setSelectedMentor(null)}
                             >
-                                <X className="h-4 w-4" />
+                                <X weight="thin" className="h-4 w-4" />
                             </button>
                         </div>
 
@@ -159,7 +169,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
 
                                 <div className="mt-6 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
                                     <div className="flex items-start gap-3">
-                                        <Quote className="mt-0.5 h-5 w-5 shrink-0 text-violet-100" />
+                                        <Quotes weight="thin" className="mt-0.5 h-5 w-5 shrink-0 text-violet-100" />
                                         <p className="text-sm leading-6 text-violet-50">{selectedMentor.quote}</p>
                                     </div>
                                 </div>
@@ -182,7 +192,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                             <div className="space-y-5">
                                 <div className="poster-panel rounded-[28px] p-5">
                                     <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-violet-700">
-                                        <GraduationCap className="h-4 w-4" />
+                                        <GraduationCap weight="thin" className="h-4 w-4" />
                                         Tổng quan hồ sơ
                                     </div>
                                     <p className="mt-3 text-sm leading-7 text-slate-700">{selectedMentor.fullBio}</p>
@@ -190,7 +200,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
 
                                 <div className="poster-quote-card rounded-[28px] p-5">
                                     <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-violet-700">
-                                        <Award className="h-4 w-4" />
+                                        <Medal weight="thin" className="h-4 w-4" />
                                         Thành tích nổi bật
                                     </div>
                                     <ul className="mt-4 space-y-3">

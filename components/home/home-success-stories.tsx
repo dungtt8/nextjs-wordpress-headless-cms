@@ -1,6 +1,6 @@
 "use client";
 
-import { Quote, Star } from "lucide-react";
+import { Quotes, Star } from "@phosphor-icons/react";
 import { useRef } from "react";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { SuccessStory } from "@/lib/home/types";
@@ -25,13 +25,13 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
             <div className="flex items-end justify-between gap-4">
                 <div>
                     <p className="poster-eyebrow">Mentee stories</p>
-                    <h2 className="mt-2 text-3xl font-bold text-[#1F2937]">Mentee nói gì về ChinaHack?</h2>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold text-[#1F2937] lg:text-[2.3rem]">Mentee nói gì về ChinaHack?</h2>
                 </div>
                 <div className="hidden gap-2 lg:flex">
                     <button
                         type="button"
                         aria-label="Previous story"
-                        className="rounded-full border border-violet-200 bg-white px-3 py-2 text-sm text-violet-700 shadow-sm"
+                        className="rounded-full border border-violet-200 bg-white/90 px-3 py-2 text-sm text-violet-700 shadow-sm transition hover:-translate-y-0.5"
                         onClick={() => move("left")}
                     >
                         ←
@@ -39,7 +39,7 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                     <button
                         type="button"
                         aria-label="Next story"
-                        className="rounded-full border border-violet-200 bg-white px-3 py-2 text-sm text-violet-700 shadow-sm"
+                        className="rounded-full border border-violet-200 bg-white/90 px-3 py-2 text-sm text-violet-700 shadow-sm transition hover:-translate-y-0.5"
                         onClick={() => move("right")}
                     >
                         →
@@ -59,7 +59,7 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                                 <h3 className="mt-2 text-xl font-semibold text-[#1F2937]">{story.studentName}</h3>
                             </div>
                             <div className="rounded-2xl bg-violet-100 p-2 text-violet-700">
-                                <Quote className="h-4 w-4" />
+                                <Quotes weight="thin" className="h-4 w-4" />
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                                 <p className="mt-1 text-lg font-semibold text-[#1F2937]">{story.outcome}</p>
                             </div>
                             <div className="poster-ribbon">
-                                <Star className="mr-2 h-4 w-4" />
+                                <Star weight="thin" className="mr-2 h-4 w-4" />
                                 Mentee story
                             </div>
                         </div>
