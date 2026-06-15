@@ -70,7 +70,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                     <span className="poster-badge">Step {index + 1}</span>
                                     {index < steps.length - 1 ? <ArrowDown weight="thin" className="h-4 w-4 text-violet-400" /> : null}
                                 </div>
-                                    <h3 className="poster-title mt-4 text-xl font-semibold text-[#1F2937]">{step.title}</h3>
+                                <h3 className="poster-title mt-4 text-xl font-semibold text-[#1F2937]">{step.title}</h3>
                                 <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
                                 <div className="mt-4">
                                     <UploadReadyImage
@@ -81,7 +81,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                     />
                                 </div>
                                 <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-violet-700">
-                                        <Sparkle weight="thin" className="h-4 w-4" />
+                                    <Sparkle weight="thin" className="h-4 w-4" />
                                     {index <= activeIndex ? "Đang kích hoạt" : "Bước kế tiếp"}
                                 </div>
                             </article>

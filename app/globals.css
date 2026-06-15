@@ -216,7 +216,7 @@
     margin-top: var(--section-gap-mobile);
 }
 
-@media (width >= 1024px) {
+@media (width >=1024px) {
     .home-stage>*+* {
         margin-top: var(--section-gap-desktop);
     }
