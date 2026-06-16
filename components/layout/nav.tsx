@@ -28,7 +28,8 @@ export function Nav({ className, children, id }: NavProps) {
             src={Logo}
             alt="Logo"
             loading="eager"
-            className="dark:invert h-[26.44px] w-auto"
+            className="h-auto w-auto"
+            style={{ maxHeight: "26.44px", maxWidth: "42px" }}
             width={42}
             height={26.44}
           />
