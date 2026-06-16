@@ -180,7 +180,7 @@ async function getMentorsFromEndpoint(path: string): Promise<MentorItem[]> {
   const data = await wordpressFetchGraceful<WPMentorRecord[]>(
     path,
     [],
-    { _embed: true, per_page: 20 },
+    { per_page: 20, _embed: true },
     ["wordpress", "mentors"]
   );
 
@@ -199,7 +199,7 @@ async function wordpressFetch<T>(
     throw new Error("WordPress URL not configured");
   }
 
-  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query)}` : ""}`;
+  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query, { sort: false })}` : ""}`;
 
   const response = await fetch(url, {
     headers: { "User-Agent": USER_AGENT },
@@ -244,7 +244,7 @@ async function wordpressFetchPaginated<T>(
     throw new Error("WordPress URL not configured");
   }
 
-  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query)}` : ""}`;
+  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query, { sort: false })}` : ""}`;
 
   const response = await fetch(url, {
     headers: { "User-Agent": USER_AGENT },

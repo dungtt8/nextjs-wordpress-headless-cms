@@ -28,7 +28,7 @@ export function Nav({ className, children, id }: NavProps) {
             src={Logo}
             alt="Logo"
             loading="eager"
-            className="dark:invert"
+            className="dark:invert h-[26.44px] w-auto"
             width={42}
             height={26.44}
           />

@@ -33,8 +33,7 @@ export async function POST(request: NextRequest) {
 
     try {
       console.log(
-        `Revalidating content: ${contentType}${
-          contentId ? ` (ID: ${contentId})` : ""
+        `Revalidating content: ${contentType}${contentId ? ` (ID: ${contentId})` : ""
         }`
       );
 
@@ -66,6 +65,8 @@ export async function POST(request: NextRequest) {
           revalidateTag(`posts-author-${contentId}`, { expire: 0 });
           revalidateTag(`author-${contentId}`, { expire: 0 });
         }
+      } else if (contentType === "mentor") {
+        revalidateTag("mentors", { expire: 0 });
       }
 
       // Also revalidate the entire layout for safety
@@ -73,9 +74,8 @@ export async function POST(request: NextRequest) {
 
       return NextResponse.json({
         revalidated: true,
-        message: `Revalidated ${contentType}${
-          contentId ? ` (ID: ${contentId})` : ""
-        } and related content`,
+        message: `Revalidated ${contentType}${contentId ? ` (ID: ${contentId})` : ""
+          } and related content`,
         timestamp: new Date().toISOString(),
       });
     } catch (error) {

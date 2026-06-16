@@ -24,6 +24,53 @@ Frontend Next.js đang có 2 luồng dữ liệu:
    - /wp-json/wp/v2/tags
    - /wp-json/wp/v2/users
    - /wp-json/wp/v2/mentor hoặc /wp-json/wp/v2/mentors (cho section Mentor)
+
+Chi tiết cách kiểm tra nhanh:
+1. Xác nhận base endpoint chạy:
+   - Mở: `https://your-wordpress-domain/wp-json/`
+   - Kết quả đúng: trả về JSON có key `namespaces` và `routes`.
+   - Nếu không ra JSON (404 hoặc HTML): kiểm tra lại permalink, `.htaccess` hoặc cấu hình web server rewrite.
+
+2. Kiểm tra từng endpoint public bằng trình duyệt hoặc Postman:
+   - `GET /wp-json/wp/v2/posts?per_page=1`
+   - `GET /wp-json/wp/v2/pages?per_page=1`
+   - `GET /wp-json/wp/v2/categories?per_page=1`
+   - `GET /wp-json/wp/v2/tags?per_page=1`
+   - `GET /wp-json/wp/v2/users?per_page=1`
+   - `GET /wp-json/wp/v2/mentor?per_page=1` hoặc `GET /wp-json/wp/v2/mentors?per_page=1`
+
+3. Tiêu chí pass/fail cho mỗi endpoint:
+   - Pass:
+     - HTTP status 200
+     - Response là mảng JSON (`[]` hoặc `[{}]`)
+     - Có header phân trang với endpoint danh sách lớn: `X-WP-Total`, `X-WP-TotalPages`
+   - Fail:
+     - 404: route không tồn tại (thường do CPT chưa `show_in_rest` hoặc sai slug endpoint)
+     - 401/403: bị chặn quyền hoặc plugin security chặn REST
+     - 5xx: lỗi server hoặc plugin/theme conflict
+
+4. Kiểm tra riêng endpoint Mentor (quan trọng cho frontend hiện tại):
+   - Frontend đang thử theo thứ tự: `mentor` rồi `mentors`.
+   - Chỉ cần 1 endpoint hoạt động là đủ.
+   - Nếu dùng Custom Post Type, cần bật:
+     - `show_in_rest = true`
+     - `public = true`
+     - `rest_base` đúng với endpoint mong muốn (`mentor` hoặc `mentors`)
+
+5. Kiểm tra ảnh mentor qua REST:
+   - Test thêm query: `?_embed=true&per_page=1`
+   - Kỳ vọng: object có `_embedded` và (nếu có featured image) có `_embedded["wp:featuredmedia"][0].source_url`.
+   - Nếu không có ảnh: kiểm tra post đã set Featured Image hay chưa.
+
+6. Ví dụ lệnh curl (dùng khi QA bằng terminal):
+   - `curl -I "https://your-wordpress-domain/wp-json/wp/v2/posts?per_page=1"`
+   - `curl "https://your-wordpress-domain/wp-json/wp/v2/mentor?_embed=true&per_page=1" | head`
+
+7. Nếu endpoint vẫn lỗi sau khi đã cấu hình đúng:
+   - Vào Settings > Permalinks và bấm Save lại 1 lần để flush rewrite rules.
+   - Tạm tắt plugin security/cache để loại trừ chặn REST.
+   - Kiểm tra WAF/CDN rule có chặn đường dẫn `/wp-json/` không.
+   - Kiểm tra log error của server (Nginx/Apache/PHP-FPM).
 3. Cài plugin revalidation tại plugin/next-revalidate.
 4. Vào Settings > Next.js Revalidation:
    - Nhập Next.js URL (không có dấu / cuối).
