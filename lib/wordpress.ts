@@ -630,4 +630,85 @@ export async function getPostsByAuthorPaginated(
   });
 }
 
+// Locale-aware functions for Polylang support
+interface GetPostBySlugParams {
+  slug: string;
+  locale: string;
+}
+
+export async function getPostBySlugAndLocale({
+  slug,
+  locale,
+}: GetPostBySlugParams): Promise<Post | undefined> {
+  const posts = await wordpressFetch<Post[]>(
+    "/wp-json/wp/v2/posts",
+    { slug, lang: locale, _embed: true },
+    [
+      'wordpress',
+      'posts',
+      `posts-${locale}`,
+      `post-slug-${slug}-${locale}`,
+    ]
+  );
+  return posts[0];
+}
+
+interface GetPostsPaginatedParams {
+  locale: string;
+  page?: number;
+  perPage?: number;
+}
+
+export async function getPostsPaginatedByLocale({
+  locale,
+  page = 1,
+  perPage = 10,
+}: GetPostsPaginatedParams): Promise<WordPressResponse<Post[]>> {
+  return wordpressFetchPaginatedGraceful<Post>("/wp-json/wp/v2/posts", {
+    _embed: true,
+    lang: locale,
+    per_page: perPage,
+    page,
+  });
+}
+
+export async function getAllPostSlugsForLocale(
+  locale: string
+): Promise<{ slug: string; locale: string }[]> {
+  const posts = await wordpressFetch<Post[]>(
+    "/wp-json/wp/v2/posts",
+    { lang: locale, per_page: 100 },
+    ['wordpress', 'posts', `posts-${locale}`]
+  );
+  return posts.map(post => ({ slug: post.slug, locale }));
+}
+
+export async function getAllPageSlugsForLocale(
+  locale: string
+): Promise<{ slug: string; locale: string }[]> {
+  const pages = await wordpressFetch<Page[]>(
+    "/wp-json/wp/v2/pages",
+    { lang: locale, per_page: 100 },
+    ['wordpress', 'pages', `pages-${locale}`]
+  );
+  return pages.map(page => ({ slug: page.slug, locale }));
+}
+
+export async function getPageBySlugAndLocale({
+  slug,
+  locale,
+}: GetPostBySlugParams): Promise<Page | undefined> {
+  const pages = await wordpressFetch<Page[]>(
+    "/wp-json/wp/v2/pages",
+    { slug, lang: locale, _embed: true },
+    [
+      'wordpress',
+      'pages',
+      `pages-${locale}`,
+      `page-slug-${slug}-${locale}`,
+    ]
+  );
+  return pages[0];
+}
+
 export { WordPressAPIError };
