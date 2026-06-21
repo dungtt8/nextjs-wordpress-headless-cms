@@ -134,16 +134,3 @@ export async function Footer() {
     </footer>
   );
 }
-target = "_blank"
-rel = "noreferrer"
-className = "font-medium text-violet-700 transition hover:text-violet-800"
-  >
-  revonexus.net
-              </a >
-            </p >
-          </div >
-        </Container >
-      </Section >
-    </footer >
-  );
-}

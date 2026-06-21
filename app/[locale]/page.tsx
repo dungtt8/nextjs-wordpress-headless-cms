@@ -10,14 +10,15 @@ import { HomeSuccessStories } from '@/components/home/home-success-stories';
 import { HomeBlogTabs } from '@/components/home/home-blog-tabs';
 import { HomeCommunity } from '@/components/home/home-community';
 import { HomeLeadForm } from '@/components/home/home-lead-form';
-import { Section, Container } from '@/components/craft';
+import { HomeUniversitiesMarquee } from '@/components/home/home-universities-marquee';
+import { Section, Container, Article } from '@/components/craft';
 import { getMentorProfiles, getRecentPosts } from '@/lib/wordpress';
 
 export default async function HomePage() {
   // Fetch data from WordPress in parallel
   const [mentors, posts] = await Promise.all([
     getMentorProfiles(),
-    getRecentPosts({ per_page: 6 }),
+    getRecentPosts(),
   ]);
 
   // Use WordPress data if available, otherwise fall back to default content
@@ -78,12 +79,10 @@ export default async function HomePage() {
       </Section>
 
       {/* Universities Marquee */}
-      {content.universitiesMarquee && (
+      {content.universities && content.universities.length > 0 && (
         <Section>
           <Container>
-            <Article>
-              {/* Universities marquee component render */}
-            </Article>
+            <HomeUniversitiesMarquee items={content.universities} />
           </Container>
         </Section>
       )}
