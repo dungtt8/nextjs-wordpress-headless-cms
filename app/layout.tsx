@@ -1,67 +1,38 @@
-import "./globals.css";
-
-import { Manrope, Playfair_Display } from "next/font/google";
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Nav } from "@/components/layout/nav";
-import { Footer } from "@/components/layout/footer";
-import { Analytics } from "@vercel/analytics/react";
-
-import { siteConfig } from "@/site.config";
-import { cn } from "@/lib/utils";
-
-import type { Metadata } from "next";
-
-const fontSans = Manrope({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-body",
-});
-
-const fontDisplay = Playfair_Display({
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-display",
-});
+import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { ReactNode } from 'react';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "ChinaHack | Mentorship & Scholarship Application",
-  description:
-    "Mentorship và scholarship application cho học sinh, sinh viên định hướng du học Trung Quốc.",
-  metadataBase: new URL(siteConfig.site_domain),
-  icons: {
-    icon: "/logo.svg",
-    shortcut: "/logo.svg",
-    apple: "/logo.svg",
-  },
-  alternates: {
-    canonical: "/",
-  },
+  title: 'ChinaHack',
+  description: 'Mentorship for Chinese Scholarships',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
+  // Get messages for current locale
+  let messages;
+  try {
+    messages = await getMessages({ locale });
+  } catch (error) {
+    console.error(`Failed to load messages for locale: ${locale}`);
+    messages = {};
+  }
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          "min-h-screen font-sans antialiased",
-          fontSans.variable,
-          fontDisplay.variable,
-        )}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Nav />
+    <html lang={locale}>
+      <body>
+        <NextIntlClientProvider messages={messages} locale={locale}>
           {children}
-          <Footer />
-        </ThemeProvider>
-        <Analytics />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
