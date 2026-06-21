@@ -1,5 +1,5 @@
 import {
-  getPostsPaginatedByLocale,
+  getPostsPaginated,
   getAllAuthors,
   getAllTags,
   getAllCategories,
@@ -24,26 +24,17 @@ import { SearchInput } from "@/components/posts/search-input";
 
 import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Blog Posts",
+  description: "Browse all our blog posts",
+};
+
 export const dynamic = "auto";
 export const revalidate = 3600;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
-  return {
-    title: locale === 'en' ? "Blog Posts" : locale === 'vi' ? "Bài Viết" : "博客文章",
-    description: locale === 'en' ? "Browse all our blog posts" : locale === 'vi' ? "Duyệt tất cả bài viết của chúng tôi" : "浏览我们所有的博客文章",
-  };
-}
-
-export default async function PostsArchivePage({
-  params,
+export default async function Page({
   searchParams,
 }: {
-  params: Promise<{ locale: string }>;
   searchParams: Promise<{
     author?: string;
     tag?: string;
@@ -52,27 +43,25 @@ export default async function PostsArchivePage({
     search?: string;
   }>;
 }) {
-  const { locale } = await params;
-  const queryParams = await searchParams;
-  const { author, tag, category, page: pageParam, search } = queryParams;
+  const params = await searchParams;
+  const { author, tag, category, page: pageParam, search } = params;
 
+  // Handle pagination
   const page = pageParam ? parseInt(pageParam, 10) : 1;
   const postsPerPage = 9;
 
+  // Fetch data based on search parameters using efficient pagination
   const [postsResponse, authors, tags, categories] = await Promise.all([
-    getPostsPaginatedByLocale({
-      locale,
-      page,
-      perPage: postsPerPage,
-    }),
-    getAllAuthors(),
-    getAllTags(),
-    getAllCategories(),
+    getPostsPaginated(page, postsPerPage, { author, tag, category, search }),
+    search ? searchAuthors(search) : getAllAuthors(),
+    search ? searchTags(search) : getAllTags(),
+    search ? searchCategories(search) : getAllCategories(),
   ]);
 
   const { data: posts, headers } = postsResponse;
   const { total, totalPages } = headers;
 
+  // Create pagination URL helper
   const createPaginationUrl = (newPage: number) => {
     const params = new URLSearchParams();
     if (newPage > 1) params.set("page", newPage.toString());
@@ -80,7 +69,7 @@ export default async function PostsArchivePage({
     if (author) params.set("author", author);
     if (tag) params.set("tag", tag);
     if (search) params.set("search", search);
-    return `/${locale}/posts${params.toString() ? `?${params.toString()}` : ""}`;
+    return `/posts${params.toString() ? `?${params.toString()}` : ""}`;
   };
 
   return (
@@ -88,15 +77,16 @@ export default async function PostsArchivePage({
       <Container>
         <div className="space-y-8">
           <Prose>
-            <h2>{locale === 'en' ? 'All Posts' : locale === 'vi' ? 'Tất cả bài viết' : '所有文章'}</h2>
+            <h2>All Posts</h2>
             <p className="text-muted-foreground">
-              {total} {total === 1 ? (locale === 'en' ? 'post' : locale === 'vi' ? 'bài viết' : '文章') : (locale === 'en' ? 'posts' : locale === 'vi' ? 'bài viết' : '文章')} found
-              {search && (locale === 'en' ? ' matching your search' : locale === 'vi' ? ' phù hợp với tìm kiếm của bạn' : ' 与您的搜索匹配')}
+              {total} {total === 1 ? "post" : "posts"} found
+              {search && " matching your search"}
             </p>
           </Prose>
 
           <div className="space-y-4">
             <SearchInput defaultValue={search} />
+
             <FilterPosts
               authors={authors}
               tags={tags}
@@ -115,7 +105,7 @@ export default async function PostsArchivePage({
             </div>
           ) : (
             <div className="h-24 w-full border rounded-lg bg-accent/25 flex items-center justify-center">
-              <p>{locale === 'en' ? 'No posts found' : locale === 'vi' ? 'Không tìm thấy bài viết nào' : '未找到任何文章'}</p>
+              <p>No posts found</p>
             </div>
           )}
 
@@ -125,12 +115,15 @@ export default async function PostsArchivePage({
                 <PaginationContent>
                   {page > 1 && (
                     <PaginationItem>
-                      <PaginationPrevious href={createPaginationUrl(page - 1)} />
+                      <PaginationPrevious
+                        href={createPaginationUrl(page - 1)}
+                      />
                     </PaginationItem>
                   )}
 
                   {Array.from({ length: totalPages }, (_, i) => i + 1)
                     .filter((pageNum) => {
+                      // Show current page, first page, last page, and 2 pages around current
                       return (
                         pageNum === 1 ||
                         pageNum === totalPages ||

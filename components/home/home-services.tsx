@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Compass, Crown, Sparkle } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { ServicePlan } from "@/lib/home/types";
@@ -10,6 +11,7 @@ interface HomeServicesProps {
 }
 
 export function HomeServices({ plans }: HomeServicesProps) {
+    const t = useTranslations();
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
     return (
@@ -17,9 +19,9 @@ export function HomeServices({ plans }: HomeServicesProps) {
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                     <p className="poster-eyebrow">Service Matrix</p>
-                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">Ba cấp độ hỗ trợ, ba cách đồng hành khác nhau</h2>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">{t("services.heading")}</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-                        Mỗi gói được thiết kế cho một mức độ sẵn sàng khác nhau, từ định hướng ban đầu đến mentoring sát sao ở các mốc quan trọng.
+                        {t("services.description")}
                     </p>
                 </div>
                 <span className="poster-ribbon w-fit">Choose your track</span>
@@ -155,7 +157,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
 
                         {plan.id === "sv2" && index === 1 ? (
                             <p className="mt-4 text-xs font-medium text-violet-700">
-                                Cân bằng tốt giữa chiến lược hồ sơ, coaching và khả năng tự triển khai.
+                                {t("services.balanceNote")}
                             </p>
                         ) : null}
                     </article>

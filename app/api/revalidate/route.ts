@@ -17,12 +17,12 @@ export async function POST(request: NextRequest) {
 
     // Revalidate cache tags for each locale
     locales.forEach(locale => {
-      revalidateTag(`posts-${locale}`);
-      revalidateTag(`pages-${locale}`);
+      revalidateTag(`posts-${locale}`, 'default');
+      revalidateTag(`pages-${locale}`, 'default');
 
       if (id) {
-        revalidateTag(`post-${id}-${locale}`);
-        revalidateTag(`page-${id}-${locale}`);
+        revalidateTag(`post-${id}-${locale}`, 'default');
+        revalidateTag(`page-${id}-${locale}`, 'default');
       }
     });
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { GraduationCap, Sparkle } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { UniversityLogo } from "@/lib/home/types";
 
@@ -11,18 +12,19 @@ interface HomeUniversitiesMarqueeProps {
 export const MARQUEE_ANIMATION_CLASS = "chinahack-marquee";
 
 export function HomeUniversitiesMarquee({ items }: HomeUniversitiesMarqueeProps) {
+    const t = useTranslations();
     const repeated = [...items, ...items];
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
     return (
         <section id="universities" ref={ref} className={`space-y-4 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
             <div className="flex flex-col gap-3">
-                <p className="poster-eyebrow">Một số trường tiêu biểu</p>
+                <p className="poster-eyebrow">{t("universities.heading")}</p>
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                     <div>
-                        <h2 className="poster-title text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">Mentee ChinaHack đang theo học tại đâu?</h2>
+                        <h2 className="poster-title text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">{t("universities.subtitle")}</h2>
                         <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-                            Từ các trường top đầu đến những lựa chọn phù hợp học bổng ngành học, ChinaHack định hướng lộ trình dựa trên mức độ phù hợp thay vì chỉ chạy theo danh sách trường nổi tiếng.
+                            {t("universities.description")}
                         </p>
                     </div>
                     <span className="poster-ribbon w-fit">Scholarship destinations</span>

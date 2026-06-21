@@ -2,6 +2,7 @@
 
 import type { FormEvent } from "react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { LeadFormContent, LeadFormPayload } from "@/lib/home/types";
 
 type FormState = "idle" | "validating" | "loading" | "success" | "error";
@@ -23,6 +24,7 @@ const INITIAL_VALUES: LeadFormPayload = {
 };
 
 export function HomeLeadForm({ data }: HomeLeadFormProps) {
+    const t = useTranslations();
     const [values, setValues] = useState<LeadFormPayload>(INITIAL_VALUES);
     const [errors, setErrors] = useState<FieldErrors>({});
     const [state, setState] = useState<FormState>("idle");
@@ -34,12 +36,12 @@ export function HomeLeadForm({ data }: HomeLeadFormProps) {
     const validate = (payload: LeadFormPayload) => {
         const next: FieldErrors = {};
 
-        if (!payload.fullName.trim()) next.fullName = "Vui lòng nhập họ và tên.";
+        if (!payload.fullName.trim()) next.fullName = t("leadForm.nameError");
         if (!payload.email.trim() || !EMAIL_REGEX.test(payload.email.trim())) {
-            next.email = "Vui lòng nhập đúng định dạng Email.";
+            next.email = t("leadForm.emailError");
         }
-        if (!payload.phone.trim()) next.phone = "Vui lòng nhập số điện thoại.";
-        if (!payload.gpa.trim()) next.gpa = "Vui lòng nhập GPA.";
+        if (!payload.phone.trim()) next.phone = t("leadForm.phoneError");
+        if (!payload.gpa.trim()) next.gpa = t("leadForm.gpaError");
 
         return next;
     };
@@ -90,7 +92,7 @@ export function HomeLeadForm({ data }: HomeLeadFormProps) {
     return (
         <section id="lead-form" className="mx-auto max-w-3xl space-y-6">
             <div className="space-y-3 text-center">
-                <p className="poster-eyebrow">Application Support</p>
+                <p className="poster-eyebrow">{t("leadForm.title")}</p>
                 <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.4rem]">{data.title}</h2>
                 <p className="text-sm leading-7 text-slate-600">{data.subtitle}</p>
             </div>

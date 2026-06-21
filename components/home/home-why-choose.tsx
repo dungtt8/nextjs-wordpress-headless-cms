@@ -1,6 +1,7 @@
 "use client";
 
 import { BookOpen, Medal, ShareNetwork, Target } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { WhyChooseItem } from "@/lib/home/types";
@@ -17,16 +18,17 @@ function iconFor(key: WhyChooseItem["icon"]) {
 }
 
 export function HomeWhyChoose({ items }: HomeWhyChooseProps) {
+    const t = useTranslations();
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
     return (
         <section id="why-choose" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
             <div className="space-y-4">
                 <p className="poster-eyebrow">Value Architecture</p>
                 <h2 className="poster-title text-3xl font-semibold leading-tight lg:text-[2.35rem]">
-                    Vì sao mentee chọn ChinaHack cho hành trình học bổng?
+                    {t("whyChoose.heading")}
                 </h2>
                 <p className="max-w-3xl text-sm leading-7 text-slate-600">
-                    Cấu trúc mentoring được thiết kế theo logic học thuật: rõ định hướng, rõ mốc triển khai, rõ chất lượng đầu ra của từng vòng hồ sơ.
+                    {t("whyChoose.description")}
                 </p>
             </div>
 
@@ -40,7 +42,7 @@ export function HomeWhyChoose({ items }: HomeWhyChooseProps) {
                         >
                             <UploadReadyImage
                                 image={item.image}
-                                title="Ảnh minh họa"
+                                title={t("whyChoose.illustration")}
                                 subtitle="Sẵn sàng nhận ảnh upload từ CMS"
                                 ratioClassName="aspect-[16/10]"
                                 className="border-violet-100"

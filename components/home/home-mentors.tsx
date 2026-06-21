@@ -1,6 +1,7 @@
 "use client";
 
 import { GraduationCap, Medal, Quotes, Sparkle, X } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { MentorItem } from "@/lib/home/types";
@@ -48,6 +49,7 @@ function MentorPortrait({ mentor, className, initialsClassName, sizes = "(max-wi
 }
 
 export function HomeMentors({ mentors }: HomeMentorsProps) {
+    const t = useTranslations();
     const [selectedMentor, setSelectedMentor] = useState<MentorItem | null>(null);
     const triggerRef = useRef<HTMLButtonElement | null>(null);
     const closeButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -78,9 +80,9 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
         <section id="mentors" className="space-y-6">
             <div className="space-y-4">
                 <p className="poster-eyebrow">Mentor Profiles</p>
-                <h2 className="poster-title text-3xl font-semibold leading-tight lg:text-[2.35rem]">Đội ngũ chuyên gia đồng hành trực tiếp</h2>
+                <h2 className="poster-title text-3xl font-semibold leading-tight lg:text-[2.35rem]">{t("mentors.heading")}</h2>
                 <p className="max-w-3xl text-sm leading-7 text-slate-600">
-                    Mỗi mentor đại diện cho một năng lực cốt lõi: định hướng học thuật, xây dựng chiến lược hồ sơ và tối ưu hiệu quả từng vòng xét tuyển.
+                    {t("mentors.description")}
                 </p>
             </div>
 
@@ -126,7 +128,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                         <div className="poster-quote-card mt-5 rounded-2xl p-4">
                             <div className="flex items-center gap-2 text-sm font-semibold text-violet-700">
                                 <Medal weight="thin" className="h-4 w-4" />
-                                Thành tích nổi bật
+                                {t("mentors.achievements")}
                             </div>
                             <ul className="mt-2 space-y-2">
                                 {mentor.achievements.slice(0, 2).map((achievement) => (
@@ -146,7 +148,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                             }}
                         >
                             <Sparkle weight="thin" className="h-4 w-4" />
-                            Xem hồ sơ chi tiết
+                            {t("mentors.viewProfile")}
                         </button>
                     </article>
                 ))}
@@ -233,7 +235,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                                 <div className="poster-panel rounded-[28px] p-5">
                                     <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-violet-700">
                                         <GraduationCap weight="thin" className="h-4 w-4" />
-                                        Tổng quan hồ sơ
+                                        {t("mentors.overview")}
                                     </div>
                                     <p className="mt-3 text-sm leading-7 text-slate-700">{selectedMentor.fullBio}</p>
                                 </div>
@@ -241,7 +243,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                                 <div className="poster-quote-card rounded-[28px] p-5">
                                     <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-violet-700">
                                         <Medal weight="thin" className="h-4 w-4" />
-                                        Thành tích nổi bật
+                                        {t("mentors.achievements")}
                                     </div>
                                     <ul className="mt-4 space-y-3">
                                         {selectedMentor.achievements.map((achievement) => (

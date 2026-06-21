@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/nav/mobile-nav";
+import LanguageSwitcher from "@/components/theme/language-switcher";
 import { mainMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
@@ -46,6 +47,7 @@ export function Nav({ className, children, id }: NavProps) {
               </Button>
             ))}
           </div>
+          <LanguageSwitcher />
           <Button asChild className="hidden sm:flex rounded-full bg-[#6e59b1] px-5 hover:bg-[#5f4b9f]">
             <Link href="/#lead-form">Get Started</Link>
           </Button>

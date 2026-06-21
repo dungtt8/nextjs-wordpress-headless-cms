@@ -1,30 +1,130 @@
 {
-  "nav": {
-    "home": "Trang chủ",
-    "blog": "Blog",
-    "posts": "Blog",
-    "authors": "Tác giả",
-    "categories": "Danh mục",
-    "tags": "Thẻ",
-    "pages": "Trang"
-  },
-  "common": {
-    "readMore": "Đọc thêm",
-    "search": "Tìm kiếm",
-    "filter": "Lọc",
-    "back": "Quay lại",
-    "loading": "Đang tải...",
-    "noResults": "Không tìm thấy kết quả"
-  },
-  "home": {
-    "title": "ChinaHack",
-    "description": "Hỗ trợ học bổng du học Trung Quốc"
-  },
-  "posts": {
-    "archiveTitle": "Tất cả bài viết",
-    "noPosts": "Không tìm thấy bài viết nào",
-    "byAuthor": "Bởi {author}",
-    "inCategory": "Trong {category}",
-    "publishedOn": "Được công bố vào"
-  }
+    "nav": {
+        "home": "Trang chủ",
+        "blog": "Blog",
+        "posts": "Blog",
+        "authors": "Tác giả",
+        "categories": "Danh mục",
+        "tags": "Thẻ",
+        "pages": "Trang",
+        "getStarted": "Bắt đầu"
+    },
+    "common": {
+        "readMore": "Đọc thêm",
+        "search": "Tìm kiếm",
+        "filter": "Lọc",
+        "back": "Quay lại",
+        "loading": "Đang tải...",
+        "noResults": "Không tìm thấy kết quả"
+    },
+    "hero": {
+        "title": "Nền tảng mentorship & học bổng du học Trung Quốc",
+        "subtitle": "Định hướng học thuật, xây dựng hồ sơ học bổng và đồng hành qua từng vòng ứng tuyển theo đúng nhịp độ của từng mentee.",
+        "cta": "Bắt đầu ngay",
+        "badge": "ChinaHack Mentorship",
+        "applicationDirection": "Application Direction",
+        "quote": "Định hướng học thuật, xây dựng hồ sơ học bổng và đồng hành qua từng vòng ứng tuyển theo đúng nhịp độ của từng mentee.",
+        "expertise": "Mentorship & Scholarship",
+        "highlight": "Học bổng không chỉ là điểm số, mà là cách hồ sơ của bạn được định vị.",
+        "description": "ChinaHack giúp bạn đi từ chiến lược hồ sơ, essay, hoạt động ngoại khóa đến cách trả lời phỏng vấn, theo một lộ trình rõ ràng và có người đồng hành sát sao.",
+        "guidance": "Hướng dẫn của chúng tôi",
+        "storyPrompt": "Để hồ sơ của bạn kể một câu chuyện"
+    },
+    "about": {
+        "heading": "Giới thiệu về ChinaHack",
+        "body": "ChinaHack là nền tảng kết nối mentee và mentor trong hành trình du học Trung Quốc. Chúng tôi cung cấp định hướng học thuật, hỗ trợ xây dựng hồ sơ và mentoring toàn diện.",
+        "highlightQuote": "Mỗi mentee là một hành trình độc nhất"
+    },
+    "whyChoose": {
+        "heading": "Vì sao mentee chọn ChinaHack cho hành trình học bổng?",
+        "description": "Cấu trúc mentoring được thiết kế theo logic học thuật: rõ định hướng, rõ mốc triển khai, rõ chất lượng đầu ra của từng vòng hồ sơ.",
+        "book": "Định hướng rõ ràng",
+        "medal": "Hỗ trợ toàn diện",
+        "network": "Cộng đồng mạnh",
+        "target": "Kết quả cụ thể",
+        "illustration": "Ảnh minh họa"
+    },
+    "services": {
+        "heading": "Ba cấp độ hỗ trợ, ba cách đồng hành khác nhau",
+        "description": "Mỗi gói được thiết kế cho một mức độ sẵn sàng khác nhau, từ định hướng ban đầu đến mentoring sát sao ở các mốc quan trọng.",
+        "balanceNote": "Cân bằng tốt giữa chiến lược hồ sơ, coaching và khả năng tự triển khai."
+    },
+    "process": {
+        "heading": "Quy trình mentoring của ChinaHack",
+        "eyebrow": "Lộ trình đồng hành",
+        "title": "Từng bước rõ ràng, theo đúng flow của hồ sơ học bổng",
+        "description": "Mỗi giai đoạn đều có đầu ra cụ thể để mentee biết mình đang ở đâu, cần chuẩn bị gì tiếp theo và khi nào nên chuyển sang bước kế tiếp.",
+        "active": "Đang kích hoạt",
+        "next": "Bước kế tiếp",
+        "imageSlot": "Slot ảnh theo từng giai đoạn"
+    },
+    "stats": {
+        "heading": "Thành quả nổi bật từ hành trình mentee"
+    },
+    "mentors": {
+        "heading": "Đội ngũ chuyên gia đồng hành trực tiếp",
+        "description": "Mỗi mentor đại diện cho một năng lực cốt lõi: định hướng học thuật, xây dựng chiến lược hồ sơ và tối ưu hiệu quả từng vòng xét tuyển.",
+        "achievements": "Thành tích nổi bật",
+        "viewProfile": "Xem hồ sơ chi tiết",
+        "overview": "Tổng quan hồ sơ"
+    },
+    "universities": {
+        "heading": "Một số trường tiêu biểu",
+        "subtitle": "Mentee ChinaHack đang theo học tại đâu?",
+        "description": "Từ các trường top đầu đến những lựa chọn phù hợp học bổng ngành học, ChinaHack định hướng lộ trình dựa trên mức độ phù hợp thay vì chỉ chạy theo danh sách trường nổi tiếng."
+    },
+    "successStories": {
+        "heading": "Mentee nói gì về ChinaHack?",
+        "fromMentee": "Lời nhắn từ mentee",
+        "highlights": "Kết quả nổi bật",
+        "outcome": "Kết quả nổi bật",
+        "story": "Câu chuyện mentee"
+    },
+    "blog": {
+        "heading": "Blog học bổng & kinh nghiệm hồ sơ",
+        "editorial": "Editorial Notes"
+    },
+    "community": {
+        "heading": "Cộng đồng ChinaHack",
+        "subtitle": "Kết nối mentee qua các kênh đồng hành",
+        "description": "Theo dõi scholarship updates, kinh nghiệm nộp hồ sơ và các chia sẻ thực tế từ cộng đồng mentee trên những kênh mà ChinaHack cập nhật mỗi ngày."
+    },
+    "leadForm": {
+        "heading": "Đăng ký đánh giá hồ sơ",
+        "subtitle": "Yêu cầu tư vấn ngay",
+        "title": "Application Support",
+        "description": "Hãy để ChinaHack giúp bạn xây dựng hồ sơ học bổng mạnh mẽ.",
+        "name": "Họ và tên",
+        "email": "Email",
+        "phone": "Số điện thoại",
+        "gpa": "GPA",
+        "nameError": "Vui lòng nhập họ và tên.",
+        "emailError": "Vui lòng nhập đúng định dạng Email.",
+        "phoneError": "Vui lòng nhập số điện thoại.",
+        "gpaError": "Vui lòng nhập GPA.",
+        "submit": "Gửi"
+    },
+    "footer": {
+        "about": "Giới thiệu",
+        "community": "Cộng đồng",
+        "blog": "Blog học bổng",
+        "articles": "Danh mục bài viết",
+        "consulting": "Đăng ký tư vấn",
+        "tagline": "Du học Trung Quốc cùng lộ trình cá nhân hóa",
+        "explore": "Khám phá",
+        "resources": "Tài nguyên",
+        "contact": "Liên hệ",
+        "description": "Đồng hành cùng học sinh, sinh viên trong hành trình định hướng học thuật, xây hồ sơ học bổng và nộp đơn du học Trung Quốc."
+    },
+    "home": {
+        "title": "ChinaHack",
+        "description": "Hỗ trợ học bổng du học Trung Quốc"
+    },
+    "posts": {
+        "archiveTitle": "Tất cả bài viết",
+        "noPosts": "Không tìm thấy bài viết nào",
+        "byAuthor": "Bởi {author}",
+        "inCategory": "Trong {category}",
+        "publishedOn": "Được công bố vào"
+    }
 }

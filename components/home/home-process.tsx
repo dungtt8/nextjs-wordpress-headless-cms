@@ -2,6 +2,7 @@
 
 import { ArrowDown, Sparkle } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import type { ProcessStep } from "@/lib/home/types";
 
@@ -10,6 +11,7 @@ interface HomeProcessProps {
 }
 
 export function HomeProcess({ steps }: HomeProcessProps) {
+    const t = useTranslations();
     const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -38,10 +40,10 @@ export function HomeProcess({ steps }: HomeProcessProps) {
         <section id="process" className="space-y-6">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                    <p className="poster-eyebrow">Lộ trình đồng hành</p>
-                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">Từng bước rõ ràng, theo đúng flow của hồ sơ học bổng</h2>
+                    <p className="poster-eyebrow">{t("process.eyebrow")}</p>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">{t("process.title")}</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-                        Mỗi giai đoạn đều có đầu ra cụ thể để mentee biết mình đang ở đâu, cần chuẩn bị gì tiếp theo và khi nào nên chuyển sang bước kế tiếp.
+                        {t("process.description")}
                     </p>
                 </div>
                 <span className="poster-ribbon w-fit">Editorial flow</span>
@@ -76,13 +78,13 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                     <UploadReadyImage
                                         image={step.image}
                                         title="Process visual"
-                                        subtitle="Slot ảnh theo từng giai đoạn"
+                                        subtitle={t("process.imageSlot")}
                                         ratioClassName="aspect-[16/9]"
                                     />
                                 </div>
                                 <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-violet-700">
                                     <Sparkle weight="thin" className="h-4 w-4" />
-                                    {index <= activeIndex ? "Đang kích hoạt" : "Bước kế tiếp"}
+                                    {index <= activeIndex ? t("process.active") : t("process.next")}
                                 </div>
                             </article>
                         </div>

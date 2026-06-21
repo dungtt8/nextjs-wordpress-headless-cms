@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import type { BlogTab } from "@/lib/home/types";
 import type { Post } from "@/lib/wordpress.d";
 import { MIN_BLOG_TAB_SKELETON_MS } from "@/lib/home/normalize";
@@ -26,6 +27,7 @@ function byTab(posts: Post[], tab: string) {
 }
 
 export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
+    const t = useTranslations();
     const firstTab = tabs[0]?.slug ?? "all";
     const [activeTab, setActiveTab] = useState(firstTab);
     const [displayTab, setDisplayTab] = useState(firstTab);
@@ -62,8 +64,8 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
     return (
         <section id="blog" className="space-y-6">
             <div className="space-y-3">
-                <p className="poster-eyebrow">Editorial Notes</p>
-                <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.2rem]">Blog học bổng & kinh nghiệm hồ sơ</h2>
+                <p className="poster-eyebrow">{t("blog.editorial")}</p>
+                <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.2rem]">{t("blog.heading")}</h2>
             </div>
 
             <div className="flex flex-wrap gap-2">

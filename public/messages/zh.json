@@ -1,30 +1,128 @@
 {
-  "nav": {
-    "home": "主页",
-    "blog": "博客",
-    "posts": "博客",
-    "authors": "作者",
-    "categories": "分类",
-    "tags": "标签",
-    "pages": "页面"
-  },
-  "common": {
-    "readMore": "阅读更多",
-    "search": "搜索",
-    "filter": "筛选",
-    "back": "返回",
-    "loading": "加载中...",
-    "noResults": "未找到结果"
-  },
-  "home": {
-    "title": "ChinaHack",
-    "description": "中国奖学金留学辅导"
-  },
-  "posts": {
-    "archiveTitle": "所有文章",
-    "noPosts": "未找到任何文章",
-    "byAuthor": "作者：{author}",
-    "inCategory": "分类：{category}",
-    "publishedOn": "发布于"
-  }
+    "nav": {
+        "home": "首页",
+        "blog": "博客",
+        "posts": "博客",
+        "authors": "作者",
+        "categories": "分类",
+        "tags": "标签",
+        "pages": "页面",
+        "getStarted": "开始"
+    },
+    "common": {
+        "readMore": "阅读更多",
+        "search": "搜索",
+        "filter": "筛选",
+        "back": "返回",
+        "loading": "加载中...",
+        "noResults": "未找到结果"
+    },
+    "hero": {
+        "title": "中国留学奖学金辅导与申请平台",
+        "subtitle": "学术指导、奖学金文书指导和全程申请支持，按您的节奏进行。",
+        "cta": "立即开始",
+        "badge": "ChinaHack 辅导",
+        "applicationDirection": "申请方向指导",
+        "quote": "学术指导、奖学金文书指导和全程申请支持，按您的节奏进行。",
+        "expertise": "辅导与奖学金",
+        "highlight": "奖学金不仅是成绩，更是您的文书如何被定位。",
+        "description": "ChinaHack帮助您从文书策略、论文、课外活动到面试准备，遵循清晰的路线图并获得专业指导。"
+    },
+    "about": {
+        "heading": "关于 ChinaHack",
+        "body": "ChinaHack 是连接学生和导师的中国留学平台。我们提供学术指导、奖学金文书支持和全面辅导。",
+        "highlightQuote": "每个学生的申请之路都是独特的"
+    },
+    "whyChoose": {
+        "heading": "为什么选择 ChinaHack 进行您的奖学金申请？",
+        "description": "我们的辅导结构遵循学术逻辑：清晰的方向、明确的里程碑、每轮申请的具体成果。",
+        "book": "清晰指导",
+        "medal": "全面支持",
+        "network": "强大社区",
+        "target": "具体成果",
+        "illustration": "插图"
+    },
+    "services": {
+        "heading": "三个支持级别，三种不同的辅导方式",
+        "description": "每个套餐针对不同的准备程度，从初期指导到关键里程碑的密切辅导。",
+        "balanceNote": "完美平衡文书策略、辅导和自主发展。"
+    },
+    "process": {
+        "heading": "ChinaHack 辅导流程",
+        "eyebrow": "你的申请路线图",
+        "title": "清晰的步骤，遵循奖学金申请流程",
+        "description": "每个阶段都有具体的成果，让学生知道自己在哪里、接下来要准备什么、何时应该进入下一步。",
+        "active": "进行中",
+        "next": "下一步",
+        "imageSlot": "每个阶段的配图"
+    },
+    "stats": {
+        "heading": "学生申请成果亮点"
+    },
+    "mentors": {
+        "heading": "专业导师团队",
+        "description": "每位导师代表一项核心能力：学术指导、奖学金文书策略和每轮录取优化。",
+        "achievements": "突出成就",
+        "viewProfile": "查看详细资料",
+        "overview": "文书概览"
+    },
+    "universities": {
+        "heading": "知名院校",
+        "subtitle": "ChinaHack 学生在哪里就读？",
+        "description": "从顶尖大学到适合奖学金的选择，ChinaHack 根据适配度而非仅名声来指导申请路径。"
+    },
+    "successStories": {
+        "heading": "学生对 ChinaHack 的评价",
+        "fromMentee": "学生留言",
+        "highlights": "成果亮点",
+        "outcome": "成果亮点",
+        "story": "学生故事"
+    },
+    "blog": {
+        "heading": "奖学金博客与申请技巧",
+        "editorial": "编辑推荐"
+    },
+    "community": {
+        "heading": "ChinaHack 社区",
+        "subtitle": "通过我们的频道连接学生",
+        "description": "关注奖学金更新、申请经验和学生社区的真实分享，我们每天更新内容。"
+    },
+    "leadForm": {
+        "heading": "获取文书评审",
+        "subtitle": "立即预约咨询",
+        "title": "申请支持",
+        "description": "让 ChinaHack 帮助您建立强有力的奖学金申请。",
+        "name": "全名",
+        "email": "邮箱",
+        "phone": "电话号码",
+        "gpa": "GPA",
+        "nameError": "请输入您的全名。",
+        "emailError": "请输入有效的邮箱地址。",
+        "phoneError": "请输入您的电话号码。",
+        "gpaError": "请输入您的 GPA。",
+        "submit": "提交"
+    },
+    "footer": {
+        "about": "关于",
+        "community": "社区",
+        "blog": "奖学金博客",
+        "articles": "文章分类",
+        "consulting": "预约咨询",
+        "tagline": "个性化留学中国之路",
+        "explore": "探索",
+        "resources": "资源",
+        "contact": "联系",
+        "description": "支持学生通过学术规划、奖学金文书指导和中国留学申请的完整过程。"
+    },
+    "home": {
+        "title": "ChinaHack",
+        "description": "中国奖学金辅导平台"
+    },
+    "posts": {
+        "archiveTitle": "所有文章",
+        "noPosts": "未找到文章",
+        "byAuthor": "作者：{author}",
+        "inCategory": "分类：{category}",
+        "publishedOn": "发布于"
+    }
 }

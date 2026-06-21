@@ -1,13 +1,10 @@
-// app/[locale]/posts/[slug]/page.tsx
-import { notFound } from 'next/navigation';
-import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
-import {
-  getPostBySlugAndLocale,
-  getAllPostSlugsForLocale,
-} from '@/lib/wordpress';
+import { notFound } from "next/navigation";
+import { getPostBySlugAndLocale, getAllPostSlugsForLocale } from "@/lib/wordpress";
+import { generateContentMetadata, stripHtml } from "@/lib/metadata";
+import { Section, Container, Prose } from "@/components/craft";
+import type { Metadata } from "next";
 
-export const dynamic = 'force-static';
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const locales = ['en', 'vi', 'zh'];
@@ -29,11 +26,19 @@ export async function generateMetadata({
     return {};
   }
 
-  const baseUrl = process.env.WORDPRESS_URL || 'https://example.com';
+  const description = post.excerpt?.rendered
+    ? stripHtml(post.excerpt.rendered)
+    : stripHtml(post.content.rendered).slice(0, 200) + "...";
+
+  const baseUrl = process.env.WORDPRESS_URL || "https://example.com";
 
   return {
-    title: post.title.rendered,
-    description: post.excerpt?.rendered || '',
+    ...generateContentMetadata({
+      title: post.title.rendered,
+      description,
+      slug: post.slug,
+      basePath: "posts",
+    }),
     alternates: {
       languages: {
         en: `${baseUrl}/en/posts/${slug}`,
@@ -56,13 +61,14 @@ export default async function PostPage({
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: 'posts' });
-
   return (
-    <article>
-      <h1>{post.title.rendered}</h1>
-      <p>{t('publishedOn')} {new Date(post.date).toLocaleDateString(locale)}</p>
-      <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-    </article>
+    <Section>
+      <Container>
+        <Prose>
+          <h2>{post.title.rendered}</h2>
+          <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+        </Prose>
+      </Container>
+    </Section>
   );
 }

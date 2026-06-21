@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight, Globe } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { CommunityChannel } from "@/lib/home/types";
@@ -28,15 +29,16 @@ function getChannelLogo(name: string) {
 }
 
 export function HomeCommunity({ channels }: HomeCommunityProps) {
+    const t = useTranslations();
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
     return (
         <section id="community" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                    <p className="poster-eyebrow">Cộng đồng ChinaHack</p>
-                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">Kết nối mentee qua các kênh đồng hành</h2>
+                    <p className="poster-eyebrow">{t("community.heading")}</p>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">{t("community.subtitle")}</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
-                        Theo dõi scholarship updates, kinh nghiệm nộp hồ sơ và các chia sẻ thực tế từ cộng đồng mentee trên những kênh mà ChinaHack cập nhật mỗi ngày.
+                        {t("community.description")}
                     </p>
                 </div>
                 <span className="poster-ribbon w-fit">Join the community</span>

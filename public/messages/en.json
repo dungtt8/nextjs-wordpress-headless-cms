@@ -1,30 +1,130 @@
 {
-  "nav": {
-    "home": "Home",
-    "blog": "Blog",
-    "posts": "Blog",
-    "authors": "Authors",
-    "categories": "Categories",
-    "tags": "Tags",
-    "pages": "Pages"
-  },
-  "common": {
-    "readMore": "Read More",
-    "search": "Search",
-    "filter": "Filter",
-    "back": "Back",
-    "loading": "Loading...",
-    "noResults": "No results found"
-  },
-  "home": {
-    "title": "ChinaHack",
-    "description": "Mentorship for Chinese Scholarships"
-  },
-  "posts": {
-    "archiveTitle": "All Posts",
-    "noPosts": "No posts found",
-    "byAuthor": "By {author}",
-    "inCategory": "In {category}",
-    "publishedOn": "Published on"
-  }
+    "nav": {
+        "home": "Home",
+        "blog": "Blog",
+        "posts": "Blog",
+        "authors": "Authors",
+        "categories": "Categories",
+        "tags": "Tags",
+        "pages": "Pages",
+        "getStarted": "Get Started"
+    },
+    "common": {
+        "readMore": "Read More",
+        "search": "Search",
+        "filter": "Filter",
+        "back": "Back",
+        "loading": "Loading...",
+        "noResults": "No results found"
+    },
+    "hero": {
+        "title": "Mentorship & Scholarship Platform for Studying in China",
+        "subtitle": "Academic guidance, scholarship profile building, and support throughout the application process at your own pace.",
+        "cta": "Start Now",
+        "badge": "ChinaHack Mentorship",
+        "applicationDirection": "Application Direction",
+        "quote": "Academic guidance, scholarship profile building, and support throughout the application process at your own pace.",
+        "expertise": "Mentorship & Scholarship",
+        "highlight": "Scholarship is not just about scores, but how your profile is positioned.",
+        "description": "ChinaHack helps you from profile strategy, essays, extracurriculars to interview preparation, following a clear roadmap with dedicated support.",
+        "guidance": "Our Guidance",
+        "storyPrompt": "Let your profile tell a story"
+    },
+    "about": {
+        "heading": "About ChinaHack",
+        "body": "ChinaHack is a platform connecting mentees and mentors in the journey to study in China. We provide academic guidance, support for building scholarship profiles, and comprehensive mentoring.",
+        "highlightQuote": "Each mentee's journey is unique"
+    },
+    "whyChoose": {
+        "heading": "Why Choose ChinaHack for Your Scholarship Journey?",
+        "description": "Our mentoring structure is designed with academic logic: clear direction, clear milestones, clear outcomes for each application round.",
+        "book": "Clear Direction",
+        "medal": "Comprehensive Support",
+        "network": "Strong Community",
+        "target": "Concrete Results",
+        "illustration": "Illustration"
+    },
+    "services": {
+        "heading": "Three Support Levels, Three Different Ways of Mentorship",
+        "description": "Each package is designed for a different readiness level, from initial guidance to close mentoring at critical milestones.",
+        "balanceNote": "Balances strategy development, coaching, and self-directed learning effectively."
+    },
+    "process": {
+        "heading": "ChinaHack Mentoring Process",
+        "eyebrow": "Your Journey Roadmap",
+        "title": "Clear Steps, Following the Scholarship Application Flow",
+        "description": "Each stage has specific outcomes so mentees know where they are, what to prepare next, and when to move to the next step.",
+        "active": "Active",
+        "next": "Next Step",
+        "imageSlot": "Image for each phase"
+    },
+    "stats": {
+        "heading": "Notable Results from Mentee Journeys"
+    },
+    "mentors": {
+        "heading": "Team of Expert Mentors",
+        "description": "Each mentor represents a core competency: academic guidance, scholarship profile strategy, and optimization of each admission round.",
+        "achievements": "Notable Achievements",
+        "viewProfile": "View Detailed Profile",
+        "overview": "Application Overview"
+    },
+    "universities": {
+        "heading": "Featured Universities",
+        "subtitle": "Where are ChinaHack Mentees Studying?",
+        "description": "From top-tier universities to scholarship-appropriate choices, ChinaHack guides pathways based on fit rather than just prestigious names."
+    },
+    "successStories": {
+        "heading": "What Mentees Say About ChinaHack",
+        "fromMentee": "Mentee Message",
+        "highlights": "Notable Results",
+        "outcome": "Notable Result",
+        "story": "Mentee Story"
+    },
+    "blog": {
+        "heading": "Scholarship Blog & Application Tips",
+        "editorial": "Editorial Notes"
+    },
+    "community": {
+        "heading": "ChinaHack Community",
+        "subtitle": "Connect Mentees Through Our Channels",
+        "description": "Follow scholarship updates, application experiences, and real insights from our mentee community on channels we update daily."
+    },
+    "leadForm": {
+        "heading": "Get Your Profile Reviewed",
+        "subtitle": "Request Consultation Now",
+        "title": "Application Support",
+        "description": "Let ChinaHack help you build a strong scholarship profile.",
+        "name": "Full Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "gpa": "GPA",
+        "nameError": "Please enter your full name.",
+        "emailError": "Please enter a valid email address.",
+        "phoneError": "Please enter your phone number.",
+        "gpaError": "Please enter your GPA.",
+        "submit": "Submit"
+    },
+    "footer": {
+        "about": "About",
+        "community": "Community",
+        "blog": "Scholarship Blog",
+        "articles": "Article Categories",
+        "consulting": "Request Consultation",
+        "tagline": "Study in China with a Personalized Pathway",
+        "explore": "Explore",
+        "resources": "Resources",
+        "contact": "Contact",
+        "description": "Supporting students on their journey through academic planning, scholarship profile building, and China study applications."
+    },
+    "home": {
+        "title": "ChinaHack",
+        "description": "Mentorship for Chinese Scholarships"
+    },
+    "posts": {
+        "archiveTitle": "All Posts",
+        "noPosts": "No posts found",
+        "byAuthor": "By {author}",
+        "inCategory": "In {category}",
+        "publishedOn": "Published on"
+    }
 }

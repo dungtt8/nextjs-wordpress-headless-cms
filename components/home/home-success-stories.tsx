@@ -1,6 +1,7 @@
 "use client";
 
 import { Quotes, Star } from "@phosphor-icons/react";
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { SuccessStory } from "@/lib/home/types";
@@ -10,6 +11,7 @@ interface HomeSuccessStoriesProps {
 }
 
 export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
+    const t = useTranslations();
     const scrollRef = useRef<HTMLDivElement | null>(null);
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
@@ -24,8 +26,8 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
         <section id="success-stories" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
             <div className="flex items-end justify-between gap-4">
                 <div>
-                    <p className="poster-eyebrow">Mentee stories</p>
-                    <h2 className="poster-title mt-2 text-3xl font-semibold text-[#1F2937] lg:text-[2.3rem]">Mentee nói gì về ChinaHack?</h2>
+                    <p className="poster-eyebrow">{t("successStories.fromMentee")}</p>
+                    <h2 className="poster-title mt-2 text-3xl font-semibold text-[#1F2937] lg:text-[2.3rem]">{t("successStories.heading")}</h2>
                 </div>
                 <div className="hidden gap-2 lg:flex">
                     <button
@@ -55,7 +57,7 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                     >
                         <div className="flex items-start justify-between gap-4">
                             <div>
-                                <p className="poster-eyebrow">Lời nhắn từ mentee</p>
+                                <p className="poster-eyebrow">{t("successStories.fromMentee")}</p>
                                 <h3 className="mt-2 text-xl font-semibold text-[#1F2937]">{story.studentName}</h3>
                             </div>
                             <div className="rounded-2xl bg-violet-100 p-2 text-violet-700">
@@ -69,12 +71,12 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
 
                         <div className="mt-5 flex items-center justify-between gap-4">
                             <div>
-                                <p className="text-sm font-semibold text-violet-700">Kết quả nổi bật</p>
+                                <p className="text-sm font-semibold text-violet-700">{t("successStories.outcome")}</p>
                                 <p className="mt-1 text-lg font-semibold text-[#1F2937]">{story.outcome}</p>
                             </div>
                             <div className="poster-ribbon">
                                 <Star weight="thin" className="mr-2 h-4 w-4" />
-                                Mentee story
+                                {t("successStories.story")}
                             </div>
                         </div>
                     </article>

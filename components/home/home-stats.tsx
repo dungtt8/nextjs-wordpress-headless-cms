@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import type { StatsItem } from "@/lib/home/types";
 import { shouldAnimateStats } from "@/lib/home/normalize";
 
@@ -11,6 +12,7 @@ interface HomeStatsProps {
 const DURATION_MS = 1500;
 
 export function HomeStats({ stats }: HomeStatsProps) {
+    const t = useTranslations();
     const rootRef = useRef<HTMLElement | null>(null);
     const [hasAnimated, setHasAnimated] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -55,7 +57,7 @@ export function HomeStats({ stats }: HomeStatsProps) {
         <section id="stats" ref={rootRef} className="space-y-6">
             <div className="space-y-3">
                 <p className="poster-eyebrow">Impact Snapshot</p>
-                <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.2rem]">Thành quả nổi bật từ hành trình mentee</h2>
+                <h2 className="poster-title text-3xl font-semibold text-[#1F2937] lg:text-[2.2rem]">{t("stats.heading")}</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 lg:flex lg:gap-6">
                 {displayValues.map((stat) => (

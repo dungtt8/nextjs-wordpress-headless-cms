@@ -2,23 +2,26 @@ import { Section, Container } from "@/components/craft";
 import { ArrowUpRight, EnvelopeSimple, FacebookLogo, Phone, Sparkle } from "@phosphor-icons/react/ssr";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { siteConfig } from "@/site.config";
+import { getTranslations } from "next-intl/server";
 import Logo from "@/public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations();
+
   const footerSections = [
-    { label: "Giới thiệu", href: "/#about" },
+    { label: t("footer.about"), href: "/#about" },
     { label: "Mentors", href: "/#mentors" },
-    { label: "Mentee stories", href: "/#success-stories" },
-    { label: "Cộng đồng", href: "/#community" },
+    { label: t("successStories.heading"), href: "/#success-stories" },
+    { label: t("community.heading"), href: "/#community" },
   ];
 
   const footerResources = [
-    { label: "Blog học bổng", href: "/posts" },
-    { label: "Danh mục bài viết", href: "/posts/categories" },
+    { label: t("footer.blog"), href: "/posts" },
+    { label: t("footer.articles"), href: "/posts/categories" },
     { label: "Tags", href: "/posts/tags" },
-    { label: "Đăng ký tư vấn", href: "/#lead-form" },
+    { label: t("footer.consulting"), href: "/#lead-form" },
   ];
 
   return (
@@ -46,13 +49,13 @@ export function Footer() {
 
               <div className="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-[#6e59b1] px-4 py-2 text-sm font-semibold text-white shadow-sm">
                 <Sparkle weight="thin" className="h-4 w-4" />
-                Du học Trung Quốc cùng lộ trình cá nhân hóa
+                {t("footer.tagline")}
               </div>
             </div>
           </div>
 
           <div className="flex flex-col gap-2 text-sm">
-            <h5 className="text-base font-semibold text-[#1F2937]">Khám phá</h5>
+            <h5 className="text-base font-semibold text-[#1F2937]">{t("footer.explore")}</h5>
             {footerSections.map((item) => (
               <Link
                 className="inline-flex items-center gap-2 text-slate-600 transition hover:text-violet-700"
@@ -66,7 +69,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-2 text-sm">
-            <h5 className="text-base font-semibold text-[#1F2937]">Tài nguyên</h5>
+            <h5 className="text-base font-semibold text-[#1F2937]">{t("footer.resources")}</h5>
             {footerResources.map((item) => (
               <Link
                 className="inline-flex items-center gap-2 text-slate-600 transition hover:text-violet-700"
@@ -80,7 +83,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-3 text-sm">
-            <h5 className="text-base font-semibold text-[#1F2937]">Liên hệ</h5>
+            <h5 className="text-base font-semibold text-[#1F2937]">{t("footer.contact")}</h5>
             <a
               className="inline-flex items-center gap-3 text-slate-600 transition hover:text-violet-700"
               href="https://facebook.com/chinahackduhoctq"
@@ -105,7 +108,7 @@ export function Footer() {
               hello@chinahack.vn
             </a>
             <p className="mt-2 text-sm leading-7 text-slate-500">
-              Đồng hành cùng học sinh, sinh viên trong hành trình định hướng học thuật, xây hồ sơ học bổng và nộp đơn du học Trung Quốc.
+              {t("footer.description")}
             </p>
           </div>
         </Container>
@@ -129,5 +132,18 @@ export function Footer() {
         </Container>
       </Section>
     </footer>
+  );
+}
+target = "_blank"
+rel = "noreferrer"
+className = "font-medium text-violet-700 transition hover:text-violet-800"
+  >
+  revonexus.net
+              </a >
+            </p >
+          </div >
+        </Container >
+      </Section >
+    </footer >
   );
 }
