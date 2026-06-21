@@ -1,102 +1,45 @@
-import { revalidatePath, revalidateTag } from "next/cache";
-import { NextRequest, NextResponse } from "next/server";
-
-export const maxDuration = 30;
-
-/**
- * WordPress webhook handler for content revalidation
- * Receives notifications from WordPress when content changes
- * and revalidates the entire site
- */
+import { revalidateTag, revalidatePath } from 'next/cache';
+import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
+  const secret = request.headers.get('x-webhook-secret');
+
+  if (secret !== process.env.WORDPRESS_WEBHOOK_SECRET) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
   try {
-    const requestBody = await request.json();
-    const secret = request.headers.get("x-webhook-secret");
+    const body = await request.json();
+    const { id, type, lang } = body;
 
-    if (secret !== process.env.WORDPRESS_WEBHOOK_SECRET) {
-      console.error("Invalid webhook secret");
-      return NextResponse.json(
-        { message: "Invalid webhook secret" },
-        { status: 401 }
-      );
-    }
+    // Determine which locales to revalidate
+    const locales = lang ? [lang] : ['en', 'vi', 'zh'];
 
-    const { contentType, contentId } = requestBody;
+    // Revalidate cache tags for each locale
+    locales.forEach(locale => {
+      revalidateTag(`posts-${locale}`);
+      revalidateTag(`pages-${locale}`);
 
-    if (!contentType) {
-      return NextResponse.json(
-        { message: "Missing content type" },
-        { status: 400 }
-      );
-    }
-
-    try {
-      console.log(
-        `Revalidating content: ${contentType}${contentId ? ` (ID: ${contentId})` : ""
-        }`
-      );
-
-      // Revalidate specific content type tags
-      revalidateTag("wordpress", { expire: 0 });
-
-      if (contentType === "post") {
-        revalidateTag("posts", { expire: 0 });
-        if (contentId) {
-          revalidateTag(`post-${contentId}`, { expire: 0 });
-        }
-        // Clear all post pages when any post changes
-        revalidateTag("posts-page-1", { expire: 0 });
-      } else if (contentType === "category") {
-        revalidateTag("categories", { expire: 0 });
-        if (contentId) {
-          revalidateTag(`posts-category-${contentId}`, { expire: 0 });
-          revalidateTag(`category-${contentId}`, { expire: 0 });
-        }
-      } else if (contentType === "tag") {
-        revalidateTag("tags", { expire: 0 });
-        if (contentId) {
-          revalidateTag(`posts-tag-${contentId}`, { expire: 0 });
-          revalidateTag(`tag-${contentId}`, { expire: 0 });
-        }
-      } else if (contentType === "author" || contentType === "user") {
-        revalidateTag("authors", { expire: 0 });
-        if (contentId) {
-          revalidateTag(`posts-author-${contentId}`, { expire: 0 });
-          revalidateTag(`author-${contentId}`, { expire: 0 });
-        }
-      } else if (contentType === "mentor") {
-        revalidateTag("mentors", { expire: 0 });
+      if (id) {
+        revalidateTag(`post-${id}-${locale}`);
+        revalidateTag(`page-${id}-${locale}`);
       }
+    });
 
-      // Also revalidate the entire layout for safety
-      revalidatePath("/", "layout");
+    // Full layout revalidation
+    revalidatePath('/', 'layout');
 
-      return NextResponse.json({
-        revalidated: true,
-        message: `Revalidated ${contentType}${contentId ? ` (ID: ${contentId})` : ""
-          } and related content`,
-        timestamp: new Date().toISOString(),
-      });
-    } catch (error) {
-      console.error("Error revalidating path:", error);
-      return NextResponse.json(
-        {
-          revalidated: false,
-          message: "Failed to revalidate site",
-          error: (error as Error).message,
-          timestamp: new Date().toISOString(),
-        },
-        { status: 500 }
-      );
-    }
+    return Response.json({
+      revalidated: true,
+      timestamp: new Date().toISOString(),
+      locales,
+    });
   } catch (error) {
-    console.error("Revalidation error:", error);
-    return NextResponse.json(
+    console.error('Revalidation error:', error);
+    return Response.json(
       {
-        message: "Error revalidating content",
-        error: (error as Error).message,
-        timestamp: new Date().toISOString(),
+        message: 'Revalidation failed',
+        error: error instanceof Error ? error.message : String(error),
       },
       { status: 500 }
     );
