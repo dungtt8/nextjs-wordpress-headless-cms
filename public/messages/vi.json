@@ -22,11 +22,11 @@
         "subtitle": "Định hướng học thuật, xây dựng hồ sơ học bổng và đồng hành qua từng vòng ứng tuyển theo đúng nhịp độ của từng mentee.",
         "cta": "Bắt đầu ngay",
         "badge": "ChinaHack Mentorship",
-        "applicationDirection": "Application Direction",
+        "applicationDirection": "Định hướng ứng tuyển",
         "quote": "Định hướng học thuật, xây dựng hồ sơ học bổng và đồng hành qua từng vòng ứng tuyển theo đúng nhịp độ của từng mentee.",
         "expertise": "Mentorship & Scholarship",
         "highlight": "Học bổng không chỉ là điểm số, mà là cách hồ sơ của bạn được định vị.",
-        "description": "ChinaHack giúp bạn đi từ chiến lược hồ sơ, essay, hoạt động ngoại khóa đến cách trả lời phỏng vấn, theo một lộ trình rõ ràng và có người đồng hành sát sao.",
+        "description": "ChinaHack giúp bạn đi từ chiến lược hồ sơ, bài luận, hoạt động ngoại khóa đến cách trả lời phỏng vấn, theo một lộ trình rõ ràng và có người đồng hành sát sao.",
         "guidance": "Hướng dẫn của chúng tôi",
         "storyPrompt": "Để hồ sơ của bạn kể một câu chuyện"
     },
@@ -82,7 +82,7 @@
     },
     "blog": {
         "heading": "Blog học bổng & kinh nghiệm hồ sơ",
-        "editorial": "Editorial Notes"
+        "editorial": "Ghi chú từ Biên tập viên"
     },
     "community": {
         "heading": "Cộng đồng ChinaHack",
@@ -92,7 +92,7 @@
     "leadForm": {
         "heading": "Đăng ký đánh giá hồ sơ",
         "subtitle": "Yêu cầu tư vấn ngay",
-        "title": "Application Support",
+        "title": "Hỗ trợ ứng tuyển",
         "description": "Hãy để ChinaHack giúp bạn xây dựng hồ sơ học bổng mạnh mẽ.",
         "name": "Họ và tên",
         "email": "Email",
@@ -123,8 +123,8 @@
     "posts": {
         "archiveTitle": "Tất cả bài viết",
         "noPosts": "Không tìm thấy bài viết nào",
-        "byAuthor": "Bởi {author}",
-        "inCategory": "Trong {category}",
-        "publishedOn": "Được công bố vào"
+        "byAuthor": "Tác giả: {author}",
+        "inCategory": "Chuyên mục: {category}",
+        "publishedOn": "Ngày đăng"
     }
 }
