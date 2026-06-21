@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "posts": "Blog",
+    "authors": "Authors",
+    "categories": "Categories",
+    "tags": "Tags",
+    "pages": "Pages"
+  },
+  "common": {
+    "readMore": "Read More",
+    "search": "Search",
+    "filter": "Filter",
+    "back": "Back",
+    "loading": "Loading...",
+    "noResults": "No results found"
+  },
+  "home": {
+    "title": "ChinaHack",
+    "description": "Mentorship for Chinese Scholarships"
+  },
+  "posts": {
+    "archiveTitle": "All Posts",
+    "noPosts": "No posts found",
+    "byAuthor": "By {author}",
+    "inCategory": "In {category}",
+    "publishedOn": "Published on"
+  }
+}

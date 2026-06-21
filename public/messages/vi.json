@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "blog": "Blog",
+    "posts": "Blog",
+    "authors": "Tác giả",
+    "categories": "Danh mục",
+    "tags": "Thẻ",
+    "pages": "Trang"
+  },
+  "common": {
+    "readMore": "Đọc thêm",
+    "search": "Tìm kiếm",
+    "filter": "Lọc",
+    "back": "Quay lại",
+    "loading": "Đang tải...",
+    "noResults": "Không tìm thấy kết quả"
+  },
+  "home": {
+    "title": "ChinaHack",
+    "description": "Hỗ trợ học bổng du học Trung Quốc"
+  },
+  "posts": {
+    "archiveTitle": "Tất cả bài viết",
+    "noPosts": "Không tìm thấy bài viết nào",
+    "byAuthor": "Bởi {author}",
+    "inCategory": "Trong {category}",
+    "publishedOn": "Được công bố vào"
+  }
+}

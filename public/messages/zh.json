@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "主页",
+    "blog": "博客",
+    "posts": "博客",
+    "authors": "作者",
+    "categories": "分类",
+    "tags": "标签",
+    "pages": "页面"
+  },
+  "common": {
+    "readMore": "阅读更多",
+    "search": "搜索",
+    "filter": "筛选",
+    "back": "返回",
+    "loading": "加载中...",
+    "noResults": "未找到结果"
+  },
+  "home": {
+    "title": "ChinaHack",
+    "description": "中国奖学金留学辅导"
+  },
+  "posts": {
+    "archiveTitle": "所有文章",
+    "noPosts": "未找到任何文章",
+    "byAuthor": "作者：{author}",
+    "inCategory": "分类：{category}",
+    "publishedOn": "发布于"
+  }
+}
