@@ -11,7 +11,7 @@ import type {
   Author,
   FeaturedMedia,
 } from "./wordpress.d";
-import type { MentorItem } from "@/lib/home/types";
+import type { MentorItem, SuccessStory, UniversityLogo } from "@/lib/home/types";
 
 // Single source of truth for WordPress configuration
 const baseUrl = process.env.WORDPRESS_URL;
@@ -709,6 +709,135 @@ export async function getPageBySlugAndLocale({
     ]
   );
   return pages[0];
+}
+
+/**
+ * Success Stories Custom Post Type Interface
+ */
+interface WPSuccessStoryRecord {
+  id: number | string;
+  title?: { rendered?: string };
+  excerpt?: { rendered?: string };
+  content?: { rendered?: string };
+  acf?: Record<string, unknown>;
+  studentName?: string;
+  student_name?: string;
+  quote?: string;
+  outcome?: string;
+  avatar?: string;
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{ source_url?: string }>;
+  };
+}
+
+function mapWPSuccessStory(record: WPSuccessStoryRecord): SuccessStory | null {
+  const acf = record.acf ?? {};
+
+  const studentName =
+    readString(record.studentName) ||
+    readString(record.student_name) ||
+    readString(acf.studentName) ||
+    readString(acf.student_name) ||
+    readString(record.title?.rendered) ||
+    `Student ${record.id}`;
+
+  if (!studentName) return null;
+
+  const quote =
+    readString(record.quote) ||
+    readString(acf.quote) ||
+    stripHtmlTags(readString(record.excerpt?.rendered)) ||
+    "";
+
+  const outcome =
+    readString(record.outcome) ||
+    readString(acf.outcome) ||
+    stripHtmlTags(readString(record.content?.rendered)) ||
+    "";
+
+  const avatar =
+    readString(record.avatar) ||
+    readString(acf.avatar) ||
+    readString(record._embedded?.["wp:featuredmedia"]?.[0]?.source_url) ||
+    "";
+
+  return {
+    id: `wp-${record.id}`,
+    studentName: stripHtmlTags(studentName),
+    quote: stripHtmlTags(quote),
+    outcome: stripHtmlTags(outcome),
+    avatar,
+  };
+}
+
+/**
+ * Universities Custom Post Type Interface
+ */
+interface WPUniversityRecord {
+  id: number | string;
+  title?: { rendered?: string };
+  acf?: Record<string, unknown>;
+  name?: string;
+  logo?: string;
+  _embedded?: {
+    "wp:featuredmedia"?: Array<{ source_url?: string }>;
+  };
+}
+
+function mapWPUniversity(record: WPUniversityRecord): UniversityLogo | null {
+  const acf = record.acf ?? {};
+
+  const name =
+    readString(record.name) ||
+    readString(acf.name) ||
+    readString(record.title?.rendered) ||
+    `University ${record.id}`;
+
+  if (!name) return null;
+
+  const logo =
+    readString(record.logo) ||
+    readString(acf.logo) ||
+    readString(record._embedded?.["wp:featuredmedia"]?.[0]?.source_url) ||
+    "";
+
+  return {
+    id: `wp-${record.id}`,
+    name: stripHtmlTags(name),
+    logo,
+  };
+}
+
+/**
+ * Fetch Success Stories from WordPress
+ */
+export async function getSuccessStories(): Promise<SuccessStory[]> {
+  const data = await wordpressFetchGraceful<WPSuccessStoryRecord[]>(
+    "/wp-json/wp/v2/success_story",
+    [],
+    { per_page: 20, _embed: true },
+    ["wordpress", "success_stories"]
+  );
+
+  return data
+    .map((record) => mapWPSuccessStory(record))
+    .filter((story): story is SuccessStory => Boolean(story));
+}
+
+/**
+ * Fetch Universities from WordPress
+ */
+export async function getUniversities(): Promise<UniversityLogo[]> {
+  const data = await wordpressFetchGraceful<WPUniversityRecord[]>(
+    "/wp-json/wp/v2/university",
+    [],
+    { per_page: 20, _embed: true },
+    ["wordpress", "universities"]
+  );
+
+  return data
+    .map((record) => mapWPUniversity(record))
+    .filter((uni): uni is UniversityLogo => Boolean(uni));
 }
 
 export { WordPressAPIError };

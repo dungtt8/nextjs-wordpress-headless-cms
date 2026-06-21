@@ -51,6 +51,18 @@ add_action('template_redirect', function () {
     }
 });
 
+// Register custom post types
+add_action('init', function () {
+    // Register Leads post type
+    register_post_type('leads', [
+        'label'          => 'Leads',
+        'public'         => false,
+        'show_in_menu'   => true,
+        'show_in_rest'   => true,  // CRITICAL: Enable REST API
+        'supports'       => ['title', 'editor'],
+    ]);
+});
+
 // Remove unnecessary frontend features for headless
 add_action('after_setup_theme', function () {
     // Remove emoji scripts

@@ -12,20 +12,26 @@ import { HomeCommunity } from '@/components/home/home-community';
 import { HomeLeadForm } from '@/components/home/home-lead-form';
 import { HomeUniversitiesMarquee } from '@/components/home/home-universities-marquee';
 import { Section, Container, Article } from '@/components/craft';
-import { getMentorProfiles, getRecentPosts } from '@/lib/wordpress';
+import { getMentorProfiles, getRecentPosts, getSuccessStories, getUniversities } from '@/lib/wordpress';
 
 export default async function HomePage() {
   // Fetch data from WordPress in parallel
-  const [mentors, posts] = await Promise.all([
+  const [mentors, posts, successStories, universities] = await Promise.all([
     getMentorProfiles(),
     getRecentPosts(),
+    getSuccessStories(),
+    getUniversities(),
   ]);
 
   // Use WordPress data if available, otherwise fall back to default content
   const content = {
     ...fallbackHomeContent,
     mentors: mentors.length > 0 ? mentors : fallbackHomeContent.mentors,
+    successStories: successStories.length > 0 ? successStories : fallbackHomeContent.successStories,
+    universities: universities.length > 0 ? universities : fallbackHomeContent.universities,
   };
+
+  console.log(`[HomePage] Fetched ${mentors.length} mentors, ${posts.length} posts, ${successStories.length} success stories, and ${universities.length} universities`);
 
   return (
     <main className="space-y-0">
