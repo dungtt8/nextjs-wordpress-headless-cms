@@ -52,63 +52,66 @@ export const fallbackHomeContent: HomeContent = {
     mentors: [
         {
             id: "m1",
-            name: "Li Jiapeng",
-            role: "Cố vấn học thuật",
+            name: { en: "Li Jiapeng", vi: "Li Jiapeng", zh: "李嘉鹏" },
+            role: { en: "Academic Advisor", vi: "Cố vấn học thuật", zh: "学术顾问" },
             avatar: "/images/mentor-a.webp",
-            profileLabel: "Our Expert",
-            headline: "AI, Robotics và định hướng nghiên cứu tại Trung Quốc",
-            shortBio: "Đồng hành cùng mentee ở nhóm ngành kỹ thuật, AI và học bổng nghiên cứu.",
-            fullBio:
-                "Hỗ trợ chuyên sâu từ định hướng học thuật, xây hồ sơ nghiên cứu đến chiến lược xin học bổng cho các bạn theo đuổi nhóm ngành kỹ thuật tại Trung Quốc.",
-            focusAreas: ["Định hướng học thuật", "Hồ sơ nghiên cứu", "Học bổng kỹ thuật"],
-            achievements: [
-                "Theo đuổi hướng nghiên cứu AI và Computer Vision trong môi trường quốc tế.",
-                "Có kinh nghiệm với Robotics, mô hình thị giác máy tính và hệ thống thông minh.",
-                "Từng tham gia và dẫn dắt các dự án học thuật theo định hướng ứng dụng.",
-                "Phù hợp mentoring cho các hồ sơ cần chiều sâu học thuật và tư duy nghiên cứu.",
+            headline: { en: "AI, Robotics and Research Direction in China", vi: "AI, Robotics và định hướng nghiên cứu tại Trung Quốc", zh: "人工智能、机器人和中国研究方向" },
+            shortBio: { en: "Supporting mentees in engineering, AI and research scholarships.", vi: "Đồng hành cùng mentee ở nhóm ngành kỹ thuật, AI và học bổng nghiên cứu.", zh: "支持工程、AI和研究奖学金领域的学生。" },
+            fullBio: { en: "In-depth support from academic guidance, building research profiles to scholarship application strategy for engineering students in China.", vi: "Hỗ trợ chuyên sâu từ định hướng học thuật, xây hồ sơ nghiên cứu đến chiến lược xin học bổng cho các bạn theo đuổi nhóm ngành kỹ thuật tại Trung Quốc.", zh: "为在中国攻读工程专业的学生提供从学术指导、建立研究档案到奖学金申请策略的深入支持。" },
+            focusAreas: [
+                { en: "Academic Guidance", vi: "Định hướng học thuật", zh: "学术指导" },
+                { en: "Research Profile", vi: "Hồ sơ nghiên cứu", zh: "研究档案" },
+                { en: "Engineering Scholarship", vi: "Học bổng kỹ thuật", zh: "工程奖学金" },
             ],
-            quote:
-                "Một hồ sơ mạnh không chỉ cần điểm số, mà cần kể rõ định hướng học thuật và tiềm năng nghiên cứu của bạn.",
+            achievements: [
+                { en: "Pursued AI and Computer Vision research in international environment.", vi: "Theo đuổi hướng nghiên cứu AI và Computer Vision trong môi trường quốc tế.", zh: "在国际环境中从事AI和计算机视觉研究。" },
+                { en: "Experience with Robotics, computer vision models and intelligent systems.", vi: "Có kinh nghiệm với Robotics, mô hình thị giác máy tính và hệ thống thông minh.", zh: "具有机器人、计算机视觉模型和智能系统的经验。" },
+                { en: "Led academic projects with research-oriented applications.", vi: "Từng tham gia và dẫn dắt các dự án học thuật theo định hướng ứng dụng.", zh: "主导过面向应用的学术项目。" },
+                { en: "Perfect for profiles needing academic depth and research thinking.", vi: "Phù hợp mentoring cho các hồ sơ cần chiều sâu học thuật và tư duy nghiên cứu.", zh: "适合需要学术深度和研究思维的档案。" },
+            ],
+            quote: { en: "A strong profile doesn't just need scores, but a clear academic direction and research potential.", vi: "Một hồ sơ mạnh không chỉ cần điểm số, mà cần kể rõ định hướng học thuật và tiềm năng nghiên cứu của bạn.", zh: "一份强有力的档案不仅需要成绩，还需要清晰的学术方向和研究潜力。" },
         },
         {
             id: "m2",
-            name: "Lê Thị Phương Anh",
-            role: "ChinaHack - Marketing Manager",
+            name: { en: "Le Thi Phuong Anh", vi: "Lê Thị Phương Anh", zh: "黎氏芳英" },
+            role: { en: "ChinaHack - Marketing Manager", vi: "ChinaHack - Marketing Manager", zh: "ChinaHack - 市场经理" },
             avatar: "/images/mentor-b.webp",
-            profileLabel: "Our Expert",
-            headline: "Hình mẫu học thuật qua hoạt động ngoại khóa và học bổng",
-            shortBio: "Phụ trách định vị hồ sơ nổi bật, cân bằng giữa học thuật và hoạt động cá nhân.",
-            fullBio:
-                "Tập trung xây dựng câu chuyện hồ sơ rõ ràng, nhất quán, giúp mentee thể hiện được bản sắc cá nhân, năng lực học thuật và chiều sâu hoạt động ngoại khóa.",
-            focusAreas: ["Xây dựng personal story", "Hoạt động ngoại khóa", "Scholarship positioning"],
-            achievements: [
-                "IELTS 8.0 và nền tảng học thuật mạnh cho hồ sơ quốc tế.",
-                "Kinh nghiệm làm nổi bật hồ sơ qua truyền thông cá nhân và hoạt động cộng đồng.",
-                "Đồng hành cùng mentee trong cách kể câu chuyện hồ sơ thuyết phục và có chiều sâu.",
-                "Phù hợp với các hồ sơ cần tăng độ nổi bật ngoài điểm số thuần túy.",
+            headline: { en: "Academic Model through Extracurriculars and Scholarships", vi: "Hình mẫu học thuật qua hoạt động ngoại khóa và học bổng", zh: "通过课外活动和奖学金的学术模式" },
+            shortBio: { en: "Profile positioning balance between academics and personal activities.", vi: "Phụ trách định vị hồ sơ nổi bật, cân bằng giữa học thuật và hoạt động cá nhân.", zh: "档案定位突出，平衡学术和个人活动。" },
+            fullBio: { en: "Focus on building clear profile story, consistent and help mentees showcase personal identity, academic ability and depth of activities.", vi: "Tập trung xây dựng câu chuyện hồ sơ rõ ràng, nhất quán, giúp mentee thể hiện được bản sắc cá nhân, năng lực học thuật và chiều sâu hoạt động ngoại khóa.", zh: "专注于建立清晰一致的档案故事，帮助学生展示个人身份、学术能力和活动深度。" },
+            focusAreas: [
+                { en: "Build Personal Story", vi: "Xây dựng personal story", zh: "建立个人故事" },
+                { en: "Extracurricular Activities", vi: "Hoạt động ngoại khóa", zh: "课外活动" },
+                { en: "Scholarship Positioning", vi: "Scholarship positioning", zh: "奖学金定位" },
             ],
-            quote:
-                "Điểm mạnh thật sự của hồ sơ không nằm ở việc có thật nhiều thành tích, mà ở cách bạn kết nối chúng thành một câu chuyện có định hướng.",
+            achievements: [
+                { en: "IELTS 8.0 and strong academic foundation for international profiles.", vi: "IELTS 8.0 và nền tảng học thuật mạnh cho hồ sơ quốc tế.", zh: "雅思8.0和国际档案的强大学术基础。" },
+                { en: "Experience highlighting profiles through personal communication and community activities.", vi: "Kinh nghiệm làm nổi bật hồ sơ qua truyền thông cá nhân và hoạt động cộng đồng.", zh: "通过个人沟通和社区活动突出档案的经验。" },
+                { en: "Help mentees tell compelling and in-depth profile stories.", vi: "Đồng hành cùng mentee trong cách kể câu chuyện hồ sơ thuyết phục và có chiều sâu.", zh: "帮助学生讲述有说服力和深度的档案故事。" },
+                { en: "Perfect for profiles needing higher visibility beyond pure scores.", vi: "Phù hợp với các hồ sơ cần tăng độ nổi bật ngoài điểm số thuần túy.", zh: "适合需要超越纯分数获得更高知名度的档案。" },
+            ],
+            quote: { en: "Real strength doesn't lie in having many achievements, but in connecting them into a purposeful story.", vi: "Điểm mạnh thật sự của hồ sơ không nằm ở việc có thật nhiều thành tích, mà ở cách bạn kết nối chúng thành một câu chuyện có định hướng.", zh: "真正的优势不在于拥有许多成就，而在于将它们连接成一个有目的的故事。" },
         },
         {
             id: "m3",
-            name: "ChinaHack Mentor Team",
-            role: "Mentorship & Scholarship Application",
+            name: { en: "ChinaHack Mentor Team", vi: "ChinaHack Mentor Team", zh: "ChinaHack导师团队" },
+            role: { en: "Mentorship & Scholarship Application", vi: "Mentorship & Scholarship Application", zh: "指导和奖学金申请" },
             avatar: "/images/mentor-c.webp",
-            profileLabel: "ChinaHack",
-            headline: "Định hướng học thuật, xây dựng hồ sơ và nộp học bổng",
-            shortBio: "Mentor team đồng hành xuyên suốt từ định hướng ban đầu đến vòng phỏng vấn cuối.",
-            fullBio:
-                "Đội ngũ mentor phối hợp theo từng giai đoạn: định hướng ngành học, chọn trường, tối ưu học bổng, viết hồ sơ và luyện phỏng vấn để mentee có một hành trình rõ ràng và chủ động.",
-            focusAreas: ["Chọn trường phù hợp", "Tối ưu học bổng", "Luyện phỏng vấn"],
-            achievements: [
-                "Mentoring theo mô hình đồng hành từng giai đoạn, không chỉ sửa hồ sơ đơn lẻ.",
-                "Tập trung vào sự phù hợp giữa năng lực, mục tiêu và chiến lược học bổng.",
-                "Ưu tiên phản hồi nhanh, checklist rõ ràng và lộ trình cá nhân hóa cho từng mentee.",
-                "Phù hợp với học sinh cần một người đồng hành sát sao từ đầu đến cuối.",
+            headline: { en: "Academic Guidance, Profile Building and Scholarship Application", vi: "Định hướng học thuật, xây dựng hồ sơ và nộp học bổng", zh: "学术指导、档案建设和奖学金申请" },
+            shortBio: { en: "Mentor team accompanying from initial guidance to final interview.", vi: "Mentor team đồng hành xuyên suốt từ định hướng ban đầu đến vòng phỏng vấn cuối.", zh: "导师团队从初始指导到最终面试全程陪伴。" },
+            fullBio: { en: "Coordinated mentoring at each stage: major selection, university choice, scholarship optimization, profile writing and interview preparation for clear and proactive journey.", vi: "Đội ngũ mentor phối hợp theo từng giai đoạn: định hướng ngành học, chọn trường, tối ưu học bổng, viết hồ sơ và luyện phỏng vấn để mentee có một hành trình rõ ràng và chủ động.", zh: "协调的指导覆盖每个阶段：专业选择、大学选择、奖学金优化、档案编写和面试准备，为学生提供明确和主动的旅程。" },
+            focusAreas: [
+                { en: "Choose Right University", vi: "Chọn trường phù hợp", zh: "选择合适的大学" },
+                { en: "Optimize Scholarship", vi: "Tối ưu học bổng", zh: "优化奖学金" },
+                { en: "Interview Preparation", vi: "Luyện phỏng vấn", zh: "面试准备" },
             ],
-            quote:
-                "Mục tiêu của ChinaHack không phải chỉ giúp bạn nộp hồ sơ, mà là giúp bạn hiểu vì sao hồ sơ đó có thể chạm tới học bổng.",
+            achievements: [
+                { en: "Mentoring through each stage, not just isolated profile editing.", vi: "Mentoring theo mô hình đồng hành từng giai đoạn, không chỉ sửa hồ sơ đơn lẻ.", zh: "通过每个阶段的指导，而不仅仅是孤立的档案编辑。" },
+                { en: "Focus on fit between ability, goals and scholarship strategy.", vi: "Tập trung vào sự phù hợp giữa năng lực, mục tiêu và chiến lược học bổng.", zh: "专注于能力、目标和奖学金策略之间的契合度。" },
+                { en: "Priority on quick feedback, clear checklists and personalized roadmaps for each mentee.", vi: "Ưu tiên phản hồi nhanh, checklist rõ ràng và lộ trình cá nhân hóa cho từng mentee.", zh: "优先提供快速反馈、清晰的检查清单和个性化的学生路线图。" },
+                { en: "Perfect for students needing a close companion from start to end.", vi: "Phù hợp với học sinh cần một người đồng hành sát sao từ đầu đến cuối.", zh: "适合需要从头到尾密切陪伴的学生。" },
+            ],
+            quote: { en: "ChinaHack's goal isn't just to help you submit, but to help you understand why it can reach scholarship.", vi: "Mục tiêu của ChinaHack không phải chỉ giúp bạn nộp hồ sơ, mà là giúp bạn hiểu vì sao hồ sơ đó có thể chạm tới học bổng.", zh: "ChinaHack的目标不仅仅是帮助您提交，而是帮助您理解为什么它能获得奖学金。" },
         },
     ],
     stats: [
@@ -201,16 +204,32 @@ export const fallbackHomeContent: HomeContent = {
         {
             id: "ss1",
             studentName: "Minh Anh",
-            quote: "Hồ sơ được tối ưu rõ rệt và dễ hiểu hơn.",
-            outcome: "Nhận học bổng 80%",
             avatar: "/images/student-1.webp",
+            quote: {
+                en: "Profile was clearly optimized and easier to understand.",
+                vi: "Hồ sơ được tối ưu rõ rệt và dễ hiểu hơn.",
+                zh: "档案得到了明显优化，更易理解。",
+            },
+            outcome: {
+                en: "Received 80% scholarship",
+                vi: "Nhận học bổng 80%",
+                zh: "获得80%奖学金",
+            },
         },
         {
             id: "ss2",
             studentName: "Quang Huy",
-            quote: "Phỏng vấn giảm cảm giác lo lắng rất nhiều.",
-            outcome: "Trúng tuyển chương trình thạc sĩ",
             avatar: "/images/student-2.webp",
+            quote: {
+                en: "Interview preparation greatly reduced anxiety.",
+                vi: "Phỏng vấn giảm cảm giác lo lắng rất nhiều.",
+                zh: "面试准备大大减轻了焦虑。",
+            },
+            outcome: {
+                en: "Admitted to master's program",
+                vi: "Trúng tuyển chương trình thạc sĩ",
+                zh: "被录取参加硕士项目",
+            },
         },
     ],
     blogTabs: [

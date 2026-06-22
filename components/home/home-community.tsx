@@ -46,14 +46,14 @@ export function HomeCommunity({ channels }: HomeCommunityProps) {
 
             <div className="grid gap-4 lg:grid-cols-3">
                 {channels.map((channel) => (
-                    <CommunityCard key={channel.id} channel={channel} />
+                    <CommunityCard key={channel.id} channel={channel} t={t} />
                 ))}
             </div>
         </section>
     );
 }
 
-function CommunityCard({ channel }: { channel: CommunityChannel }) {
+function CommunityCard({ channel, t }: { channel: CommunityChannel; t: any }) {
     const logo = getChannelLogo(channel.name);
 
     return (
@@ -75,14 +75,14 @@ function CommunityCard({ channel }: { channel: CommunityChannel }) {
                         <Globe weight="thin" className="h-5 w-5" />
                     )}
                 </div>
-                <span className="poster-badge">Social channel</span>
+                <span className="poster-badge">{t("community.socialChannel")}</span>
             </div>
 
             <h3 className="poster-title mt-5 text-xl font-semibold text-[#1F2937]">{channel.name}</h3>
             <p className="mt-3 text-sm leading-7 text-slate-600">{channel.description}</p>
 
             <div className="mt-5 border-t border-violet-100/80 pt-4 flex items-center gap-2 text-sm font-semibold text-violet-700">
-                Theo dõi ngay
+                {t("community.followNow")}
                 <ArrowUpRight weight="thin" className="h-4 w-4" />
             </div>
         </a>

@@ -1,17 +1,23 @@
 "use client";
 
 import { Quotes, Star } from "@phosphor-icons/react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useRef } from "react";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
-import type { SuccessStory } from "@/lib/home/types";
+import type { LocalizedString, SuccessStory } from "@/lib/home/types";
 
 interface HomeSuccessStoriesProps {
     stories: SuccessStory[];
 }
 
+function extractLocalized(value: LocalizedString | string, locale: string): string {
+    if (typeof value === "string") return value;
+    return value[locale as keyof LocalizedString] || value.en || "";
+}
+
 export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
     const t = useTranslations();
+    const locale = useLocale();
     const scrollRef = useRef<HTMLDivElement | null>(null);
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
@@ -66,13 +72,13 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                         </div>
 
                         <div className="poster-quote-card mt-5 rounded-[24px] p-5">
-                            <p className="text-sm leading-7 text-slate-700">“{story.quote}”</p>
+                            <p className="text-sm leading-7 text-slate-700">"{extractLocalized(story.quote, locale)}"</p>
                         </div>
 
                         <div className="mt-5 flex items-center justify-between gap-4">
                             <div>
                                 <p className="text-sm font-semibold text-violet-700">{t("successStories.outcome")}</p>
-                                <p className="mt-1 text-lg font-semibold text-[#1F2937]">{story.outcome}</p>
+                                <p className="mt-1 text-lg font-semibold text-[#1F2937]">{extractLocalized(story.outcome, locale)}</p>
                             </div>
                             <div className="poster-ribbon">
                                 <Star weight="thin" className="mr-2 h-4 w-4" />

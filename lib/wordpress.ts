@@ -100,79 +100,71 @@ function readStringArray(value: unknown): string[] {
 
 function mapWPMentor(record: WPMentorRecord): MentorItem | null {
   const acf = record.acf ?? {};
-  const name =
-    readString(record.title?.rendered) ||
-    readString(acf.name) ||
-    `Mentor ${record.id}`;
+
+  // Extract SHARED name (same across all languages)
+  const name = readString(record.title?.rendered) || readString(acf.name) || `Mentor ${record.id}`;
 
   if (!name) return null;
 
-  const shortBio =
-    readString(record.shortBio) ||
-    readString(record.short_bio) ||
-    readString(acf.shortBio) ||
-    readString(acf.short_bio) ||
-    stripHtmlTags(readString(record.excerpt?.rendered));
-
-  const fullBio =
-    readString(record.fullBio) ||
-    readString(record.full_bio) ||
-    readString(acf.fullBio) ||
-    readString(acf.full_bio) ||
-    stripHtmlTags(readString(record.content?.rendered)) ||
-    shortBio;
-
-  const focusAreaCandidates = [
-    readStringArray(record.focusAreas),
-    readStringArray(record.focus_areas),
-    readStringArray(acf.focusAreas),
-    readStringArray(acf.focus_areas),
-  ];
-  const focusAreas =
-    focusAreaCandidates.find((items) => items.length > 0) ?? [];
-
-  const achievementCandidates = [
-    readStringArray(record.achievements),
-    readStringArray(acf.achievements),
-  ];
-  const achievements =
-    achievementCandidates.find((items) => items.length > 0) ?? [];
-
+  // Extract SHARED avatar (same across all languages)
   const avatar =
-    readString(record.avatar) ||
     readString(acf.avatar) ||
-    readString(acf.photo) ||
     readString(record._embedded?.["wp:featuredmedia"]?.[0]?.source_url);
+
+  // Extract multilingual role
+  const roleEn = readString(acf.role_en) || "ChinaHack Mentor";
+  const roleVi = readString(acf.role_vi) || roleEn;
+  const roleZh = readString(acf.role_zh) || roleEn;
+
+  // Extract multilingual headline
+  const headlineEn = readString(acf.headline_en) || "Supporting your scholarship journey.";
+  const headlineVi = readString(acf.headline_vi) || "Đồng hành xây dựng hồ sơ học bổng.";
+  const headlineZh = readString(acf.headline_zh) || "支持您的奖学金之路。";
+
+  // Extract multilingual short bio
+  const shortBioEn = readString(acf.short_bio_en) || "Dedicated mentor at ChinaHack";
+  const shortBioVi = readString(acf.short_bio_vi) || "Mentor đồng hành cùng bạn trong hành trình ứng tuyển học bổng.";
+  const shortBioZh = readString(acf.short_bio_zh) || "与您一起申请奖学金的导师。";
+
+  // Extract multilingual full bio
+  const fullBioEn = readString(acf.full_bio_en) || shortBioEn;
+  const fullBioVi = readString(acf.full_bio_vi) || shortBioVi;
+  const fullBioZh = readString(acf.full_bio_zh) || shortBioZh;
+
+  // Extract multilingual quote
+  const quoteEn = readString(acf.quote_en) || "Every application needs a clear strategy aligned with your goals.";
+  const quoteVi = readString(acf.quote_vi) || "Mỗi bộ hồ sơ đều cần một chiến lược rõ ràng và phù hợp với mục tiêu của bạn.";
+  const quoteZh = readString(acf.quote_zh) || "每份申请都需要一个明确的战略。";
+
+  // Extract focus areas (multilingual - one per line)
+  const focusAreasEn = readStringArray(acf.focus_areas_en) || ["Mentorship", "Scholarship strategy"];
+  const focusAreasVi = readStringArray(acf.focus_areas_vi) || focusAreasEn;
+  const focusAreasZh = readStringArray(acf.focus_areas_zh) || focusAreasEn;
+
+  // Extract achievements (multilingual - one per line)
+  const achievementsEn = readStringArray(acf.achievements_en) || ["Supporting mentees through scholarship preparation"];
+  const achievementsVi = readStringArray(acf.achievements_vi) || achievementsEn;
+  const achievementsZh = readStringArray(acf.achievements_zh) || achievementsEn;
 
   return {
     id: `wp-${record.id}`,
-    name: stripHtmlTags(name),
-    role:
-      readString(record.role) || readString(acf.role) || "Mentor ChinaHack",
+    name: { en: stripHtmlTags(name), vi: stripHtmlTags(name), zh: stripHtmlTags(name) },
+    role: { en: roleEn, vi: roleVi, zh: roleZh },
     avatar,
-    profileLabel:
-      readString(record.profileLabel) ||
-      readString(record.profile_label) ||
-      readString(acf.profileLabel) ||
-      readString(acf.profile_label) ||
-      "Our Expert",
-    headline:
-      readString(record.headline) ||
-      readString(acf.headline) ||
-      shortBio ||
-      "Đồng hành xây dựng hồ sơ học bổng.",
-    shortBio:
-      shortBio || "Mentor đồng hành cùng bạn trong hành trình ứng tuyển học bổng.",
-    fullBio,
-    focusAreas: focusAreas.length > 0 ? focusAreas : ["Mentorship", "Scholarship strategy"],
-    achievements:
-      achievements.length > 0
-        ? achievements
-        : ["Đồng hành cùng mentee trong các mốc chuẩn bị hồ sơ học bổng."],
-    quote:
-      readString(record.quote) ||
-      readString(acf.quote) ||
-      "Mỗi bộ hồ sơ đều cần một chiến lược rõ ràng và phù hợp với mục tiêu của bạn.",
+    headline: { en: headlineEn, vi: headlineVi, zh: headlineZh },
+    shortBio: { en: shortBioEn, vi: shortBioVi, zh: shortBioZh },
+    fullBio: { en: fullBioEn, vi: fullBioVi, zh: fullBioZh },
+    focusAreas: focusAreasEn.map((area, idx) => ({
+      en: area,
+      vi: focusAreasVi[idx] || area,
+      zh: focusAreasZh[idx] || area,
+    })),
+    achievements: achievementsEn.map((achievement, idx) => ({
+      en: achievement,
+      vi: achievementsVi[idx] || achievement,
+      zh: achievementsZh[idx] || achievement,
+    })),
+    quote: { en: quoteEn, vi: quoteVi, zh: quoteZh },
   };
 }
 
@@ -733,40 +725,46 @@ interface WPSuccessStoryRecord {
 function mapWPSuccessStory(record: WPSuccessStoryRecord): SuccessStory | null {
   const acf = record.acf ?? {};
 
+  // Extract SHARED student name
   const studentName =
     readString(record.studentName) ||
     readString(record.student_name) ||
-    readString(acf.studentName) ||
     readString(acf.student_name) ||
     readString(record.title?.rendered) ||
     `Student ${record.id}`;
 
   if (!studentName) return null;
 
-  const quote =
-    readString(record.quote) ||
-    readString(acf.quote) ||
-    stripHtmlTags(readString(record.excerpt?.rendered)) ||
-    "";
-
-  const outcome =
-    readString(record.outcome) ||
-    readString(acf.outcome) ||
-    stripHtmlTags(readString(record.content?.rendered)) ||
-    "";
-
+  // Extract SHARED avatar
   const avatar =
-    readString(record.avatar) ||
     readString(acf.avatar) ||
     readString(record._embedded?.["wp:featuredmedia"]?.[0]?.source_url) ||
     "";
 
+  // Extract multilingual quote
+  const quoteEn = readString(acf.quote_en) || "";
+  const quoteVi = readString(acf.quote_vi) || "";
+  const quoteZh = readString(acf.quote_zh) || "";
+
+  // Extract multilingual outcome
+  const outcomeEn = readString(acf.outcome_en) || "";
+  const outcomeVi = readString(acf.outcome_vi) || "";
+  const outcomeZh = readString(acf.outcome_zh) || "";
+
   return {
     id: `wp-${record.id}`,
     studentName: stripHtmlTags(studentName),
-    quote: stripHtmlTags(quote),
-    outcome: stripHtmlTags(outcome),
     avatar,
+    quote: {
+      en: stripHtmlTags(quoteEn),
+      vi: stripHtmlTags(quoteVi),
+      zh: stripHtmlTags(quoteZh),
+    },
+    outcome: {
+      en: stripHtmlTags(outcomeEn),
+      vi: stripHtmlTags(outcomeVi),
+      zh: stripHtmlTags(outcomeZh),
+    },
   };
 }
 

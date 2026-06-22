@@ -62,8 +62,11 @@
         "heading": "Notable Results from Mentee Journeys"
     },
     "mentors": {
+        "profiles": "Mentor Profiles",
         "heading": "Team of Expert Mentors",
         "description": "Each mentor represents a core competency: academic guidance, scholarship profile strategy, and optimization of each admission round.",
+        "profileLabel": "ChinaHack Mentor Profile",
+        "strengths": "Mentoring Strengths",
         "achievements": "Notable Achievements",
         "viewProfile": "View Detailed Profile",
         "overview": "Application Overview"
@@ -87,17 +90,28 @@
     "community": {
         "heading": "ChinaHack Community",
         "subtitle": "Connect Mentees Through Our Channels",
-        "description": "Follow scholarship updates, application experiences, and real insights from our mentee community on channels we update daily."
+        "description": "Follow scholarship updates, application experiences, and real insights from our mentee community on channels we update daily.",
+        "facebookDescription": "Scholarship updates and experience sharing.",
+        "tiktokDescription": "Short videos about process and quick tips.",
+        "youtubeDescription": "Detailed guides and webinars.",
+        "followNow": "Follow Now",
+        "socialChannel": "Social channel"
     },
     "leadForm": {
         "heading": "Get Your Profile Reviewed",
         "subtitle": "Request Consultation Now",
         "title": "Application Support",
         "description": "Let ChinaHack help you build a strong scholarship profile.",
-        "name": "Full Name",
-        "email": "Email",
-        "phone": "Phone Number",
-        "gpa": "GPA",
+        "fullNameLabel": "Full Name",
+        "fullNamePlaceholder": "Enter your full name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "email@example.com",
+        "phoneLabel": "Phone Number",
+        "phonePlaceholder": "Enter your phone number",
+        "gpaLabel": "GPA",
+        "gpaPlaceholder": "Enter your GPA (4.0 or 10.0 scale)",
+        "notesLabel": "Notes (optional)",
+        "notesPlaceholder": "Your goals and expected timeline",
         "nameError": "Please enter your full name.",
         "emailError": "Please enter a valid email address.",
         "phoneError": "Please enter your phone number.",

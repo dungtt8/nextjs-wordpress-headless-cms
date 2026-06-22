@@ -34,16 +34,15 @@ export interface WhyChooseItem {
 
 export interface MentorItem {
     id: string;
-    name: string;
-    role: string;
+    name: LocalizedString;
+    role: LocalizedString;
     avatar: string;
-    profileLabel: string;
-    headline: string;
-    shortBio: string;
-    fullBio: string;
-    focusAreas: string[];
-    achievements: string[];
-    quote: string;
+    headline: LocalizedString;
+    shortBio: LocalizedString;
+    fullBio: LocalizedString;
+    focusAreas: LocalizedString[];
+    achievements: LocalizedString[];
+    quote: LocalizedString;
 }
 
 export interface StatsItem {
@@ -85,9 +84,9 @@ export interface UniversityLogo {
 export interface SuccessStory {
     id: string;
     studentName: string;
-    quote: string;
-    outcome: string;
     avatar: string;
+    quote: LocalizedString;
+    outcome: LocalizedString;
 }
 
 export interface BlogTab {

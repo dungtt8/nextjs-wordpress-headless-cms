@@ -105,45 +105,45 @@ export function HomeLeadForm({ data }: HomeLeadFormProps) {
                 <form className="poster-card space-y-4 rounded-[28px] p-5 sm:p-6" onSubmit={onSubmit} noValidate>
                     <Field
                         id="fullName"
-                        label="Họ và tên"
-                        placeholder="Nhập họ và tên đầy đủ"
+                        label={t("leadForm.fullNameLabel")}
+                        placeholder={t("leadForm.fullNamePlaceholder")}
                         value={values.fullName}
                         onChange={(value) => updateField("fullName", value)}
                         error={errors.fullName}
                     />
                     <Field
                         id="email"
-                        label="Email"
-                        placeholder="email@example.com"
+                        label={t("leadForm.emailLabel")}
+                        placeholder={t("leadForm.emailPlaceholder")}
                         value={values.email}
                         onChange={(value) => updateField("email", value)}
                         error={errors.email}
                     />
                     <Field
                         id="phone"
-                        label="Số điện thoại"
-                        placeholder="Nhập số điện thoại"
+                        label={t("leadForm.phoneLabel")}
+                        placeholder={t("leadForm.phonePlaceholder")}
                         value={values.phone}
                         onChange={(value) => updateField("phone", value)}
                         error={errors.phone}
                     />
                     <Field
                         id="gpa"
-                        label="GPA"
-                        placeholder="Nhập GPA theo thang 4.0 hoặc 10.0"
+                        label={t("leadForm.gpaLabel")}
+                        placeholder={t("leadForm.gpaPlaceholder")}
                         value={values.gpa}
                         onChange={(value) => updateField("gpa", value)}
                         error={errors.gpa}
                     />
 
                     <label className="block">
-                        <span className="mb-1 block text-sm font-medium text-[#1F2937]">Ghi chú (không bắt buộc)</span>
+                        <span className="mb-1 block text-sm font-medium text-[#1F2937]">{t("leadForm.notesLabel")}</span>
                         <textarea
                             id="note"
                             rows={4}
                             className="w-full rounded-xl border border-violet-200 bg-white/95 px-3 py-2 text-sm outline-none transition focus:border-[#6e59b1] focus:ring-2 focus:ring-[#6e59b1]/20"
                             value={values.note}
-                            placeholder="Mục tiêu và thời gian dự kiến của bạn"
+                            placeholder={t("leadForm.notesPlaceholder")}
                             onChange={(event) => updateField("note", event.target.value)}
                         />
                     </label>

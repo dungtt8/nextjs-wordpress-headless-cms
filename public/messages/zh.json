@@ -62,8 +62,11 @@
         "heading": "学生申请成果亮点"
     },
     "mentors": {
-        "heading": "专业导师团队",
-        "description": "每位导师代表一项核心能力：学术指导、奖学金文书策略和每轮录取优化。",
+        "profiles": "导师资料",
+        "heading": "专家导师团队",
+        "description": "每位导师代表一项核心能力：学术指导、奖学金申请策略和每轮申请的优化。",
+        "profileLabel": "ChinaHack 导师资料",
+        "strengths": "导师优势",
         "achievements": "突出成就",
         "viewProfile": "查看详细资料",
         "overview": "文书概览"
@@ -87,17 +90,28 @@
     "community": {
         "heading": "ChinaHack 社区",
         "subtitle": "通过我们的频道连接学生",
-        "description": "关注奖学金更新、申请经验和学生社区的真实分享，我们每天更新内容。"
+        "description": "关注奖学金更新、申请经验和学生社区的真实分享，我们每天更新内容。",
+        "facebookDescription": "奖学金更新和经验分享。",
+        "tiktokDescription": "关于流程和快速技巧的短视频。",
+        "youtubeDescription": "详细指南和网络研讨会。",
+        "followNow": "立即关注",
+        "socialChannel": "社交频道"
     },
     "leadForm": {
         "heading": "获取文书评审",
         "subtitle": "立即预约咨询",
         "title": "申请支持",
         "description": "让 ChinaHack 帮助您建立强有力的奖学金申请。",
-        "name": "全名",
-        "email": "邮箱",
-        "phone": "电话号码",
-        "gpa": "GPA",
+        "fullNameLabel": "全名",
+        "fullNamePlaceholder": "请输入您的全名",
+        "emailLabel": "邮箱",
+        "emailPlaceholder": "email@example.com",
+        "phoneLabel": "电话号码",
+        "phonePlaceholder": "请输入您的电话号码",
+        "gpaLabel": "GPA",
+        "gpaPlaceholder": "请输入您的 GPA（满分 4.0 或 10.0）",
+        "notesLabel": "备注（可选）",
+        "notesPlaceholder": "您的目标和预期时间",
         "nameError": "请输入您的全名。",
         "emailError": "请输入有效的邮箱地址。",
         "phoneError": "请输入您的电话号码。",

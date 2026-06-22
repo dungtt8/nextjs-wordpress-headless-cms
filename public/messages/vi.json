@@ -62,8 +62,11 @@
         "heading": "Thành quả nổi bật từ hành trình mentee"
     },
     "mentors": {
+        "profiles": "Hồ sơ Mentor",
         "heading": "Đội ngũ chuyên gia đồng hành trực tiếp",
         "description": "Mỗi mentor đại diện cho một năng lực cốt lõi: định hướng học thuật, xây dựng chiến lược hồ sơ và tối ưu hiệu quả từng vòng xét tuyển.",
+        "profileLabel": "Hồ sơ Mentor ChinaHack",
+        "strengths": "Thế mạnh mentoring",
         "achievements": "Thành tích nổi bật",
         "viewProfile": "Xem hồ sơ chi tiết",
         "overview": "Tổng quan hồ sơ"
@@ -87,17 +90,28 @@
     "community": {
         "heading": "Cộng đồng ChinaHack",
         "subtitle": "Kết nối mentee qua các kênh đồng hành",
-        "description": "Theo dõi scholarship updates, kinh nghiệm nộp hồ sơ và các chia sẻ thực tế từ cộng đồng mentee trên những kênh mà ChinaHack cập nhật mỗi ngày."
+        "description": "Theo dõi scholarship updates, kinh nghiệm nộp hồ sơ và các chia sẻ thực tế từ cộng đồng mentee trên những kênh mà ChinaHack cập nhật mỗi ngày.",
+        "facebookDescription": "Cập nhật sàn học bổng và chia sẻ kinh nghiệm.",
+        "tiktokDescription": "Video ngắn về quy trình và tips nhanh.",
+        "youtubeDescription": "Hướng dẫn chi tiết và webinar.",
+        "followNow": "Theo dõi ngay",
+        "socialChannel": "Kênh mạng xã hội"
     },
     "leadForm": {
         "heading": "Đăng ký đánh giá hồ sơ",
         "subtitle": "Yêu cầu tư vấn ngay",
         "title": "Hỗ trợ ứng tuyển",
         "description": "Hãy để ChinaHack giúp bạn xây dựng hồ sơ học bổng mạnh mẽ.",
-        "name": "Họ và tên",
-        "email": "Email",
-        "phone": "Số điện thoại",
-        "gpa": "GPA",
+        "fullNameLabel": "Họ và tên",
+        "fullNamePlaceholder": "Nhập họ và tên đầy đủ",
+        "emailLabel": "Email",
+        "emailPlaceholder": "email@example.com",
+        "phoneLabel": "Số điện thoại",
+        "phonePlaceholder": "Nhập số điện thoại",
+        "gpaLabel": "GPA",
+        "gpaPlaceholder": "Nhập GPA theo thang 4.0 hoặc 10.0",
+        "notesLabel": "Ghi chú (không bắt buộc)",
+        "notesPlaceholder": "Mục tiêu và thời gian dự kiến của bạn",
         "nameError": "Vui lòng nhập họ và tên.",
         "emailError": "Vui lòng nhập đúng định dạng Email.",
         "phoneError": "Vui lòng nhập số điện thoại.",
