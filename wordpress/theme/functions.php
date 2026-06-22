@@ -61,7 +61,45 @@ add_action('init', function () {
         'show_in_rest'   => true,  // CRITICAL: Enable REST API
         'supports'       => ['title', 'editor'],
     ]);
+
+    // Register Site Settings post type (for multilingual homepage content)
+    register_post_type('site_settings', [
+        'label'          => 'Site Settings',
+        'public'         => false,
+        'show_in_menu'   => true,
+        'show_in_rest'   => true,  // CRITICAL: Enable REST API
+        'supports'       => ['title'],
+        'has_archive'    => false,
+        'capability_type' => 'post',
+        'menu_icon'      => 'dashicons-admin-generic',
+    ]);
+
+    // Register other custom post types
+    foreach (['success_story', 'university', 'mentor'] as $cpt) {
+        register_post_type($cpt, [
+            'label'        => ucfirst(str_replace('_', ' ', $cpt)),
+            'public'       => false,
+            'show_in_menu' => true,
+            'show_in_rest' => true,  // CRITICAL: Enable REST API
+            'supports'     => ['title', 'editor', 'thumbnail'],
+        ]);
+    }
 });
+
+// Expose ACF fields to REST API
+add_filter('acf/settings/rest_api_enabled', '__return_true');
+
+// Register ACF fields to REST API if ACF is active
+if (function_exists('acf_register_rest_field_group')) {
+    add_action('acf/init', function () {
+        if (function_exists('acf_get_field_groups')) {
+            $field_groups = acf_get_field_groups();
+            foreach ($field_groups as $group) {
+                acf_register_rest_field_group($group);
+            }
+        }
+    });
+}
 
 // Remove unnecessary frontend features for headless
 add_action('after_setup_theme', function () {

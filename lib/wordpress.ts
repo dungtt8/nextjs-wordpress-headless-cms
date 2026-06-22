@@ -11,7 +11,7 @@ import type {
   Author,
   FeaturedMedia,
 } from "./wordpress.d";
-import type { MentorItem, SuccessStory, UniversityLogo } from "@/lib/home/types";
+import type { MentorItem, SuccessStory, UniversityLogo, SiteSettings } from "@/lib/home/types";
 
 // Single source of truth for WordPress configuration
 const baseUrl = process.env.WORDPRESS_URL;
@@ -838,6 +838,115 @@ export async function getUniversities(): Promise<UniversityLogo[]> {
   return data
     .map((record) => mapWPUniversity(record))
     .filter((uni): uni is UniversityLogo => Boolean(uni));
+}
+
+/**
+ * Fetch multilingual site settings from WordPress ACF Options Page
+ */
+interface WPACFOptionsRecord {
+  id: string;
+  acf?: {
+    hero_title_en?: string;
+    hero_title_vi?: string;
+    hero_title_zh?: string;
+    hero_subtitle_en?: string;
+    hero_subtitle_vi?: string;
+    hero_subtitle_zh?: string;
+    hero_cta_text_en?: string;
+    hero_cta_text_vi?: string;
+    hero_cta_text_zh?: string;
+    about_heading_en?: string;
+    about_heading_vi?: string;
+    about_heading_zh?: string;
+    about_body_en?: string;
+    about_body_vi?: string;
+    about_body_zh?: string;
+    about_quote_en?: string;
+    about_quote_vi?: string;
+    about_quote_zh?: string;
+    lead_form_title_en?: string;
+    lead_form_title_vi?: string;
+    lead_form_title_zh?: string;
+    lead_form_subtitle_en?: string;
+    lead_form_subtitle_vi?: string;
+    lead_form_subtitle_zh?: string;
+    lead_form_submit_text_en?: string;
+    lead_form_submit_text_vi?: string;
+    lead_form_submit_text_zh?: string;
+    [key: string]: unknown;
+  };
+}
+
+function mapWPSiteSettings(record: WPACFOptionsRecord): SiteSettings {
+  const acf = record.acf ?? {};
+
+  return {
+    hero: {
+      title: {
+        en: readString(acf.hero_title_en) || "Conquer China Scholarships with ChinaHack Mentors",
+        vi: readString(acf.hero_title_vi) || "Chinh phục học bổng Trung Quốc cùng Mentor ChinaHack",
+        zh: readString(acf.hero_title_zh) || "与 ChinaHack 导师一起征服中国奖学金",
+      },
+      subtitle: {
+        en: readString(acf.hero_subtitle_en) || "Personalized roadmap from application to interview.",
+        vi: readString(acf.hero_subtitle_vi) || "Lộ trình cá nhân hóa, từ hồ sơ đến phỏng vấn.",
+        zh: readString(acf.hero_subtitle_zh) || "从申请到面试的个性化路线图。",
+      },
+      ctaText: {
+        en: readString(acf.hero_cta_text_en) || "Get Free Consultation",
+        vi: readString(acf.hero_cta_text_vi) || "Nhận tư vấn miễn phí",
+        zh: readString(acf.hero_cta_text_zh) || "获得免费咨询",
+      },
+    },
+    about: {
+      heading: {
+        en: readString(acf.about_heading_en) || "About Us",
+        vi: readString(acf.about_heading_vi) || "Về chúng tôi",
+        zh: readString(acf.about_heading_zh) || "关于我们",
+      },
+      body: {
+        en: readString(acf.about_body_en) || "ChinaHack helps students optimize their applications and scholarship strategy.",
+        vi: readString(acf.about_body_vi) || "ChinaHack hỗ trợ học viên tối ưu hồ sơ và chiến lược học bổng.",
+        zh: readString(acf.about_body_zh) || "ChinaHack 帮助学生优化申请和奖学金策略。",
+      },
+      highlightQuote: {
+        en: readString(acf.about_quote_en) || "Right roadmap, broader scholarship opportunities.",
+        vi: readString(acf.about_quote_vi) || "Đúng lộ trình đúng, cơ hội học bổng mở rộng hơn.",
+        zh: readString(acf.about_quote_zh) || "正确的路线图，更广泛的奖学金机会。",
+      },
+    },
+    leadForm: {
+      title: {
+        en: readString(acf.lead_form_title_en) || "Apply for Profile Evaluation",
+        vi: readString(acf.lead_form_title_vi) || "Đăng ký đánh giá hồ sơ",
+        zh: readString(acf.lead_form_title_zh) || "申请档案评估",
+      },
+      subtitle: {
+        en: readString(acf.lead_form_subtitle_en) || "Get personalized roadmap in 24h",
+        vi: readString(acf.lead_form_subtitle_vi) || "Nhận lộ trình cá nhân hóa trong 24h",
+        zh: readString(acf.lead_form_subtitle_zh) || "在 24 小时内获得个性化路线图",
+      },
+      submitText: {
+        en: readString(acf.lead_form_submit_text_en) || "Get Free Profile Evaluation",
+        vi: readString(acf.lead_form_submit_text_vi) || "Nhận đánh giá hồ sơ miễn phí",
+        zh: readString(acf.lead_form_submit_text_zh) || "获得免费档案评估",
+      },
+    },
+  };
+}
+
+export async function getSiteSettings(): Promise<SiteSettings> {
+  // Fetch from /wp-json/wp/v2/site_settings?per_page=1 (get first post)
+  const data = await wordpressFetchGraceful<WPACFOptionsRecord[]>(
+    "/wp-json/wp/v2/site_settings",
+    [{}] as WPACFOptionsRecord[],
+    { per_page: 1 },
+    ["wordpress", "site-settings"]
+  );
+
+  // Get the first settings post, or fallback
+  const settingsPost = data?.[0] ?? ({} as WPACFOptionsRecord);
+  return mapWPSiteSettings(settingsPost);
 }
 
 export { WordPressAPIError };

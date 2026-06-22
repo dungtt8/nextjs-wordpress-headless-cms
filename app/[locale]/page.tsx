@@ -12,26 +12,55 @@ import { HomeCommunity } from '@/components/home/home-community';
 import { HomeLeadForm } from '@/components/home/home-lead-form';
 import { HomeUniversitiesMarquee } from '@/components/home/home-universities-marquee';
 import { Section, Container, Article } from '@/components/craft';
-import { getMentorProfiles, getRecentPosts, getSuccessStories, getUniversities } from '@/lib/wordpress';
+import { getMentorProfiles, getRecentPosts, getSuccessStories, getUniversities, getSiteSettings } from '@/lib/wordpress';
 
-export default async function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
   // Fetch data from WordPress in parallel
-  const [mentors, posts, successStories, universities] = await Promise.all([
+  const [mentors, posts, successStories, universities, siteSettings] = await Promise.all([
     getMentorProfiles(),
     getRecentPosts(),
     getSuccessStories(),
     getUniversities(),
+    getSiteSettings(),
   ]);
 
+  // Map locale to valid language code (en, vi, zh)
+  const langCode = (locale === 'en' || locale === 'vi' || locale === 'zh') ? locale : 'en';
+
   // Use WordPress data if available, otherwise fall back to default content
+  // For multilingual sections (hero, about, leadForm), use locale-specific content from WordPress
   const content = {
     ...fallbackHomeContent,
+    hero: {
+      ...fallbackHomeContent.hero,
+      title: siteSettings.hero.title[langCode],
+      subtitle: siteSettings.hero.subtitle[langCode],
+      ctaText: siteSettings.hero.ctaText[langCode],
+    },
+    about: {
+      ...fallbackHomeContent.about,
+      heading: siteSettings.about.heading[langCode],
+      body: siteSettings.about.body[langCode],
+      highlightQuote: siteSettings.about.highlightQuote[langCode],
+    },
+    leadForm: {
+      ...fallbackHomeContent.leadForm,
+      title: siteSettings.leadForm.title[langCode],
+      subtitle: siteSettings.leadForm.subtitle[langCode],
+      submitText: siteSettings.leadForm.submitText[langCode],
+    },
     mentors: mentors.length > 0 ? mentors : fallbackHomeContent.mentors,
     successStories: successStories.length > 0 ? successStories : fallbackHomeContent.successStories,
     universities: universities.length > 0 ? universities : fallbackHomeContent.universities,
   };
 
-  console.log(`[HomePage] Fetched ${mentors.length} mentors, ${posts.length} posts, ${successStories.length} success stories, and ${universities.length} universities`);
+  console.log(`[HomePage] locale=${langCode} | Fetched ${mentors.length} mentors, ${posts.length} posts, ${successStories.length} success stories, ${universities.length} universities`);
 
   return (
     <main className="space-y-0">

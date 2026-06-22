@@ -119,6 +119,36 @@ export interface LeadFormPayload {
     note?: string;
 }
 
+export interface LocalizedString {
+    en: string;
+    vi: string;
+    zh: string;
+}
+
+export interface LocalizedHeroData {
+    title: LocalizedString;
+    subtitle: LocalizedString;
+    ctaText: LocalizedString;
+}
+
+export interface LocalizedAboutData {
+    heading: LocalizedString;
+    body: LocalizedString;
+    highlightQuote: LocalizedString;
+}
+
+export interface LocalizedLeadFormContent {
+    title: LocalizedString;
+    subtitle: LocalizedString;
+    submitText: LocalizedString;
+}
+
+export interface SiteSettings {
+    hero: LocalizedHeroData;
+    about: LocalizedAboutData;
+    leadForm: LocalizedLeadFormContent;
+}
+
 export interface HomeContent {
     hero: HeroData;
     about: AboutData;
