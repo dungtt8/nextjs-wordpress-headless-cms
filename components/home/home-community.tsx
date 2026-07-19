@@ -28,6 +28,16 @@ function getChannelLogo(name: string) {
     return null;
 }
 
+function getChannelDescriptionKey(name: string): string | null {
+    const normalizedName = name.toLowerCase();
+
+    if (normalizedName.includes("facebook")) return "community.facebookDescription";
+    if (normalizedName.includes("tiktok")) return "community.tiktokDescription";
+    if (normalizedName.includes("youtube")) return "community.youtubeDescription";
+
+    return null;
+}
+
 export function HomeCommunity({ channels }: HomeCommunityProps) {
     const t = useTranslations();
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
@@ -55,6 +65,7 @@ export function HomeCommunity({ channels }: HomeCommunityProps) {
 
 function CommunityCard({ channel, t }: { channel: CommunityChannel; t: any }) {
     const logo = getChannelLogo(channel.name);
+    const descriptionKey = getChannelDescriptionKey(channel.name);
 
     return (
         <a
@@ -79,7 +90,9 @@ function CommunityCard({ channel, t }: { channel: CommunityChannel; t: any }) {
             </div>
 
             <h3 className="poster-title mt-5 text-xl font-semibold text-[#1F2937]">{channel.name}</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">{channel.description}</p>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+                {descriptionKey ? t(descriptionKey) : channel.description}
+            </p>
 
             <div className="mt-5 border-t border-violet-100/80 pt-4 flex items-center gap-2 text-sm font-semibold text-violet-700">
                 {t("community.followNow")}

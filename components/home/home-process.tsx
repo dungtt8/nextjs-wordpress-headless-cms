@@ -2,8 +2,9 @@
 
 import { ArrowDown, Sparkle } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
+import { extractLocalized } from "@/lib/home/localized";
 import type { ProcessStep } from "@/lib/home/types";
 
 interface HomeProcessProps {
@@ -12,6 +13,7 @@ interface HomeProcessProps {
 
 export function HomeProcess({ steps }: HomeProcessProps) {
     const t = useTranslations();
+    const locale = useLocale();
     const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -46,7 +48,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                         {t("process.description")}
                     </p>
                 </div>
-                <span className="poster-ribbon w-fit">Editorial flow</span>
+                <span className="poster-ribbon w-fit">{t("process.ribbon")}</span>
             </div>
 
             <div className="relative hidden lg:block">
@@ -72,8 +74,8 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                     <span className="poster-badge">Step {index + 1}</span>
                                     {index < steps.length - 1 ? <ArrowDown weight="thin" className="h-4 w-4 text-violet-400" /> : null}
                                 </div>
-                                <h3 className="poster-title mt-4 text-xl font-semibold text-[#1F2937]">{step.title}</h3>
-                                <p className="mt-3 text-sm leading-7 text-slate-600">{step.description}</p>
+                                <h3 className="poster-title mt-4 text-xl font-semibold text-[#1F2937]">{extractLocalized(step.title, locale)}</h3>
+                                <p className="mt-3 text-sm leading-7 text-slate-600">{extractLocalized(step.description, locale)}</p>
                                 <div className="mt-4">
                                     <UploadReadyImage
                                         image={step.image}
@@ -117,13 +119,13 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                             className={`absolute left-0 top-1.5 h-3 w-3 rounded-full border-2 ${index <= activeIndex ? "border-[#7C3AED] bg-[#7C3AED]" : "border-slate-300 bg-white"
                                 }`}
                         />
-                        <h3 className="text-lg font-semibold text-[#1F2937]">{step.title}</h3>
-                        <p className="mt-1 text-sm leading-7 text-slate-600">{step.description}</p>
+                        <h3 className="text-lg font-semibold text-[#1F2937]">{extractLocalized(step.title, locale)}</h3>
+                        <p className="mt-1 text-sm leading-7 text-slate-600">{extractLocalized(step.description, locale)}</p>
                         <div className="mt-3">
                             <UploadReadyImage
                                 image={step.image}
                                 title="Process visual"
-                                subtitle="Sẵn sàng cho ảnh upload"
+                                subtitle={t("process.imageSlot")}
                                 ratioClassName="aspect-[16/9]"
                             />
                         </div>

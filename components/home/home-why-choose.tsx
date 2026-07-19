@@ -1,9 +1,10 @@
 "use client";
 
 import { BookOpen, Medal, ShareNetwork, Target } from "@phosphor-icons/react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
+import { extractLocalized } from "@/lib/home/localized";
 import type { WhyChooseItem } from "@/lib/home/types";
 
 interface HomeWhyChooseProps {
@@ -19,11 +20,12 @@ function iconFor(key: WhyChooseItem["icon"]) {
 
 export function HomeWhyChoose({ items }: HomeWhyChooseProps) {
     const t = useTranslations();
+    const locale = useLocale();
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
     return (
         <section id="why-choose" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
             <div className="space-y-4">
-                <p className="poster-eyebrow">Value Architecture</p>
+                <p className="poster-eyebrow">{t("whyChoose.eyebrow")}</p>
                 <h2 className="poster-title text-3xl font-semibold leading-tight lg:text-[2.35rem]">
                     {t("whyChoose.heading")}
                 </h2>
@@ -43,16 +45,16 @@ export function HomeWhyChoose({ items }: HomeWhyChooseProps) {
                             <UploadReadyImage
                                 image={item.image}
                                 title={t("whyChoose.illustration")}
-                                subtitle="Sẵn sàng nhận ảnh upload từ CMS"
+                                subtitle={t("whyChoose.imagePlaceholder")}
                                 ratioClassName="aspect-[16/10]"
                                 className="border-violet-100"
                             />
 
                             <div className="flex items-center gap-3 border-b border-violet-100/80 pb-3">
                                 <Icon weight="thin" className="h-5 w-5 text-violet-700 transition duration-300" />
-                                <h3 className="text-base font-semibold text-[#1F2937]">{item.title}</h3>
+                                <h3 className="text-base font-semibold text-[#1F2937]">{extractLocalized(item.title, locale)}</h3>
                             </div>
-                            <p className="text-sm leading-7 text-slate-600">{item.description}</p>
+                            <p className="text-sm leading-7 text-slate-600">{extractLocalized(item.description, locale)}</p>
                         </article>
                     );
                 })}

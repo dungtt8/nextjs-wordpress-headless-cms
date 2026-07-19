@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { AboutData } from "@/lib/home/types";
@@ -10,6 +11,7 @@ interface HomeAboutProps {
 }
 
 export function HomeAbout({ data }: HomeAboutProps) {
+    const t = useTranslations();
     const ref = useRef<HTMLElement | null>(null);
     const [visible, setVisible] = useState(false);
 
@@ -36,12 +38,12 @@ export function HomeAbout({ data }: HomeAboutProps) {
     return (
         <section id="about" ref={ref} className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
             <div ref={leftRef} className={`space-y-4 scroll-hidden-left ${leftVisible ? 'scroll-visible' : ''}`}>
-                <p className="poster-eyebrow">About ChinaHack</p>
+                <p className="poster-eyebrow">{t("about.eyebrow")}</p>
                 <h2 className="poster-title text-3xl font-semibold leading-tight lg:text-[2.3rem]">{data.heading}</h2>
                 <UploadReadyImage
                     image={data.image}
-                    title="Ảnh giới thiệu"
-                    subtitle={data.imageCaption ?? "Có thể upload ảnh hoạt động thật của đội ngũ"}
+                    title={t("about.imageTitle")}
+                    subtitle={data.imageCaption ?? t("about.imagePlaceholder")}
                     ratioClassName="aspect-[5/4]"
                 />
             </div>

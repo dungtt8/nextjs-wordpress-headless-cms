@@ -31,27 +31,39 @@
         "storyPrompt": "Để hồ sơ của bạn kể một câu chuyện"
     },
     "about": {
+        "eyebrow": "Giới thiệu về ChinaHack",
         "heading": "Giới thiệu về ChinaHack",
         "body": "ChinaHack là nền tảng kết nối mentee và mentor trong hành trình du học Trung Quốc. Chúng tôi cung cấp định hướng học thuật, hỗ trợ xây dựng hồ sơ và mentoring toàn diện.",
-        "highlightQuote": "Mỗi mentee là một hành trình độc nhất"
+        "highlightQuote": "Mỗi mentee là một hành trình độc nhất",
+        "imageTitle": "Ảnh giới thiệu",
+        "imagePlaceholder": "Có thể thay bằng ảnh đội ngũ, workshop hoặc hoạt động mentoring."
     },
     "whyChoose": {
+        "eyebrow": "Kiến trúc giá trị",
         "heading": "Vì sao mentee chọn ChinaHack cho hành trình học bổng?",
         "description": "Cấu trúc mentoring được thiết kế theo logic học thuật: rõ định hướng, rõ mốc triển khai, rõ chất lượng đầu ra của từng vòng hồ sơ.",
         "book": "Định hướng rõ ràng",
         "medal": "Hỗ trợ toàn diện",
         "network": "Cộng đồng mạnh",
         "target": "Kết quả cụ thể",
-        "illustration": "Ảnh minh họa"
+        "illustration": "Ảnh minh họa",
+        "imagePlaceholder": "Sẵn sàng nhận ảnh upload từ CMS"
     },
     "services": {
+        "eyebrow": "Ma trận dịch vụ",
+        "chooseTrack": "Chọn lộ trình của bạn",
         "heading": "Ba cấp độ hỗ trợ, ba cách đồng hành khác nhau",
         "description": "Mỗi gói được thiết kế cho một mức độ sẵn sàng khác nhau, từ định hướng ban đầu đến mentoring sát sao ở các mốc quan trọng.",
+        "suitableFor": "Phù hợp với ai",
+        "included": "Bao gồm",
+        "companionLevel": "Mức độ đồng hành",
+        "imagePlaceholder": "Có thể thay bằng ảnh thực tế gói dịch vụ",
         "balanceNote": "Cân bằng tốt giữa chiến lược hồ sơ, coaching và khả năng tự triển khai."
     },
     "process": {
         "heading": "Quy trình mentoring của ChinaHack",
         "eyebrow": "Lộ trình đồng hành",
+        "ribbon": "Dòng chảy biên tập",
         "title": "Từng bước rõ ràng, theo đúng flow của hồ sơ học bổng",
         "description": "Mỗi giai đoạn đều có đầu ra cụ thể để mentee biết mình đang ở đâu, cần chuẩn bị gì tiếp theo và khi nào nên chuyển sang bước kế tiếp.",
         "active": "Đang kích hoạt",
@@ -59,6 +71,7 @@
         "imageSlot": "Slot ảnh theo từng giai đoạn"
     },
     "stats": {
+        "eyebrow": "Số liệu nổi bật",
         "heading": "Thành quả nổi bật từ hành trình mentee"
     },
     "mentors": {

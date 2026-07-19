@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import type { BlogTab } from "@/lib/home/types";
 import type { Post } from "@/lib/wordpress.d";
 import { MIN_BLOG_TAB_SKELETON_MS } from "@/lib/home/normalize";
+import { extractLocalized } from "@/lib/home/localized";
 
 interface HomeBlogTabsProps {
     tabs: BlogTab[];
@@ -28,6 +29,7 @@ function byTab(posts: Post[], tab: string) {
 
 export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
     const t = useTranslations();
+    const locale = useLocale();
     const firstTab = tabs[0]?.slug ?? "all";
     const [activeTab, setActiveTab] = useState(firstTab);
     const [displayTab, setDisplayTab] = useState(firstTab);
@@ -79,7 +81,7 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
                             }`}
                         onClick={() => handleTabChange(tab.slug)}
                     >
-                        {tab.label}
+                        {extractLocalized(tab.label, locale)}
                     </button>
                 ))}
             </div>
@@ -101,7 +103,7 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
                                 {parseText(post.excerpt.rendered)}
                             </p>
                             <Link href={`/posts/${post.slug}`} className="mt-4 inline-block text-sm font-semibold text-[#7C3AED]">
-                                Read more
+                                {t("common.readMore")}
                             </Link>
                         </article>
                     ))}

@@ -31,27 +31,39 @@
         "storyPrompt": "Let your profile tell a story"
     },
     "about": {
+        "eyebrow": "About ChinaHack",
         "heading": "About ChinaHack",
         "body": "ChinaHack is a platform connecting mentees and mentors in the journey to study in China. We provide academic guidance, support for building scholarship profiles, and comprehensive mentoring.",
-        "highlightQuote": "Each mentee's journey is unique"
+        "highlightQuote": "Each mentee's journey is unique",
+        "imageTitle": "Introduction Image",
+        "imagePlaceholder": "Can be replaced with team, workshop, or mentoring activity photos."
     },
     "whyChoose": {
+        "eyebrow": "Value Architecture",
         "heading": "Why Choose ChinaHack for Your Scholarship Journey?",
         "description": "Our mentoring structure is designed with academic logic: clear direction, clear milestones, clear outcomes for each application round.",
         "book": "Clear Direction",
         "medal": "Comprehensive Support",
         "network": "Strong Community",
         "target": "Concrete Results",
-        "illustration": "Illustration"
+        "illustration": "Illustration",
+        "imagePlaceholder": "Ready to receive images uploaded from the CMS"
     },
     "services": {
+        "eyebrow": "Service Matrix",
+        "chooseTrack": "Choose your track",
         "heading": "Three Support Levels, Three Different Ways of Mentorship",
         "description": "Each package is designed for a different readiness level, from initial guidance to close mentoring at critical milestones.",
+        "suitableFor": "Suitable For",
+        "included": "Included",
+        "companionLevel": "Level of Support",
+        "imagePlaceholder": "Can be replaced with the actual service package image",
         "balanceNote": "Balances strategy development, coaching, and self-directed learning effectively."
     },
     "process": {
         "heading": "ChinaHack Mentoring Process",
         "eyebrow": "Your Journey Roadmap",
+        "ribbon": "Editorial Flow",
         "title": "Clear Steps, Following the Scholarship Application Flow",
         "description": "Each stage has specific outcomes so mentees know where they are, what to prepare next, and when to move to the next step.",
         "active": "Active",
@@ -59,6 +71,7 @@
         "imageSlot": "Image for each phase"
     },
     "stats": {
+        "eyebrow": "Impact Snapshot",
         "heading": "Notable Results from Mentee Journeys"
     },
     "mentors": {

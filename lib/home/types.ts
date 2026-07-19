@@ -26,8 +26,8 @@ export interface AboutData {
 
 export interface WhyChooseItem {
     id: string;
-    title: string;
-    description: string;
+    title: LocalizedString;
+    description: LocalizedString;
     icon: "book" | "medal" | "network" | "target";
     image?: HomeImageAsset;
 }
@@ -47,32 +47,32 @@ export interface MentorItem {
 
 export interface StatsItem {
     id: string;
-    label: string;
+    label: LocalizedString;
     value: number;
     suffix?: string;
 }
 
 export interface ProcessStep {
     id: string;
-    title: string;
-    description: string;
+    title: LocalizedString;
+    description: LocalizedString;
     image?: HomeImageAsset;
 }
 
 export interface ServicePlan {
     id: string;
     name: string;
-    description: string;
+    description: LocalizedString;
     image?: HomeImageAsset;
-    audience: string;
-    supportLabel: string;
-    supportNote: string;
-    features: string[];
-    ctaText: string;
+    audience: LocalizedString;
+    supportLabel: LocalizedString;
+    supportNote: LocalizedString;
+    features: LocalizedString[];
+    ctaText: LocalizedString;
     ctaHref: string;
-    highlightLabel?: string;
+    highlightLabel?: LocalizedString;
     isFeatured?: boolean;
-    premiumNote?: string;
+    premiumNote?: LocalizedString;
 }
 
 export interface UniversityLogo {
@@ -91,7 +91,7 @@ export interface SuccessStory {
 
 export interface BlogTab {
     id: string;
-    label: string;
+    label: LocalizedString;
     slug: string;
 }
 

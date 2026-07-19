@@ -1,9 +1,10 @@
 "use client";
 
 import { ArrowRight, Compass, Crown, Sparkle } from "@phosphor-icons/react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { UploadReadyImage } from "@/components/home/upload-ready-image";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
+import { extractLocalized } from "@/lib/home/localized";
 import type { ServicePlan } from "@/lib/home/types";
 
 interface HomeServicesProps {
@@ -12,19 +13,20 @@ interface HomeServicesProps {
 
 export function HomeServices({ plans }: HomeServicesProps) {
     const t = useTranslations();
+    const locale = useLocale();
     const { ref, isVisible } = useScrollAnimation<HTMLElement>();
 
     return (
         <section id="services" ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
             <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                    <p className="poster-eyebrow">Service Matrix</p>
+                    <p className="poster-eyebrow">{t("services.eyebrow")}</p>
                     <h2 className="poster-title mt-2 text-3xl font-semibold leading-tight text-[#1F2937] lg:text-[2.3rem]">{t("services.heading")}</h2>
                     <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
                         {t("services.description")}
                     </p>
                 </div>
-                <span className="poster-ribbon w-fit">Choose your track</span>
+                <span className="poster-ribbon w-fit">{t("services.chooseTrack")}</span>
             </div>
 
             <div className="grid gap-5 lg:grid-cols-3 lg:items-start">
@@ -52,7 +54,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
                                                 : "bg-white/80 text-violet-800 ring-1 ring-violet-200"
                                     ].join(" ")}
                                 >
-                                    {plan.supportLabel}
+                                    {extractLocalized(plan.supportLabel, locale)}
                                 </span>
                                 <h3 className="mt-4 text-2xl font-semibold text-[#1F2937]">{plan.name}</h3>
                             </div>
@@ -63,9 +65,9 @@ export function HomeServices({ plans }: HomeServicesProps) {
                                 </div>
                             ) : null}
 
-                            {plan.id === "sv2" ? (
+                            {plan.id === "sv2" && plan.highlightLabel ? (
                                 <div className="text-right">
-                                    <span className="poster-badge">{plan.highlightLabel}</span>
+                                    <span className="poster-badge">{extractLocalized(plan.highlightLabel, locale)}</span>
                                 </div>
                             ) : null}
 
@@ -76,13 +78,13 @@ export function HomeServices({ plans }: HomeServicesProps) {
                             ) : null}
                         </div>
 
-                        <p className="mt-3 text-sm leading-7 text-slate-600">{plan.description}</p>
+                        <p className="mt-3 text-sm leading-7 text-slate-600">{extractLocalized(plan.description, locale)}</p>
 
                         <div className="mt-4">
                             <UploadReadyImage
                                 image={plan.image}
                                 title={`${plan.name} visual`}
-                                subtitle="Có thể thay bằng ảnh thực tế gói dịch vụ"
+                                subtitle={t("services.imagePlaceholder")}
                                 ratioClassName="aspect-[16/10]"
                             />
                         </div>
@@ -97,15 +99,15 @@ export function HomeServices({ plans }: HomeServicesProps) {
                                         : "border border-violet-200 bg-white/80 px-4 py-4"
                             ].join(" ")}
                         >
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Phù hợp với ai</p>
-                            <p className="mt-2 text-sm leading-7 text-slate-700">{plan.audience}</p>
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{t("services.suitableFor")}</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-700">{extractLocalized(plan.audience, locale)}</p>
                         </div>
 
                         <div className="mt-5 flex-1">
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Bao gồm</p>
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{t("services.included")}</p>
                             <ul className="mt-3 space-y-3 text-sm text-slate-700">
                                 {plan.features.map((feature) => (
-                                    <li key={feature} className="flex items-start gap-3 border-b border-violet-100/70 pb-3 last:border-b-0 last:pb-0">
+                                    <li key={extractLocalized(feature, locale)} className="flex items-start gap-3 border-b border-violet-100/70 pb-3 last:border-b-0 last:pb-0">
                                         <span
                                             className={[
                                                 "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full",
@@ -118,7 +120,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
                                         >
                                             <Sparkle weight="thin" className="h-3 w-3" />
                                         </span>
-                                        <span className="leading-6">{feature}</span>
+                                        <span className="leading-6">{extractLocalized(feature, locale)}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -130,12 +132,12 @@ export function HomeServices({ plans }: HomeServicesProps) {
                                 plan.id === "sv3" ? "rounded-[24px] border border-violet-200 bg-white/85 p-4" : ""
                             ].join(" ")}
                         >
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Mức độ đồng hành</p>
-                            <p className="mt-2 text-sm leading-7 text-slate-700">{plan.supportNote}</p>
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{t("services.companionLevel")}</p>
+                            <p className="mt-2 text-sm leading-7 text-slate-700">{extractLocalized(plan.supportNote, locale)}</p>
 
                             {plan.premiumNote ? (
                                 <p className="mt-4 border-l-2 border-violet-300 pl-4 text-sm leading-7 text-violet-900">
-                                    {plan.premiumNote}
+                                    {extractLocalized(plan.premiumNote, locale)}
                                 </p>
                             ) : null}
                         </div>
@@ -151,7 +153,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
                                         : "bg-[#1F1636] text-white shadow-[0_14px_30px_rgba(31,22,54,0.18)]"
                             ].join(" ")}
                         >
-                            {plan.ctaText}
+                            {extractLocalized(plan.ctaText, locale)}
                             <ArrowRight weight="thin" className="h-4 w-4" />
                         </a>
 

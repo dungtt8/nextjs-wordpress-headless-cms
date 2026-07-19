@@ -22,7 +22,7 @@ export function IntlProvider({
     const locale_messages = messages[locale as keyof typeof messages] || messages.vi;
 
     return (
-        <NextIntlClientProvider messages={locale_messages} locale={locale}>
+        <NextIntlClientProvider messages={locale_messages} locale={locale} timeZone="Asia/Ho_Chi_Minh">
             {children}
         </NextIntlClientProvider>
     );

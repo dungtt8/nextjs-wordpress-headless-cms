@@ -31,27 +31,39 @@
         "storyPrompt": "让您的申请讲述您的故事"
     },
     "about": {
+        "eyebrow": "关于 ChinaHack",
         "heading": "关于 ChinaHack",
         "body": "ChinaHack 是连接学生和导师的中国留学平台。我们提供学术指导、奖学金文书支持和全面辅导。",
-        "highlightQuote": "每个学生的申请之路都是独特的"
+        "highlightQuote": "每个学生的申请之路都是独特的",
+        "imageTitle": "介绍图片",
+        "imagePlaceholder": "可以替换为团队、工作坊或指导活动的照片。"
     },
     "whyChoose": {
+        "eyebrow": "价值架构",
         "heading": "为什么选择 ChinaHack 进行您的奖学金申请？",
         "description": "我们的辅导结构遵循学术逻辑：清晰的方向、明确的里程碑、每轮申请的具体成果。",
         "book": "清晰指导",
         "medal": "全面支持",
         "network": "强大社区",
         "target": "具体成果",
-        "illustration": "插图"
+        "illustration": "插图",
+        "imagePlaceholder": "准备好从CMS接收上传的图片"
     },
     "services": {
+        "eyebrow": "服务矩阵",
+        "chooseTrack": "选择您的路线",
         "heading": "三个支持级别，三种不同的辅导方式",
         "description": "每个套餐针对不同的准备程度，从初期指导到关键里程碑的密切辅导。",
+        "suitableFor": "适合人群",
+        "included": "包含",
+        "companionLevel": "陪伴程度",
+        "imagePlaceholder": "可以替换为实际服务套餐图片",
         "balanceNote": "完美平衡文书策略、辅导和自主发展。"
     },
     "process": {
         "heading": "ChinaHack 辅导流程",
         "eyebrow": "你的申请路线图",
+        "ribbon": "编辑流程",
         "title": "清晰的步骤，遵循奖学金申请流程",
         "description": "每个阶段都有具体的成果，让学生知道自己在哪里、接下来要准备什么、何时应该进入下一步。",
         "active": "进行中",
@@ -59,6 +71,7 @@
         "imageSlot": "每个阶段的配图"
     },
     "stats": {
+        "eyebrow": "成果概览",
         "heading": "学生申请成果亮点"
     },
     "mentors": {
