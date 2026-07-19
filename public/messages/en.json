@@ -133,6 +133,7 @@
     },
     "footer": {
         "about": "About",
+        "mentors": "Mentors",
         "community": "Community",
         "blog": "Scholarship Blog",
         "articles": "Article Categories",
@@ -141,7 +142,10 @@
         "explore": "Explore",
         "resources": "Resources",
         "contact": "Contact",
-        "description": "Supporting students on their journey through academic planning, scholarship profile building, and China study applications."
+        "description": "Supporting students on their journey through academic planning, scholarship profile building, and China study applications.",
+        "subtitle": "Mentorship & Scholarship Application",
+        "rights": "All rights reserved.",
+        "credit": "This website was developed by {name}. Visit {url} to learn more."
     },
     "home": {
         "title": "ChinaHack",

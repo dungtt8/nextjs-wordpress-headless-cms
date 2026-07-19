@@ -98,7 +98,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                 {mentors.map((mentor) => (
                     <article
                         key={mentor.id}
-                        className="poster-card min-w-[82%] snap-start rounded-[28px] p-5 sm:min-w-[52%] lg:min-w-0"
+                        className="poster-card min-w-[82%] snap-start rounded-[28px] p-5 transition duration-300 hover:-translate-y-1 sm:min-w-[52%] lg:min-w-0"
                     >
                         <div className="space-y-4">
                             <MentorPortrait

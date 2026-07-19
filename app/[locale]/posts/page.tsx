@@ -136,7 +136,7 @@ export default async function PostsArchivePage({
           {posts.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-4">
               {posts.map((post) => (
-                <PostCard key={post.id} post={post} />
+                <PostCard key={post.id} post={post} locale={locale} />
               ))}
             </div>
           ) : (

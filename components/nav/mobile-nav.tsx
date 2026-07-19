@@ -24,7 +24,16 @@ import { Separator } from "@/components/ui/separator";
 import { mainMenu, contentMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
 
-export function MobileNav() {
+// Prefixes an internal path with the current locale so nav clicks don't fall through
+// to the "/" root, which 307-redirects based on Accept-Language instead of staying put.
+function localizeHref(href: string, locale?: string): string {
+  if (!locale) return href;
+  if (href === "/") return `/${locale}`;
+  if (href.startsWith("/#")) return `/${locale}${href.slice(1)}`;
+  return `/${locale}${href}`;
+}
+
+export function MobileNav({ locale }: { locale?: string }) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -42,7 +51,7 @@ export function MobileNav() {
         <SheetHeader>
           <SheetTitle className="text-left">
             <MobileLink
-              href="/"
+              href={localizeHref("/", locale)}
               className="flex items-center"
               onOpenChange={setOpen}
             >
@@ -56,7 +65,7 @@ export function MobileNav() {
             <h3 className="text-small mt-6">Menu</h3>
             <Separator />
             {Object.entries(mainMenu).map(([key, href]) => (
-              <MobileLink key={key} href={href} onOpenChange={setOpen}>
+              <MobileLink key={key} href={localizeHref(href, locale)} onOpenChange={setOpen}>
                 {key.charAt(0).toUpperCase() + key.slice(1)}
               </MobileLink>
             ))}

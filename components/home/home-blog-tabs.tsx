@@ -92,7 +92,7 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
                         <div key={`skeleton-${index}`} className="skeleton-shimmer h-56 rounded-2xl border border-slate-200 bg-white" />
                     ))
                     : cards.map((post) => (
-                        <article key={post.id} className="poster-card rounded-[24px] p-5 shadow-sm">
+                        <article key={post.id} className="poster-card rounded-[24px] p-5 shadow-sm transition duration-300 hover:-translate-y-1">
                             <p className="text-xs uppercase tracking-[0.16em] text-slate-500">
                                 {new Date(post.date).toLocaleDateString("en-US")}
                             </p>
@@ -102,7 +102,11 @@ export function HomeBlogTabs({ tabs, posts }: HomeBlogTabsProps) {
                             <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">
                                 {parseText(post.excerpt.rendered)}
                             </p>
-                            <Link href={`/posts/${post.slug}`} className="mt-4 inline-block text-sm font-semibold text-[#7C3AED]">
+                            <Link
+                                href={`/${locale}/posts/${post.slug}`}
+                                className="mt-4 inline-block text-sm font-semibold text-[#7C3AED]"
+                                aria-label={`${t("common.readMore")}: ${parseText(post.title.rendered)}`}
+                            >
                                 {t("common.readMore")}
                             </Link>
                         </article>

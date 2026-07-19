@@ -65,7 +65,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                     >
                         <div className={index % 2 === 0 ? "col-start-1" : "col-start-3"}>
                             <article
-                                className={`rounded-[28px] p-6 transition-all ${index <= activeIndex
+                                className={`rounded-[28px] p-6 transition-all hover:-translate-y-1 ${index <= activeIndex
                                     ? "poster-card border-violet-300 shadow-[0_20px_50px_rgba(124,58,237,0.14)]"
                                     : "border border-slate-200 bg-white shadow-sm"
                                     }`}

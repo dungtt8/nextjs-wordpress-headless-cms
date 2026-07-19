@@ -59,7 +59,7 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                 {stories.map((story) => (
                     <article
                         key={story.id}
-                        className="poster-card min-w-[88%] snap-start rounded-[28px] p-6 sm:min-w-[55%] md:min-w-[360px]"
+                        className="poster-card min-w-[88%] snap-start rounded-[28px] p-6 transition duration-300 hover:-translate-y-1 sm:min-w-[55%] md:min-w-[360px]"
                     >
                         <div className="flex items-start justify-between gap-4">
                             <div>

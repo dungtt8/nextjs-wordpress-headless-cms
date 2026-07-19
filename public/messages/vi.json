@@ -133,6 +133,7 @@
     },
     "footer": {
         "about": "Giới thiệu",
+        "mentors": "Mentor",
         "community": "Cộng đồng",
         "blog": "Blog học bổng",
         "articles": "Danh mục bài viết",
@@ -141,7 +142,10 @@
         "explore": "Khám phá",
         "resources": "Tài nguyên",
         "contact": "Liên hệ",
-        "description": "Đồng hành cùng học sinh, sinh viên trong hành trình định hướng học thuật, xây hồ sơ học bổng và nộp đơn du học Trung Quốc."
+        "description": "Đồng hành cùng học sinh, sinh viên trong hành trình định hướng học thuật, xây hồ sơ học bổng và nộp đơn du học Trung Quốc.",
+        "subtitle": "Mentorship & Ứng tuyển học bổng",
+        "rights": "Bảo lưu mọi quyền.",
+        "credit": "Trang web được phát triển bởi {name}, truy cập {url} để biết thêm."
     },
     "home": {
         "title": "ChinaHack",

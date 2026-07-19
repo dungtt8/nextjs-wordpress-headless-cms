@@ -5,7 +5,7 @@ import { Post } from "@/lib/wordpress.d";
 import { cn } from "@/lib/utils";
 import { truncateHtml } from "@/lib/metadata";
 
-export function PostCard({ post }: { post: Post }) {
+export function PostCard({ post, locale }: { post: Post; locale?: string }) {
   // Use embedded data instead of separate API calls
   const media = post._embedded?.["wp:featuredmedia"]?.[0] ?? null;
   const category = post._embedded?.["wp:term"]?.[0]?.[0] ?? null;
@@ -17,7 +17,7 @@ export function PostCard({ post }: { post: Post }) {
 
   return (
     <Link
-      href={`/posts/${post.slug}`}
+      href={locale ? `/${locale}/posts/${post.slug}` : `/posts/${post.slug}`}
       className={cn(
         "border p-4 bg-accent/30 rounded-lg group flex justify-between flex-col not-prose gap-8",
         "hover:bg-accent/75 transition-all"

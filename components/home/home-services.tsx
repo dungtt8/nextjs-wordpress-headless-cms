@@ -34,7 +34,7 @@ export function HomeServices({ plans }: HomeServicesProps) {
                     <article
                         key={plan.id}
                         className={[
-                            "flex h-full flex-col overflow-hidden transition-transform duration-300",
+                            "flex h-full flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1",
                             plan.id === "sv1"
                                 ? "rounded-[28px] border border-violet-100 bg-white p-6 shadow-sm"
                                 : plan.id === "sv2"

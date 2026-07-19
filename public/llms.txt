@@ -1,0 +1,13 @@
+# ChinaHack
+
+> Mentorship and scholarship-application guidance for students pursuing university scholarships in China.
+
+ChinaHack helps students evaluate their profile, build a scholarship strategy, and prepare applications with mentor support.
+
+## Site
+
+- [Homepage (English)](https://chinahack.revonexus.net/en)
+- [Homepage (Tiếng Việt)](https://chinahack.revonexus.net/vi)
+- [Homepage (中文)](https://chinahack.revonexus.net/zh)
+- [Blog posts](https://chinahack.revonexus.net/en/posts)
+- [Sitemap](https://chinahack.revonexus.net/sitemap.xml)

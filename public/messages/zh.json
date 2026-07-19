@@ -133,6 +133,7 @@
     },
     "footer": {
         "about": "关于",
+        "mentors": "导师",
         "community": "社区",
         "blog": "奖学金博客",
         "articles": "文章分类",
@@ -141,7 +142,10 @@
         "explore": "探索",
         "resources": "资源",
         "contact": "联系",
-        "description": "支持学生通过学术规划、奖学金文书指导和中国留学申请的完整过程。"
+        "description": "支持学生通过学术规划、奖学金文书指导和中国留学申请的完整过程。",
+        "subtitle": "留学中国奖学金申请辅导",
+        "rights": "版权所有。",
+        "credit": "本网站由 {name} 开发，访问 {url} 了解更多。"
     },
     "home": {
         "title": "ChinaHack",

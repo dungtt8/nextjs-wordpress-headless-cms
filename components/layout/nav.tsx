@@ -12,9 +12,19 @@ interface NavProps {
   className?: string;
   children?: React.ReactNode;
   id?: string;
+  locale?: string;
 }
 
-export function Nav({ className, children, id }: NavProps) {
+// Prefixes an internal path with the current locale so nav clicks don't fall through
+// to the "/" root, which 307-redirects based on Accept-Language instead of staying put.
+function localizeHref(href: string, locale?: string): string {
+  if (!locale) return href;
+  if (href === "/") return `/${locale}`;
+  if (href.startsWith("/#")) return `/${locale}${href.slice(1)}`;
+  return `/${locale}${href}`;
+}
+
+export function Nav({ className, children, id, locale }: NavProps) {
   return (
     <nav className={cn("sticky top-0 z-50 px-4 pt-4", className)} id={id}>
       <div
@@ -23,7 +33,7 @@ export function Nav({ className, children, id }: NavProps) {
       >
         <Link
           className="hover:opacity-75 transition-all flex gap-4 items-center"
-          href="/"
+          href={localizeHref("/", locale)}
         >
           <Image
             src={Logo}
@@ -41,7 +51,7 @@ export function Nav({ className, children, id }: NavProps) {
           <div className="mx-2 hidden md:flex">
             {Object.entries(mainMenu).map(([key, href]) => (
               <Button key={href} asChild variant="ghost" size="sm">
-                <Link href={href}>
+                <Link href={localizeHref(href, locale)}>
                   {key.charAt(0).toUpperCase() + key.slice(1)}
                 </Link>
               </Button>
@@ -49,9 +59,9 @@ export function Nav({ className, children, id }: NavProps) {
           </div>
           <LanguageSwitcher />
           <Button asChild className="hidden sm:flex rounded-full bg-[#6e59b1] px-5 hover:bg-[#5f4b9f]">
-            <Link href="/#lead-form">Get Started</Link>
+            <Link href={localizeHref("/#lead-form", locale)}>Get Started</Link>
           </Button>
-          <MobileNav />
+          <MobileNav locale={locale} />
         </div>
       </div>
     </nav>

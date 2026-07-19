@@ -64,7 +64,7 @@ export function HomeStats({ stats }: HomeStatsProps) {
             </div>
             <div className="grid grid-cols-2 gap-4 lg:flex lg:gap-6">
                 {displayValues.map((stat) => (
-                    <article key={stat.id} className="poster-card flex-1 rounded-[24px] p-5">
+                    <article key={stat.id} className="poster-card flex-1 rounded-[24px] p-5 transition duration-300 hover:-translate-y-1">
                         <p className="poster-title text-3xl font-semibold text-[#6d4fb6] md:text-4xl">
                             {stat.display}
                             {stat.suffix ? <span className="ml-1 text-lg">{stat.suffix}</span> : null}
