@@ -5,12 +5,14 @@ import type { Metadata } from "next";
 
 export const revalidate = 3600;
 
+// Legacy/duplicate route kept for reference — real content lives under /[locale]/posts.
 export const metadata: Metadata = {
   title: "All Categories",
   description: "Browse all categories of our blog posts",
   alternates: {
-    canonical: "/posts/categories",
+    canonical: "/posts.backup/categories",
   },
+  robots: { index: false, follow: false },
 };
 
 export default async function Page() {

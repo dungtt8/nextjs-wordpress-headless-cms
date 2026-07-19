@@ -1,5 +1,9 @@
 import { getPageBySlugAndLocale, getAllPageSlugsForLocale } from "@/lib/wordpress";
 import { generateContentMetadata, stripHtml } from "@/lib/metadata";
+import { buildBreadcrumbJsonLd } from "@/lib/json-ld";
+import { JsonLd } from "@/components/seo/json-ld";
+import type { Locale } from "@/lib/i18n";
+import { siteConfig } from "@/site.config";
 import { Section, Container, Prose } from "@/components/craft";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -31,10 +35,11 @@ export async function generateMetadata({
     : stripHtml(page.content.rendered).slice(0, 200) + "...";
 
   return generateContentMetadata({
-    title: page.title.rendered,
+    title: stripHtml(page.title.rendered),
     description,
-    slug: page.slug,
-    basePath: "pages",
+    path: `/pages/${slug}`,
+    locale: locale as Locale,
+    type: "website",
   });
 }
 
@@ -52,6 +57,15 @@ export default async function PageBySlugPage({
 
   return (
     <Section>
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: siteConfig.site_name, url: `${siteConfig.site_domain}/${locale}` },
+          {
+            name: stripHtml(page.title.rendered),
+            url: `${siteConfig.site_domain}/${locale}/pages/${slug}`,
+          },
+        ])}
+      />
       <Container>
         <Prose>
           <h2>{page.title.rendered}</h2>

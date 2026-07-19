@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import { getPostBySlugAndLocale, getAllPostSlugsForLocale } from "@/lib/wordpress";
 import { generateContentMetadata, stripHtml } from "@/lib/metadata";
+import { buildBlogPostingJsonLd, buildBreadcrumbJsonLd } from "@/lib/json-ld";
+import { JsonLd } from "@/components/seo/json-ld";
+import type { Locale } from "@/lib/i18n";
+import { siteConfig } from "@/site.config";
 import { Section, Container, Prose } from "@/components/craft";
 import type { Metadata } from "next";
 
@@ -30,23 +34,13 @@ export async function generateMetadata({
     ? stripHtml(post.excerpt.rendered)
     : stripHtml(post.content.rendered).slice(0, 200) + "...";
 
-  const baseUrl = process.env.WORDPRESS_URL || "https://example.com";
-
-  return {
-    ...generateContentMetadata({
-      title: post.title.rendered,
-      description,
-      slug: post.slug,
-      basePath: "posts",
-    }),
-    alternates: {
-      languages: {
-        en: `${baseUrl}/en/posts/${slug}`,
-        vi: `${baseUrl}/vi/posts/${slug}`,
-        zh: `${baseUrl}/zh/posts/${slug}`,
-      },
-    },
-  };
+  return generateContentMetadata({
+    title: stripHtml(post.title.rendered),
+    description,
+    path: `/posts/${slug}`,
+    locale: locale as Locale,
+    type: "article",
+  });
 }
 
 export default async function PostPage({
@@ -61,8 +55,30 @@ export default async function PostPage({
     notFound();
   }
 
+  const postUrl = `${siteConfig.site_domain}/${locale}/posts/${slug}`;
+  const description = post.excerpt?.rendered
+    ? stripHtml(post.excerpt.rendered)
+    : stripHtml(post.content.rendered).slice(0, 200) + "...";
+
   return (
     <Section>
+      <JsonLd
+        data={buildBlogPostingJsonLd({
+          title: stripHtml(post.title.rendered),
+          description,
+          url: postUrl,
+          datePublished: post.date,
+          dateModified: post.modified,
+          image: post._embedded?.["wp:featuredmedia"]?.[0]?.source_url,
+        })}
+      />
+      <JsonLd
+        data={buildBreadcrumbJsonLd([
+          { name: siteConfig.site_name, url: `${siteConfig.site_domain}/${locale}` },
+          { name: "Posts", url: `${siteConfig.site_domain}/${locale}/posts` },
+          { name: stripHtml(post.title.rendered), url: postUrl },
+        ])}
+      />
       <Container>
         <Prose>
           <h2>{post.title.rendered}</h2>

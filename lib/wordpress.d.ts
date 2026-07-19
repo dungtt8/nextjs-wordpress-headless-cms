@@ -79,6 +79,19 @@ export interface Post extends WPEntity {
   _embedded?: PostEmbedded;
 }
 
+export interface Lead extends WPEntity {
+  title: RenderedTitle;
+  content: RenderedContent;
+  acf: {
+    email: string;
+    phone: string;
+    gpa: string;
+    status: string;
+    submitted_at: string;
+    vercel_ip: string;
+  };
+}
+
 export interface Page extends WPEntity {
   title: RenderedTitle;
   content: RenderedContent;

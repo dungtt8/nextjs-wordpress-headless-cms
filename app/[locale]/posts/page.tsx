@@ -17,6 +17,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
+import { generateContentMetadata } from "@/lib/metadata";
+import type { Locale } from "@/lib/i18n";
 import { Section, Container, Prose } from "@/components/craft";
 import { PostCard } from "@/components/posts/post-card";
 import { FilterPosts } from "@/components/posts/filter";
@@ -29,14 +31,38 @@ export const revalidate = 3600;
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{
+    author?: string;
+    tag?: string;
+    category?: string;
+    page?: string;
+    search?: string;
+  }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return {
-    title: locale === 'en' ? "Blog Posts" : locale === 'vi' ? "Bài Viết" : "博客文章",
-    description: locale === 'en' ? "Browse all our blog posts" : locale === 'vi' ? "Duyệt tất cả bài viết của chúng tôi" : "浏览我们所有的博客文章",
-  };
+  const { author, tag, category, page, search } = await searchParams;
+
+  const title = locale === 'en' ? "Blog Posts" : locale === 'vi' ? "Bài Viết" : "博客文章";
+  const description = locale === 'en' ? "Browse all our blog posts" : locale === 'vi' ? "Duyệt tất cả bài viết của chúng tôi" : "浏览我们所有的博客文章";
+
+  const metadata = generateContentMetadata({
+    title,
+    description,
+    path: "/posts",
+    locale: locale as Locale,
+    type: "website",
+  });
+
+  // Filtered/search result variants are thin, duplicate-content pages — keep them out of the index.
+  const isFiltered = Boolean(author || tag || category || search || (page && page !== "1"));
+  if (isFiltered) {
+    metadata.robots = { index: false, follow: true };
+  }
+
+  return metadata;
 }
 
 export default async function PostsArchivePage({

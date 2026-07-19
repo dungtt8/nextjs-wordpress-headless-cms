@@ -24,12 +24,15 @@ export async function generateMetadata({
     return {};
   }
 
-  return generateContentMetadata({
-    title: post.title.rendered,
-    description: stripHtml(post.excerpt.rendered),
-    slug: post.slug,
-    basePath: "posts",
-  });
+  return {
+    ...generateContentMetadata({
+      title: stripHtml(post.title.rendered),
+      description: stripHtml(post.excerpt.rendered),
+      path: `/posts.backup/${post.slug}`,
+    }),
+    // Legacy/duplicate route kept for reference — real content lives under /[locale]/posts.
+    robots: { index: false, follow: false },
+  };
 }
 
 export default async function Page({

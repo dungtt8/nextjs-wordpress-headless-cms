@@ -24,9 +24,11 @@ import { SearchInput } from "@/components/posts/search-input";
 
 import type { Metadata } from "next";
 
+// Legacy/duplicate route kept for reference — real content lives under /[locale]/posts.
 export const metadata: Metadata = {
   title: "Blog Posts",
   description: "Browse all our blog posts",
+  robots: { index: false, follow: false },
 };
 
 export const dynamic = "auto";

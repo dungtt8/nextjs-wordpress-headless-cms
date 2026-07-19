@@ -10,12 +10,17 @@ import type {
   Page,
   Author,
   FeaturedMedia,
+  Lead,
 } from "./wordpress.d";
 import type { MentorItem, SuccessStory, UniversityLogo, SiteSettings } from "@/lib/home/types";
 
 // Single source of truth for WordPress configuration
 const baseUrl = process.env.WORDPRESS_URL;
 const isConfigured = Boolean(baseUrl);
+
+// Basic Auth for non-public post types (e.g. leads) that require authenticated reads
+const basicAuthUser = process.env.WORDPRESS_BASIC_AUTH_USER;
+const basicAuthPassword = process.env.WORDPRESS_BASIC_AUTH_PASSWORD;
 
 if (!isConfigured) {
   console.warn(
@@ -223,6 +228,103 @@ async function wordpressFetchGraceful<T>(
   } catch {
     console.warn(`WordPress fetch failed for ${path}`);
     return fallback;
+  }
+}
+
+// Authenticated fetch - for non-public post types (e.g. leads) that require Basic Auth to read
+async function wordpressFetchAuthenticated<T>(
+  path: string,
+  query?: Record<string, any>,
+  tags: string[] = ["wordpress"]
+): Promise<T> {
+  if (!baseUrl) {
+    throw new Error("WordPress URL not configured");
+  }
+
+  if (!basicAuthUser || !basicAuthPassword) {
+    throw new Error("WordPress Basic Auth credentials not configured");
+  }
+
+  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query, { sort: false })}` : ""}`;
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": USER_AGENT,
+      Authorization: `Basic ${Buffer.from(`${basicAuthUser}:${basicAuthPassword}`).toString("base64")}`,
+    },
+    next: { tags, revalidate: CACHE_TTL },
+  });
+
+  if (!response.ok) {
+    throw new WordPressAPIError(
+      `WordPress API request failed: ${response.statusText}`,
+      response.status,
+      url
+    );
+  }
+
+  return response.json();
+}
+
+// Authenticated paginated fetch - returns response with headers, throws on error
+async function wordpressFetchAuthenticatedPaginated<T>(
+  path: string,
+  query?: Record<string, any>,
+  tags: string[] = ["wordpress"]
+): Promise<WordPressResponse<T>> {
+  if (!baseUrl) {
+    throw new Error("WordPress URL not configured");
+  }
+
+  if (!basicAuthUser || !basicAuthPassword) {
+    throw new Error("WordPress Basic Auth credentials not configured");
+  }
+
+  const url = `${baseUrl}${path}${query ? `?${querystring.stringify(query, { sort: false })}` : ""}`;
+
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": USER_AGENT,
+      Authorization: `Basic ${Buffer.from(`${basicAuthUser}:${basicAuthPassword}`).toString("base64")}`,
+    },
+    next: { tags, revalidate: CACHE_TTL },
+  });
+
+  if (!response.ok) {
+    throw new WordPressAPIError(
+      `WordPress API request failed: ${response.statusText}`,
+      response.status,
+      url
+    );
+  }
+
+  return {
+    data: await response.json(),
+    headers: {
+      total: parseInt(response.headers.get("X-WP-Total") || "0", 10),
+      totalPages: parseInt(response.headers.get("X-WP-TotalPages") || "0", 10),
+    },
+  };
+}
+
+// Graceful authenticated paginated fetch - returns empty response when unavailable
+async function wordpressFetchAuthenticatedPaginatedGraceful<T>(
+  path: string,
+  query?: Record<string, any>,
+  tags: string[] = ["wordpress"]
+): Promise<WordPressResponse<T[]>> {
+  const emptyResponse: WordPressResponse<T[]> = {
+    data: [],
+    headers: { total: 0, totalPages: 0 },
+  };
+
+  if (!isConfigured || !basicAuthUser || !basicAuthPassword) return emptyResponse;
+
+  try {
+    return await wordpressFetchAuthenticatedPaginated<T[]>(path, query, tags);
+  } catch {
+    console.warn(`WordPress authenticated paginated fetch failed for ${path}`);
+    return emptyResponse;
   }
 }
 
@@ -548,10 +650,10 @@ export async function getAllPostSlugs(): Promise<{ slug: string }[]> {
 }
 
 // Fetches ALL posts for sitemap generation (paginates through all pages)
-// Returns slug and modified date for each post
-export async function getAllPostsForSitemap(): Promise<
-  { slug: string; modified: string }[]
-> {
+// Returns slug and modified date for each post. Pass `locale` to scope to one language (Polylang `lang` param).
+export async function getAllPostsForSitemap(
+  locale?: string
+): Promise<{ slug: string; modified: string }[]> {
   if (!isConfigured) return [];
 
   try {
@@ -562,7 +664,7 @@ export async function getAllPostsForSitemap(): Promise<
     while (hasMore) {
       const response = await wordpressFetchPaginated<Post[]>(
         "/wp-json/wp/v2/posts",
-        { per_page: 100, page, _fields: "slug,modified" }
+        { per_page: 100, page, _fields: "slug,modified", ...(locale ? { lang: locale } : {}) }
       );
 
       allPosts.push(
@@ -576,6 +678,41 @@ export async function getAllPostsForSitemap(): Promise<
     }
 
     return allPosts;
+  } catch {
+    console.warn("WordPress unavailable, skipping sitemap generation");
+    return [];
+  }
+}
+
+// Fetches ALL pages for sitemap generation (paginates through all pages)
+// Returns slug and modified date for each page. Pass `locale` to scope to one language (Polylang `lang` param).
+export async function getAllPagesForSitemap(
+  locale?: string
+): Promise<{ slug: string; modified: string }[]> {
+  if (!isConfigured) return [];
+
+  try {
+    const allPages: { slug: string; modified: string }[] = [];
+    let page = 1;
+    let hasMore = true;
+
+    while (hasMore) {
+      const response = await wordpressFetchPaginated<Page[]>(
+        "/wp-json/wp/v2/pages",
+        { per_page: 100, page, _fields: "slug,modified", ...(locale ? { lang: locale } : {}) }
+      );
+
+      allPages.push(
+        ...response.data.map((p) => ({
+          slug: p.slug,
+          modified: p.modified,
+        }))
+      );
+      hasMore = page < response.headers.totalPages;
+      page++;
+    }
+
+    return allPages;
   } catch {
     console.warn("WordPress unavailable, skipping sitemap generation");
     return [];
@@ -945,6 +1082,26 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   // Get the first settings post, or fallback
   const settingsPost = data?.[0] ?? ({} as WPACFOptionsRecord);
   return mapWPSiteSettings(settingsPost);
+}
+
+// Leads are a non-public post type (submitted via the lead form); reads require Basic Auth
+export async function getLeadsPaginated(
+  page: number = 1,
+  perPage: number = 20
+): Promise<WordPressResponse<Lead[]>> {
+  return wordpressFetchAuthenticatedPaginatedGraceful<Lead>(
+    "/wp-json/wp/v2/leads",
+    { page, per_page: perPage, orderby: "date", order: "desc" },
+    ["wordpress", "leads"]
+  );
+}
+
+export async function getLeadById(id: number): Promise<Lead> {
+  return wordpressFetchAuthenticated<Lead>(`/wp-json/wp/v2/leads/${id}`, undefined, [
+    "wordpress",
+    "leads",
+    `lead-${id}`,
+  ]);
 }
 
 export { WordPressAPIError };

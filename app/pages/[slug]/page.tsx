@@ -33,10 +33,9 @@ export async function generateMetadata({
     : stripHtml(page.content.rendered).slice(0, 200) + "...";
 
   return generateContentMetadata({
-    title: page.title.rendered,
+    title: stripHtml(page.title.rendered),
     description,
-    slug: page.slug,
-    basePath: "pages",
+    path: `/pages/${page.slug}`,
   });
 }
 

@@ -13,6 +13,31 @@ import { HomeLeadForm } from '@/components/home/home-lead-form';
 import { HomeUniversitiesMarquee } from '@/components/home/home-universities-marquee';
 import { Section, Container, Article } from '@/components/craft';
 import { getMentorProfiles, getRecentPosts, getSuccessStories, getUniversities, getSiteSettings } from '@/lib/wordpress';
+import { generateContentMetadata } from '@/lib/metadata';
+import { buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/json-ld';
+import { JsonLd } from '@/components/seo/json-ld';
+import { siteConfig } from '@/site.config';
+import type { Locale } from '@/lib/i18n';
+
+import type { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const langCode = (locale === 'en' || locale === 'vi' || locale === 'zh') ? locale : 'en';
+  const seo = siteConfig.seo[langCode];
+
+  return generateContentMetadata({
+    title: seo.title,
+    description: seo.description,
+    path: "",
+    locale: locale as Locale,
+    type: "website",
+  });
+}
 
 export default async function HomePage({
   params,
@@ -64,6 +89,8 @@ export default async function HomePage({
 
   return (
     <main className="space-y-0">
+      <JsonLd data={buildOrganizationJsonLd()} />
+      <JsonLd data={buildWebsiteJsonLd(langCode)} />
       {/* Hero Section */}
       <Section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
         <Container>
