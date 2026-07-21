@@ -191,7 +191,7 @@ export function HomeMentors({ mentors }: HomeMentorsProps) {
                             <button
                                 ref={closeButtonRef}
                                 type="button"
-                                aria-label="Close mentor modal"
+                                aria-label={t("mentors.closeModal")}
                                 className="rounded-xl border border-violet-200 bg-violet-50 p-2 text-violet-700 transition hover:bg-violet-100"
                                 onClick={() => setSelectedMentor(null)}
                             >

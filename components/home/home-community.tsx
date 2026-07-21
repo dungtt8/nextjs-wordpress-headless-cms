@@ -51,7 +51,7 @@ export function HomeCommunity({ channels }: HomeCommunityProps) {
                         {t("community.description")}
                     </p>
                 </div>
-                <span className="poster-ribbon w-fit">Join the community</span>
+                <span className="poster-ribbon w-fit">{t("community.ribbon")}</span>
             </div>
 
             <div className="grid gap-4 lg:grid-cols-3">

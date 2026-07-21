@@ -7,7 +7,8 @@
         "categories": "Danh mục",
         "tags": "Thẻ",
         "pages": "Trang",
-        "getStarted": "Bắt đầu"
+        "about": "Giới thiệu",
+        "getStarted": "Bắt đầu hành trình"
     },
     "common": {
         "readMore": "Đọc thêm",
@@ -15,17 +16,42 @@
         "filter": "Lọc",
         "back": "Quay lại",
         "loading": "Đang tải...",
-        "noResults": "Không tìm thấy kết quả"
+        "noResults": "Không tìm thấy kết quả",
+        "toggleMenu": "Mở menu điều hướng",
+        "menu": "Menu chính",
+        "blogMenu": "Menu Blog",
+        "toggleTheme": "Chuyển giao diện sáng / tối"
+    },
+    "filter": {
+        "allTags": "Tất cả thẻ",
+        "noTagsFound": "Không tìm thấy thẻ",
+        "allCategories": "Tất cả danh mục",
+        "noCategoriesFound": "Không tìm thấy danh mục",
+        "allAuthors": "Tất cả tác giả",
+        "noAuthorsFound": "Không tìm thấy tác giả",
+        "reset": "Xóa bộ lọc",
+        "searchPlaceholder": "Tìm kiếm bài viết..."
+    },
+    "postCard": {
+        "noImage": "Không có hình ảnh",
+        "untitled": "Bài viết chưa có tiêu đề",
+        "noExcerpt": "Chưa có mô tả",
+        "uncategorized": "Chưa phân loại"
+    },
+    "notFound": {
+        "title": "404 - Không tìm thấy trang",
+        "description": "Rất tiếc, trang bạn tìm không tồn tại.",
+        "returnHome": "Về trang chủ"
     },
     "hero": {
-        "title": "Nền tảng mentorship & học bổng du học Trung Quốc",
+        "title": "Dịch vụ Mentorship chinh phục học bổng du học Trung quốc",
         "subtitle": "Định hướng học thuật, xây dựng hồ sơ học bổng và đồng hành qua từng vòng ứng tuyển theo đúng nhịp độ của từng mentee.",
         "cta": "Bắt đầu ngay",
         "badge": "ChinaHack Mentorship",
-        "applicationDirection": "Định hướng ứng tuyển",
+        "applicationDirection": "Đội ngũ mentor có nền tảng học thuật mạnh",
         "quote": "Định hướng học thuật, xây dựng hồ sơ học bổng và đồng hành qua từng vòng ứng tuyển theo đúng nhịp độ của từng mentee.",
         "expertise": "Mentorship & Scholarship",
-        "highlight": "Học bổng không chỉ là điểm số, mà là cách hồ sơ của bạn được định vị.",
+        "highlight": "Một hồ sơ mạnh không chỉ nằm ở điểm số, mà còn ở cách bạn định vị bản thân.",
         "description": "ChinaHack giúp bạn đi từ chiến lược hồ sơ, bài luận, hoạt động ngoại khóa đến cách trả lời phỏng vấn, theo một lộ trình rõ ràng và có người đồng hành sát sao.",
         "guidance": "Hướng dẫn của chúng tôi",
         "storyPrompt": "Để hồ sơ của bạn kể một câu chuyện"
@@ -43,36 +69,36 @@
         "heading": "Vì sao mentee chọn ChinaHack cho hành trình học bổng?",
         "description": "Cấu trúc mentoring được thiết kế theo logic học thuật: rõ định hướng, rõ mốc triển khai, rõ chất lượng đầu ra của từng vòng hồ sơ.",
         "book": "Định hướng rõ ràng",
-        "medal": "Hỗ trợ toàn diện",
-        "network": "Cộng đồng mạnh",
+        "medal": "Lộ trình và quyền lợi rõ ràng",
+        "network": "Tài nguyên và cộng đồng hỗ trợ chất lượng",
         "target": "Kết quả cụ thể",
         "illustration": "Ảnh minh họa",
         "imagePlaceholder": "Sẵn sàng nhận ảnh upload từ CMS"
     },
     "services": {
         "eyebrow": "Ma trận dịch vụ",
-        "chooseTrack": "Chọn lộ trình của bạn",
-        "heading": "Ba cấp độ hỗ trợ, ba cách đồng hành khác nhau",
-        "description": "Mỗi gói được thiết kế cho một mức độ sẵn sàng khác nhau, từ định hướng ban đầu đến mentoring sát sao ở các mốc quan trọng.",
-        "suitableFor": "Phù hợp với ai",
-        "included": "Bao gồm",
-        "companionLevel": "Mức độ đồng hành",
-        "imagePlaceholder": "Có thể thay bằng ảnh thực tế gói dịch vụ",
-        "balanceNote": "Cân bằng tốt giữa chiến lược hồ sơ, coaching và khả năng tự triển khai."
+        "chooseTrack": "Chọn gói phù hợp",
+        "heading": "Bảng thông tin các gói dịch vụ tư vấn học bổng",
+        "description": "Mỗi gói được thiết kế cho một mục tiêu học bổng khác nhau, từ định hướng hồ sơ cơ bản đến đồng hành toàn phần đến khi có kết quả.",
+        "note": "Lưu ý",
+        "refundPolicy": "Chính sách hoàn phí",
+        "noRefund": "Không hoàn phí"
     },
     "process": {
         "heading": "Quy trình mentoring của ChinaHack",
         "eyebrow": "Lộ trình đồng hành",
-        "ribbon": "Dòng chảy biên tập",
+        "ribbon": "Các bước thực hiện",
         "title": "Từng bước rõ ràng, theo đúng flow của hồ sơ học bổng",
         "description": "Mỗi giai đoạn đều có đầu ra cụ thể để mentee biết mình đang ở đâu, cần chuẩn bị gì tiếp theo và khi nào nên chuyển sang bước kế tiếp.",
         "active": "Đang kích hoạt",
         "next": "Bước kế tiếp",
-        "imageSlot": "Slot ảnh theo từng giai đoạn"
+        "imageSlot": "Slot ảnh theo từng giai đoạn",
+        "imageTitle": "Ảnh minh họa quy trình",
+        "step": "Bước {number}"
     },
     "stats": {
         "eyebrow": "Số liệu nổi bật",
-        "heading": "Thành quả nổi bật từ hành trình mentee"
+        "heading": "Thành quả nổi bật từ hành trình mentoring"
     },
     "mentors": {
         "profiles": "Hồ sơ Mentor",
@@ -82,19 +108,23 @@
         "strengths": "Thế mạnh mentoring",
         "achievements": "Thành tích nổi bật",
         "viewProfile": "Xem hồ sơ chi tiết",
-        "overview": "Tổng quan hồ sơ"
+        "overview": "Tổng quan hồ sơ",
+        "closeModal": "Đóng hồ sơ mentor"
     },
     "universities": {
         "heading": "Một số trường tiêu biểu",
         "subtitle": "Mentee ChinaHack đang theo học tại đâu?",
-        "description": "Từ các trường top đầu đến những lựa chọn phù hợp học bổng ngành học, ChinaHack định hướng lộ trình dựa trên mức độ phù hợp thay vì chỉ chạy theo danh sách trường nổi tiếng."
+        "description": "Từ các trường top đầu đến những lựa chọn phù hợp học bổng ngành học, ChinaHack định hướng lộ trình dựa trên mức độ phù hợp thay vì chỉ chạy theo danh sách trường nổi tiếng.",
+        "ribbon": "Điểm đến học bổng"
     },
     "successStories": {
         "heading": "Mentee nói gì về ChinaHack?",
         "fromMentee": "Lời nhắn từ mentee",
         "highlights": "Kết quả nổi bật",
         "outcome": "Kết quả nổi bật",
-        "story": "Câu chuyện mentee"
+        "story": "Câu chuyện mentee",
+        "prev": "Câu chuyện trước",
+        "next": "Câu chuyện tiếp theo"
     },
     "blog": {
         "heading": "Blog học bổng & kinh nghiệm hồ sơ",
@@ -107,6 +137,7 @@
         "facebookDescription": "Cập nhật sàn học bổng và chia sẻ kinh nghiệm.",
         "tiktokDescription": "Video ngắn về quy trình và tips nhanh.",
         "youtubeDescription": "Hướng dẫn chi tiết và webinar.",
+        "ribbon": "Tham gia cộng đồng",
         "followNow": "Theo dõi ngay",
         "socialChannel": "Kênh mạng xã hội"
     },

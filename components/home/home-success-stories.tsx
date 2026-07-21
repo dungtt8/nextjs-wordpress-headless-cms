@@ -38,7 +38,7 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                 <div className="hidden gap-2 lg:flex">
                     <button
                         type="button"
-                        aria-label="Previous story"
+                        aria-label={t("successStories.prev")}
                         className="rounded-full border border-violet-200 bg-white/90 px-3 py-2 text-sm text-violet-700 shadow-sm transition hover:-translate-y-0.5"
                         onClick={() => move("left")}
                     >
@@ -46,7 +46,7 @@ export function HomeSuccessStories({ stories }: HomeSuccessStoriesProps) {
                     </button>
                     <button
                         type="button"
-                        aria-label="Next story"
+                        aria-label={t("successStories.next")}
                         className="rounded-full border border-violet-200 bg-white/90 px-3 py-2 text-sm text-violet-700 shadow-sm transition hover:-translate-y-0.5"
                         onClick={() => move("right")}
                     >

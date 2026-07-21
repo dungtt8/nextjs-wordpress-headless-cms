@@ -1,15 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 import { Post } from "@/lib/wordpress.d";
 import { cn } from "@/lib/utils";
 import { truncateHtml } from "@/lib/metadata";
+import { DEFAULT_LOCALE, isValidLocale } from "@/lib/i18n";
 
-export function PostCard({ post, locale }: { post: Post; locale?: string }) {
+const DATE_LOCALES = { en: "en-US", vi: "vi-VN", zh: "zh-CN" } as const;
+
+export async function PostCard({ post, locale }: { post: Post; locale?: string }) {
+  const resolvedLocale = isValidLocale(locale ?? "") ? (locale as keyof typeof DATE_LOCALES) : DEFAULT_LOCALE;
+  const t = await getTranslations({ locale: resolvedLocale, namespace: "postCard" });
+
   // Use embedded data instead of separate API calls
   const media = post._embedded?.["wp:featuredmedia"]?.[0] ?? null;
   const category = post._embedded?.["wp:term"]?.[0]?.[0] ?? null;
-  const date = new Date(post.date).toLocaleDateString("en-US", {
+  const date = new Date(post.date).toLocaleDateString(DATE_LOCALES[resolvedLocale], {
     month: "long",
     day: "numeric",
     year: "numeric",
@@ -29,33 +36,33 @@ export function PostCard({ post, locale }: { post: Post; locale?: string }) {
             <Image
               className="h-full w-full object-cover"
               src={media.source_url}
-              alt={post.title?.rendered || "Post thumbnail"}
+              alt={post.title?.rendered || t("noImage")}
               width={400}
               height={200}
             />
           ) : (
             <div className="flex items-center justify-center w-full h-full text-muted-foreground">
-              No image available
+              {t("noImage")}
             </div>
           )}
         </div>
         <div
           dangerouslySetInnerHTML={{
-            __html: post.title?.rendered || "Untitled Post",
+            __html: post.title?.rendered || t("untitled"),
           }}
           className="text-xl text-primary font-medium group-hover:underline decoration-muted-foreground underline-offset-4 decoration-dotted transition-all"
         ></div>
         <div className="text-sm">
           {post.excerpt?.rendered
             ? truncateHtml(post.excerpt.rendered, 12)
-            : "No excerpt available"}
+            : t("noExcerpt")}
         </div>
       </div>
 
       <div className="flex flex-col gap-4">
         <hr />
         <div className="flex justify-between items-center text-xs">
-          <p>{category?.name || "Uncategorized"}</p>
+          <p>{category?.name || t("uncategorized")}</p>
           <p>{date}</p>
         </div>
       </div>

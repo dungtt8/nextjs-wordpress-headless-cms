@@ -15,18 +15,9 @@ export function middleware(request: NextRequest) {
     return handleI18nRouting(request);
   }
 
-  // Root path: redirect based on Accept-Language header
+  // Root path: always default to Vietnamese; users switch language via the site's language switcher
   if (pathname === '/' || pathname === '') {
-    const acceptLanguage = request.headers.get('accept-language') || '';
-    let locale = 'vi'; // fallback to Vietnamese
-
-    if (acceptLanguage.includes('en')) {
-      locale = 'en';
-    } else if (acceptLanguage.includes('zh')) {
-      locale = 'zh';
-    }
-
-    return NextResponse.redirect(new URL(`/${locale}`, request.url));
+    return NextResponse.redirect(new URL('/vi', request.url));
   }
 
   // For all other paths, apply i18n routing

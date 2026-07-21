@@ -7,6 +7,7 @@
         "categories": "分类",
         "tags": "标签",
         "pages": "页面",
+        "about": "关于",
         "getStarted": "开始"
     },
     "common": {
@@ -15,7 +16,32 @@
         "filter": "筛选",
         "back": "返回",
         "loading": "加载中...",
-        "noResults": "未找到结果"
+        "noResults": "未找到结果",
+        "toggleMenu": "打开菜单",
+        "menu": "菜单",
+        "blogMenu": "博客菜单",
+        "toggleTheme": "切换主题"
+    },
+    "filter": {
+        "allTags": "所有标签",
+        "noTagsFound": "未找到标签",
+        "allCategories": "所有分类",
+        "noCategoriesFound": "未找到分类",
+        "allAuthors": "所有作者",
+        "noAuthorsFound": "未找到作者",
+        "reset": "重置筛选",
+        "searchPlaceholder": "搜索文章..."
+    },
+    "postCard": {
+        "noImage": "暂无图片",
+        "untitled": "无标题文章",
+        "noExcerpt": "暂无摘要",
+        "uncategorized": "未分类"
+    },
+    "notFound": {
+        "title": "404 - 页面未找到",
+        "description": "抱歉，您访问的页面不存在。",
+        "returnHome": "返回首页"
     },
     "hero": {
         "title": "中国留学奖学金辅导与申请平台",
@@ -51,14 +77,12 @@
     },
     "services": {
         "eyebrow": "服务矩阵",
-        "chooseTrack": "选择您的路线",
-        "heading": "三个支持级别，三种不同的辅导方式",
-        "description": "每个套餐针对不同的准备程度，从初期指导到关键里程碑的密切辅导。",
-        "suitableFor": "适合人群",
-        "included": "包含",
-        "companionLevel": "陪伴程度",
-        "imagePlaceholder": "可以替换为实际服务套餐图片",
-        "balanceNote": "完美平衡文书策略、辅导和自主发展。"
+        "chooseTrack": "选择合适的套餐",
+        "heading": "留学奖学金咨询套餐一览",
+        "description": "每个套餐针对不同的奖学金目标，从基础档案指导到全程陪伴至最终结果。",
+        "note": "注意事项",
+        "refundPolicy": "退费政策",
+        "noRefund": "不予退款"
     },
     "process": {
         "heading": "ChinaHack 辅导流程",
@@ -68,7 +92,9 @@
         "description": "每个阶段都有具体的成果，让学生知道自己在哪里、接下来要准备什么、何时应该进入下一步。",
         "active": "进行中",
         "next": "下一步",
-        "imageSlot": "每个阶段的配图"
+        "imageSlot": "每个阶段的配图",
+        "imageTitle": "流程配图",
+        "step": "第 {number} 步"
     },
     "stats": {
         "eyebrow": "成果概览",
@@ -82,19 +108,23 @@
         "strengths": "导师优势",
         "achievements": "突出成就",
         "viewProfile": "查看详细资料",
-        "overview": "文书概览"
+        "overview": "文书概览",
+        "closeModal": "关闭导师资料"
     },
     "universities": {
         "heading": "知名院校",
         "subtitle": "ChinaHack 学生在哪里就读？",
-        "description": "从顶尖大学到适合奖学金的选择，ChinaHack 根据适配度而非仅名声来指导申请路径。"
+        "description": "从顶尖大学到适合奖学金的选择，ChinaHack 根据适配度而非仅名声来指导申请路径。",
+        "ribbon": "奖学金留学目的地"
     },
     "successStories": {
         "heading": "学生对 ChinaHack 的评价",
         "fromMentee": "学生留言",
         "highlights": "成果亮点",
         "outcome": "成果亮点",
-        "story": "学生故事"
+        "story": "学生故事",
+        "prev": "上一个故事",
+        "next": "下一个故事"
     },
     "blog": {
         "heading": "奖学金博客与申请技巧",
@@ -107,6 +137,7 @@
         "facebookDescription": "奖学金更新和经验分享。",
         "tiktokDescription": "关于流程和快速技巧的短视频。",
         "youtubeDescription": "详细指南和网络研讨会。",
+        "ribbon": "加入社区",
         "followNow": "立即关注",
         "socialChannel": "社交频道"
     },

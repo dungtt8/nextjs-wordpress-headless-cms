@@ -7,6 +7,7 @@
         "categories": "Categories",
         "tags": "Tags",
         "pages": "Pages",
+        "about": "About",
         "getStarted": "Get Started"
     },
     "common": {
@@ -15,7 +16,32 @@
         "filter": "Filter",
         "back": "Back",
         "loading": "Loading...",
-        "noResults": "No results found"
+        "noResults": "No results found",
+        "toggleMenu": "Toggle Menu",
+        "menu": "Menu",
+        "blogMenu": "Blog Menu",
+        "toggleTheme": "Toggle theme"
+    },
+    "filter": {
+        "allTags": "All Tags",
+        "noTagsFound": "No tags found",
+        "allCategories": "All Categories",
+        "noCategoriesFound": "No categories found",
+        "allAuthors": "All Authors",
+        "noAuthorsFound": "No authors found",
+        "reset": "Reset Filters",
+        "searchPlaceholder": "Search posts..."
+    },
+    "postCard": {
+        "noImage": "No image available",
+        "untitled": "Untitled Post",
+        "noExcerpt": "No excerpt available",
+        "uncategorized": "Uncategorized"
+    },
+    "notFound": {
+        "title": "404 - Page Not Found",
+        "description": "Sorry, the page you are looking for does not exist.",
+        "returnHome": "Return Home"
     },
     "hero": {
         "title": "Mentorship & Scholarship Platform for Studying in China",
@@ -51,14 +77,12 @@
     },
     "services": {
         "eyebrow": "Service Matrix",
-        "chooseTrack": "Choose your track",
-        "heading": "Three Support Levels, Three Different Ways of Mentorship",
-        "description": "Each package is designed for a different readiness level, from initial guidance to close mentoring at critical milestones.",
-        "suitableFor": "Suitable For",
-        "included": "Included",
-        "companionLevel": "Level of Support",
-        "imagePlaceholder": "Can be replaced with the actual service package image",
-        "balanceNote": "Balances strategy development, coaching, and self-directed learning effectively."
+        "chooseTrack": "Choose your package",
+        "heading": "Scholarship Consulting Package Overview",
+        "description": "Each package is built around a different scholarship goal, from basic profile guidance to full companionship through to the final result.",
+        "note": "Note",
+        "refundPolicy": "Refund Policy",
+        "noRefund": "No Refund"
     },
     "process": {
         "heading": "ChinaHack Mentoring Process",
@@ -68,7 +92,9 @@
         "description": "Each stage has specific outcomes so mentees know where they are, what to prepare next, and when to move to the next step.",
         "active": "Active",
         "next": "Next Step",
-        "imageSlot": "Image for each phase"
+        "imageSlot": "Image for each phase",
+        "imageTitle": "Process visual",
+        "step": "Step {number}"
     },
     "stats": {
         "eyebrow": "Impact Snapshot",
@@ -82,19 +108,23 @@
         "strengths": "Mentoring Strengths",
         "achievements": "Notable Achievements",
         "viewProfile": "View Detailed Profile",
-        "overview": "Application Overview"
+        "overview": "Application Overview",
+        "closeModal": "Close mentor profile"
     },
     "universities": {
         "heading": "Featured Universities",
         "subtitle": "Where are ChinaHack Mentees Studying?",
-        "description": "From top-tier universities to scholarship-appropriate choices, ChinaHack guides pathways based on fit rather than just prestigious names."
+        "description": "From top-tier universities to scholarship-appropriate choices, ChinaHack guides pathways based on fit rather than just prestigious names.",
+        "ribbon": "Scholarship destinations"
     },
     "successStories": {
         "heading": "What Mentees Say About ChinaHack",
         "fromMentee": "Mentee Message",
         "highlights": "Notable Results",
         "outcome": "Notable Result",
-        "story": "Mentee Story"
+        "story": "Mentee Story",
+        "prev": "Previous story",
+        "next": "Next story"
     },
     "blog": {
         "heading": "Scholarship Blog & Application Tips",
@@ -107,6 +137,7 @@
         "facebookDescription": "Scholarship updates and experience sharing.",
         "tiktokDescription": "Short videos about process and quick tips.",
         "youtubeDescription": "Detailed guides and webinars.",
+        "ribbon": "Join the community",
         "followNow": "Follow Now",
         "socialChannel": "Social channel"
     },

@@ -71,7 +71,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                     }`}
                             >
                                 <div className="flex items-center justify-between gap-4">
-                                    <span className="poster-badge">Step {index + 1}</span>
+                                    <span className="poster-badge">{t("process.step", { number: index + 1 })}</span>
                                     {index < steps.length - 1 ? <ArrowDown weight="thin" className="h-4 w-4 text-violet-400" /> : null}
                                 </div>
                                 <h3 className="poster-title mt-4 text-xl font-semibold text-[#1F2937]">{extractLocalized(step.title, locale)}</h3>
@@ -79,7 +79,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                                 <div className="mt-4">
                                     <UploadReadyImage
                                         image={step.image}
-                                        title="Process visual"
+                                        title={t("process.imageTitle")}
                                         subtitle={t("process.imageSlot")}
                                         ratioClassName="aspect-[16/9]"
                                     />
@@ -124,7 +124,7 @@ export function HomeProcess({ steps }: HomeProcessProps) {
                         <div className="mt-3">
                             <UploadReadyImage
                                 image={step.image}
-                                title="Process visual"
+                                title={t("process.imageTitle")}
                                 subtitle={t("process.imageSlot")}
                                 ratioClassName="aspect-[16/9]"
                             />

@@ -1,6 +1,6 @@
 "use client";
 
-import { Quotes, Sparkle, Star } from "@phosphor-icons/react";
+import { Compass, GraduationCap, Sparkle, Star, UsersThree } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
 import { useScrollAnimation } from "@/lib/hooks/use-scroll-animation";
 import type { HeroData } from "@/lib/home/types";
@@ -17,15 +17,15 @@ export function HomeHero({ data }: HomeHeroProps) {
     const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.1 });
     const { ref: imgRef, isVisible: imgVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.1, delay: 200 });
     return (
-        <section id="hero" className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-            <div ref={ref} className={`space-y-6 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
+        <section id="hero" className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+            <div ref={ref} className={`space-y-7 scroll-hidden ${isVisible ? 'scroll-visible' : ''}`}>
                 <span className="poster-badge">
                     <Sparkle weight="thin" className="h-3.5 w-3.5" />
                     {t("hero.badge")}
                 </span>
 
                 <div className="space-y-4">
-                    <h1 className="poster-title text-4xl font-semibold leading-[1.05] lg:text-[4.1rem]">
+                    <h1 className="poster-title text-4xl font-semibold leading-[1.12] lg:text-5xl xl:text-[3.2rem]">
                         {data.title}
                     </h1>
                     <div className="poster-divider" />
@@ -39,35 +39,21 @@ export function HomeHero({ data }: HomeHeroProps) {
                     </a>
                     <span className="poster-ribbon">{t("hero.expertise")}</span>
                 </div>
-
-                <div className="poster-quote-card max-w-xl rounded-[28px] p-5">
-                    <div className="flex items-start gap-3">
-                        <div className="rounded-2xl bg-violet-100/70 p-2 text-violet-700">
-                            <Quotes weight="thin" className="h-4 w-4" />
-                        </div>
-                        <div>
-                            <p className="poster-eyebrow">{t("hero.applicationDirection")}</p>
-                            <p className="mt-2 text-sm leading-7 text-slate-700">
-                                {t("hero.quote")}
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div
                 ref={imgRef}
-                className={`poster-card relative overflow-hidden rounded-[34px] p-5 scroll-hidden-right ${imgVisible ? 'scroll-visible' : ''}`}
+                className={`poster-card relative overflow-hidden rounded-[34px] p-6 scroll-hidden-right ${imgVisible ? 'scroll-visible' : ''}`}
             >
                 <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-r from-violet-200/40 via-fuchsia-100/35 to-transparent" />
                 <div className="absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-violet-200/30 blur-3xl" />
-                <div className="relative flex flex-col gap-4">
-                    <div className="flex items-center justify-between gap-4">
-                        <span className="poster-badge">{t("hero.guidance")}</span>
-                        <span className="poster-ribbon">{t("hero.title")}</span>
+                <div className="relative flex flex-col gap-6">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                        <span className="poster-badge whitespace-nowrap">{t("hero.guidance")}</span>
+                        <span className="poster-ribbon whitespace-nowrap">{t("hero.title")}</span>
                     </div>
 
-                    <div className="poster-panel rounded-[28px] p-5">
+                    <div className="poster-panel rounded-[28px] p-6">
                         <p className="poster-eyebrow">{t("hero.storyPrompt")}</p>
                         <h2 className="poster-title mt-3 text-2xl font-semibold leading-tight text-violet-950 lg:text-[2.05rem]">
                             {t("hero.highlight")}
@@ -77,29 +63,25 @@ export function HomeHero({ data }: HomeHeroProps) {
                         </p>
                     </div>
 
-                    <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="flex flex-col gap-3">
                         {[
-                            t("hero.applicationDirection"),
-                            t("whyChoose.medal"),
-                            t("whyChoose.network"),
-                        ].map((item) => (
-                            <div key={item} className="poster-panel rounded-2xl px-4 py-3 text-center text-sm font-semibold text-violet-900">
-                                {item}
+                            { text: t("hero.applicationDirection"), icon: GraduationCap },
+                            { text: t("whyChoose.medal"), icon: Compass },
+                            { text: t("whyChoose.network"), icon: UsersThree },
+                        ].map(({ text, icon: Icon }) => (
+                            <div
+                                key={text}
+                                className="group flex items-center gap-3 rounded-2xl border border-violet-100/80 bg-white/70 px-4 py-3.5 transition-all duration-300 hover:border-violet-200 hover:bg-white hover:shadow-[0_8px_20px_rgba(109,40,217,0.08)]"
+                            >
+                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-fuchsia-500 text-white shadow-[0_6px_14px_rgba(109,40,217,0.28)] transition-transform duration-300 group-hover:scale-105">
+                                    <Icon weight="fill" className="h-4 w-4" />
+                                </span>
+                                <span className="text-left text-sm font-semibold leading-snug text-violet-950">
+                                    {text}
+                                </span>
                             </div>
                         ))}
                     </div>
-
-                    <ul className="grid gap-2 border-t border-violet-100/80 pt-4 text-sm text-slate-700">
-                        {[
-                            "Academic-first positioning for scholarship applications",
-                            t("whyChoose.description"),
-                            t("hero.description"),
-                        ].map((item, index) => (
-                            <li key={index} className="poster-list-item leading-7">
-                                {item}
-                            </li>
-                        ))}
-                    </ul>
                 </div>
             </div>
         </section>

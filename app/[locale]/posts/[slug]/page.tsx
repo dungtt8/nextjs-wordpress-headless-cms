@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { getPostBySlugAndLocale, getAllPostSlugsForLocale } from "@/lib/wordpress";
 import { generateContentMetadata, stripHtml } from "@/lib/metadata";
 import { buildBlogPostingJsonLd, buildBreadcrumbJsonLd } from "@/lib/json-ld";
@@ -55,6 +56,7 @@ export default async function PostPage({
     notFound();
   }
 
+  const t = await getTranslations({ locale, namespace: "nav" });
   const postUrl = `${siteConfig.site_domain}/${locale}/posts/${slug}`;
   const description = post.excerpt?.rendered
     ? stripHtml(post.excerpt.rendered)
@@ -75,7 +77,7 @@ export default async function PostPage({
       <JsonLd
         data={buildBreadcrumbJsonLd([
           { name: siteConfig.site_name, url: `${siteConfig.site_domain}/${locale}` },
-          { name: "Posts", url: `${siteConfig.site_domain}/${locale}/posts` },
+          { name: t("posts"), url: `${siteConfig.site_domain}/${locale}/posts` },
           { name: stripHtml(post.title.rendered), url: postUrl },
         ])}
       />

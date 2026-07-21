@@ -154,79 +154,132 @@ export const fallbackHomeContent: HomeContent = {
     services: [
         {
             id: "sv1",
-            name: "Basic",
-            description: { en: "Basic profile assessment.", vi: "Đánh giá hồ sơ cơ bản.", zh: "基础档案评估。" },
-            audience: {
-                en: "Suitable for students needing initial direction and wanting to know where to start.",
-                vi: "Phù hợp với học sinh cần định hướng ban đầu và muốn biết nên bắt đầu từ đâu.",
-                zh: "适合需要初步方向、想知道从何入手的学生。",
-            },
-            supportLabel: { en: "Starter guidance", vi: "Starter guidance", zh: "入门指导" },
-            supportNote: {
-                en: "Focused on helping you see your profile foundation, shortlist scholarships and the next step.",
-                vi: "Tập trung giúp bạn nhìn rõ nền hồ sơ, shortlist học bổng và bước kế tiếp.",
-                zh: "专注于帮助您了解档案基础、筛选奖学金和下一步。",
-            },
-            features: [
-                { en: "Profile analysis", vi: "Phân tích profile", zh: "档案分析" },
-                { en: "Scholarship suggestions", vi: "Gợi ý học bổng", zh: "奖学金建议" },
-                { en: "1 consultation session", vi: "1 buổi tư vấn", zh: "1次咨询" },
+            packageLabel: { en: "Package 1", vi: "Gói 1", zh: "套餐 1" },
+            name: { en: "Basic Package", vi: "Gói cơ bản", zh: "基础套餐" },
+            priceValue: 10000000,
+            currency: "VND",
+            sections: [
+                {
+                    icon: "profile",
+                    title: { en: "Roadmap Direction", vi: "Định hướng lộ trình", zh: "路线规划指导" },
+                    items: [
+                        { en: "Ability analysis, suitable major and a shortlist of 3-5 priority universities.", vi: "Phân tích năng lực, định hướng ngành học và gợi ý top 3-5 trường ưu tiên.", zh: "分析能力，指导选择专业，并推荐 3-5 所优先院校。" },
+                    ],
+                },
+                {
+                    icon: "optimize",
+                    title: { en: "Profile Optimization", vi: "Tối ưu hóa hồ sơ", zh: "档案优化" },
+                    items: [
+                        { en: "Study Plan: up to 2 edit rounds.", vi: "Study Plan: tối đa 2 lần chỉnh sửa.", zh: "学习计划：最多 2 次修改。" },
+                        { en: "CV: up to 2 edit rounds.", vi: "CV: tối đa 2 lần chỉnh sửa.", zh: "简历：最多 2 次修改。" },
+                        { en: "Recommendation letters: 2 letters, 1 edit round.", vi: "Thư giới thiệu: 2 thư, chỉnh sửa 1 lần.", zh: "推荐信：2 份，修改 1 次。" },
+                    ],
+                },
             ],
-            ctaText: { en: "Choose Basic", vi: "Chọn Basic", zh: "选择 Basic" },
+            refundPolicy: { type: "none", items: [] },
+            ctaText: { en: "Choose Basic", vi: "Chọn gói cơ bản", zh: "选择基础套餐" },
             ctaHref: "#lead-form",
         },
         {
             id: "sv2",
-            name: "Standard",
-            description: { en: "Profile revision roadmap.", vi: "Lộ trình chỉnh sửa hồ sơ.", zh: "档案修改路线图。" },
-            audience: {
-                en: "Suitable for most candidates who already have a goal and need a clear roadmap to optimize their profile.",
-                vi: "Phù hợp với đa số ứng viên đã có mục tiêu và cần một roadmap rõ ràng để tối ưu hồ sơ.",
-                zh: "适合大多数已有目标、需要清晰路线图来优化档案的申请者。",
-            },
-            supportLabel: { en: "Roadmap + coaching", vi: "Roadmap + coaching", zh: "路线图 + 辅导" },
-            supportNote: {
-                en: "Balances profile strategy, milestone coaching and self-directed execution.",
-                vi: "Cân bằng giữa chiến lược hồ sơ, coaching theo từng mốc và khả năng tự triển khai.",
-                zh: "平衡档案策略、阶段性辅导和自主执行能力。",
-            },
-            features: [
-                { en: "Essay review", vi: "Essay review", zh: "文书审阅" },
-                { en: "Application checklist", vi: "Checklist nộp đơn", zh: "申请清单" },
-                { en: "2 coaching sessions", vi: "2 buổi coaching", zh: "2次辅导" },
+            packageLabel: { en: "Package 2", vi: "Gói 2", zh: "套餐 2" },
+            name: { en: "University-funded Scholarship Package", vi: "Gói học bổng trường tính", zh: "校内奖学金套餐" },
+            priceValue: 25000000,
+            currency: "VND",
+            sections: [
+                {
+                    icon: "profile",
+                    title: { en: "Profile Building & Refinement", vi: "Xây dựng & hoàn thiện hồ sơ", zh: "档案建设与完善" },
+                    items: [
+                        { en: "Profile strategy for up to 2 majors.", vi: "Chiến lược xây dựng profile cho tối đa 2 ngành học.", zh: "为最多 2 个专业制定档案策略。" },
+                        { en: "CV, personal statement, recommendation letters and other required documents.", vi: "Hoàn thiện CV, bài luận cá nhân, thư giới thiệu và các tài liệu cần thiết.", zh: "完善简历、个人陈述、推荐信及其他所需材料。" },
+                        { en: "Research proposal and pre-acceptance letter request (Master's/PhD).", vi: "Xây dựng đề cương nghiên cứu, xin pre-acceptance letter (Thạc sĩ/Tiến sĩ).", zh: "撰写研究计划书，申请预录取信（硕士/博士）。" },
+                    ],
+                },
+                {
+                    icon: "apply",
+                    title: { en: "University Selection & Submission", vi: "Chọn trường & nộp hồ sơ", zh: "择校与提交申请" },
+                    items: [
+                        { en: "Shortlist of 6 suitable universities, full submission support.", vi: "Tư vấn 6 trường phù hợp và hỗ trợ nộp hồ sơ trọn gói.", zh: "提供 6 所合适院校建议，全程协助提交申请。" },
+                    ],
+                },
+                {
+                    icon: "interview",
+                    title: { en: "Mock Interview", vi: "Luyện phỏng vấn", zh: "面试训练" },
+                    items: [
+                        { en: "2 mock interview sessions, flexible scheduling.", vi: "2 buổi mock interview, thời gian linh hoạt.", zh: "2 次模拟面试，时间灵活安排。" },
+                    ],
+                },
+                {
+                    icon: "support",
+                    title: { en: "Ongoing Support & Issue Handling", vi: "Đồng hành & xử lý sự cố", zh: "全程陪伴与问题处理" },
+                    items: [
+                        { en: "Liaises with universities and handles issues on your behalf.", vi: "Thay mặt liên hệ nhà trường và xử lý sự cố phát sinh.", zh: "代表学生联系院校，处理突发问题。" },
+                    ],
+                },
             ],
-            ctaText: { en: "Choose Standard", vi: "Chọn Standard", zh: "选择 Standard" },
+            note: {
+                en: "Also covers extra applications to CSC (Government) and Confucius Institute scholarships, but the refund policy below does not apply if either is awarded.",
+                vi: "Có hỗ trợ nộp thêm học bổng CSC (Chính phủ) và CIS (Khổng Tử), nhưng không áp dụng chính sách hoàn phí bên dưới nếu trúng hai loại học bổng này.",
+                zh: "支持额外申请 CSC（政府）及孔子学院奖学金，但若获得这两类奖学金，以下退费政策不适用。",
+            },
+            refundPolicy: {
+                type: "conditional",
+                items: [
+                    { en: "No scholarship awarded: refund of 5,000,000 VND.", vi: "Không đỗ học bổng nào: hoàn lại 5.000.000 VND.", zh: "未获得任何奖学金：退还 5,000,000 VND。" },
+                ],
+            },
+            ctaText: { en: "Choose Standard", vi: "Chọn gói học bổng trường tính", zh: "选择校内奖学金套餐" },
             ctaHref: "#lead-form",
-            highlightLabel: { en: "Most Popular", vi: "Phổ biến nhất", zh: "最受欢迎" },
             isFeatured: true,
         },
         {
             id: "sv3",
-            name: "Premium",
-            description: { en: "Companionship until results.", vi: "Đồng hành đến khi có kết quả.", zh: "陪伴至出结果。" },
-            audience: {
-                en: "Suitable for students wanting closer support at key milestones and personalized help.",
-                vi: "Phù hợp với học sinh muốn được theo sát hơn ở các mốc quan trọng và cần hỗ trợ cá nhân hóa.",
-                zh: "适合希望在关键节点得到更密切支持及个性化帮助的学生。",
-            },
-            supportLabel: { en: "High-touch mentorship", vi: "High-touch mentorship", zh: "深度指导" },
-            supportNote: {
-                en: "Mentor accompanies you deeper in major decisions, profile feedback and interview preparation.",
-                vi: "Mentor đồng hành sâu hơn trong các quyết định lớn, phản hồi hồ sơ và chuẩn bị phỏng vấn.",
-                zh: "导师在重大决策、档案反馈和面试准备上给予更深入的陪伴。",
-            },
-            features: [
-                { en: "1-1 mentor", vi: "1-1 mentor", zh: "1对1导师" },
-                { en: "Mock interview", vi: "Phỏng vấn thử", zh: "模拟面试" },
-                { en: "Post-submission follow-up", vi: "Theo dõi sau nộp", zh: "提交后跟踪" },
+            packageLabel: { en: "Package 3", vi: "Gói 3", zh: "套餐 3" },
+            name: { en: "Full Scholarship Package", vi: "Gói học bổng toàn phần", zh: "全额奖学金套餐" },
+            priceValue: 36000000,
+            currency: "VND",
+            sections: [
+                {
+                    icon: "profile",
+                    title: { en: "Profile Building & Refinement", vi: "Xây dựng & hoàn thiện hồ sơ", zh: "档案建设与完善" },
+                    items: [
+                        { en: "Profile strategy for up to 2 majors.", vi: "Chiến lược xây dựng profile cho tối đa 2 ngành học.", zh: "为最多 2 个专业制定档案策略。" },
+                        { en: "CV, personal statement, recommendation letters and other required documents.", vi: "Hoàn thiện CV, bài luận cá nhân, thư giới thiệu và các tài liệu cần thiết.", zh: "完善简历、个人陈述、推荐信及其他所需材料。" },
+                        { en: "Research proposal and pre-acceptance letter request (Master's/PhD).", vi: "Xây dựng đề cương nghiên cứu, xin pre-acceptance letter (Thạc sĩ/Tiến sĩ).", zh: "撰写研究计划书，申请预录取信（硕士/博士）。" },
+                    ],
+                },
+                {
+                    icon: "apply",
+                    title: { en: "University Selection & Submission", vi: "Chọn trường & nộp hồ sơ", zh: "择校与提交申请" },
+                    items: [
+                        { en: "No limit on universities, full support from account setup to submission.", vi: "Không giới hạn số trường, hỗ trợ trọn gói từ tạo tài khoản đến nộp hồ sơ.", zh: "不限申请院校数量，从建账户到提交全程协助。" },
+                    ],
+                },
+                {
+                    icon: "interview",
+                    title: { en: "Advanced Mock Interview", vi: "Luyện phỏng vấn chuyên sâu", zh: "深度面试训练" },
+                    items: [
+                        { en: "3 in-depth mock interview sessions, flexible scheduling.", vi: "3 buổi mock interview chuyên sâu, thời gian linh hoạt.", zh: "3 次深度模拟面试，时间灵活安排。" },
+                    ],
+                },
+                {
+                    icon: "support",
+                    title: { en: "Ongoing Support & Issue Handling", vi: "Đồng hành & xử lý sự cố", zh: "全程陪伴与问题处理" },
+                    items: [
+                        { en: "Liaises with universities and resolves issues as fast as possible.", vi: "Thay mặt liên hệ nhà trường, xử lý sự cố nhanh nhất.", zh: "代表学生联系院校，最快处理突发情况。" },
+                    ],
+                },
             ],
-            ctaText: { en: "Choose Premium", vi: "Chọn Premium", zh: "选择 Premium" },
-            ctaHref: "#lead-form",
-            premiumNote: {
-                en: "Extra room to handle feedback rounds, last-minute edits near deadlines and unexpected situations.",
-                vi: "Có thêm không gian để xử lý các vòng phản hồi, chỉnh sửa sát deadline và chuẩn bị các tình huống phát sinh.",
-                zh: "有更多空间处理反馈轮次、临近截止日期的修改以及应对突发情况。",
+            refundPolicy: {
+                type: "conditional",
+                items: [
+                    { en: "University scholarship awarded but CSC not awarded: refund of 15,000,000 VND.", vi: "Đỗ học bổng trường nhưng trượt CSC: hoàn lại 15.000.000 VND.", zh: "获得校内奖学金但未获 CSC：退还 15,000,000 VND。" },
+                    { en: "No scholarship awarded (applies when applying to 2+ universities): refund of 25,000,000 VND.", vi: "Không đỗ học bổng nào (nộp từ 2 trường trở lên): hoàn lại 25.000.000 VND.", zh: "未获得任何奖学金（须申请 2 所以上院校）：退还 25,000,000 VND。" },
+                ],
             },
+            ctaText: { en: "Choose Premium", vi: "Chọn gói học bổng toàn phần", zh: "选择全额奖学金套餐" },
+            ctaHref: "#lead-form",
         },
     ],
     universities: [

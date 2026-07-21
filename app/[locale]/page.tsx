@@ -119,20 +119,6 @@ export default async function HomePage({
         </Container>
       </Section>
 
-      {/* Process Section */}
-      <Section className="bg-gray-50">
-        <Container>
-          <HomeProcess steps={content.process} />
-        </Container>
-      </Section>
-
-      {/* Stats Section */}
-      <Section>
-        <Container>
-          <HomeStats stats={content.stats} />
-        </Container>
-      </Section>
-
       {/* Mentors Section */}
       <Section className="bg-gray-50">
         <Container>
@@ -140,14 +126,28 @@ export default async function HomePage({
         </Container>
       </Section>
 
+      {/* Process Section */}
+      <Section>
+        <Container>
+          <HomeProcess steps={content.process} />
+        </Container>
+      </Section>
+
       {/* Universities Marquee */}
       {content.universities && content.universities.length > 0 && (
-        <Section>
+        <Section className="bg-gray-50">
           <Container>
             <HomeUniversitiesMarquee items={content.universities} />
           </Container>
         </Section>
       )}
+
+      {/* Stats Section */}
+      <Section>
+        <Container>
+          <HomeStats stats={content.stats} />
+        </Container>
+      </Section>
 
       {/* Success Stories Section */}
       {content.successStories && content.successStories.length > 0 && (

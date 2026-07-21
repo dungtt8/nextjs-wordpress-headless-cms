@@ -59,20 +59,31 @@ export interface ProcessStep {
     image?: HomeImageAsset;
 }
 
+export type ServicePlanSectionIcon = "profile" | "optimize" | "apply" | "interview" | "support";
+
+export interface ServicePlanSection {
+    icon: ServicePlanSectionIcon;
+    title: LocalizedString;
+    items: LocalizedString[];
+}
+
+export interface ServicePlanRefundPolicy {
+    type: "none" | "conditional";
+    items: LocalizedString[];
+}
+
 export interface ServicePlan {
     id: string;
-    name: string;
-    description: LocalizedString;
-    image?: HomeImageAsset;
-    audience: LocalizedString;
-    supportLabel: LocalizedString;
-    supportNote: LocalizedString;
-    features: LocalizedString[];
+    packageLabel: LocalizedString;
+    name: LocalizedString;
+    priceValue: number;
+    currency: string;
+    sections: ServicePlanSection[];
+    note?: LocalizedString;
+    refundPolicy: ServicePlanRefundPolicy;
     ctaText: LocalizedString;
     ctaHref: string;
-    highlightLabel?: LocalizedString;
     isFeatured?: boolean;
-    premiumNote?: LocalizedString;
 }
 
 export interface UniversityLogo {

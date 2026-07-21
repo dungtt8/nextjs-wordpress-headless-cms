@@ -4,9 +4,16 @@ import LanguageSwitcher from "@/components/theme/language-switcher";
 import { mainMenu } from "@/menu.config";
 import { siteConfig } from "@/site.config";
 import { cn } from "@/lib/utils";
+import { DEFAULT_LOCALE, isValidLocale } from "@/lib/i18n";
 import Logo from "@/public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+
+import enMessages from "@/public/messages/en.json";
+import viMessages from "@/public/messages/vi.json";
+import zhMessages from "@/public/messages/zh.json";
+
+const messages = { en: enMessages, vi: viMessages, zh: zhMessages };
 
 interface NavProps {
   className?: string;
@@ -24,7 +31,20 @@ function localizeHref(href: string, locale?: string): string {
   return `/${locale}${href}`;
 }
 
+// Nav renders outside of the app's client-only NextIntlClientProvider (no server-side
+// next-intl request config is wired up), so messages are read directly by locale instead.
+function createTranslator(locale?: string) {
+  const dict = messages[isValidLocale(locale ?? "") ? (locale as keyof typeof messages) : DEFAULT_LOCALE];
+  return (key: string): string => {
+    const value = key.split(".").reduce<unknown>((acc, part) => {
+      return acc && typeof acc === "object" ? (acc as Record<string, unknown>)[part] : undefined;
+    }, dict);
+    return typeof value === "string" ? value : key;
+  };
+}
+
 export function Nav({ className, children, id, locale }: NavProps) {
+  const t = createTranslator(locale);
   return (
     <nav className={cn("sticky top-0 z-50 px-4 pt-4", className)} id={id}>
       <div
@@ -52,14 +72,14 @@ export function Nav({ className, children, id, locale }: NavProps) {
             {Object.entries(mainMenu).map(([key, href]) => (
               <Button key={href} asChild variant="ghost" size="sm">
                 <Link href={localizeHref(href, locale)}>
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                  {t(`nav.${key}`)}
                 </Link>
               </Button>
             ))}
           </div>
           <LanguageSwitcher />
           <Button asChild className="hidden sm:flex rounded-full bg-[#6e59b1] px-5 hover:bg-[#5f4b9f]">
-            <Link href={localizeHref("/#lead-form", locale)}>Get Started</Link>
+            <Link href={localizeHref("/#lead-form", locale)}>{t("nav.getStarted")}</Link>
           </Button>
           <MobileNav locale={locale} />
         </div>

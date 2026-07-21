@@ -4,6 +4,7 @@
 import * as React from "react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 // Utility Imports
 import { ArrowSquareRight, List } from "@phosphor-icons/react";
@@ -35,6 +36,7 @@ function localizeHref(href: string, locale?: string): string {
 
 export function MobileNav({ locale }: { locale?: string }) {
   const [open, setOpen] = React.useState(false);
+  const t = useTranslations();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -44,7 +46,7 @@ export function MobileNav({ locale }: { locale?: string }) {
           className="px-0 border w-10 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
         >
           <List weight="thin" />
-          <span className="sr-only">Toggle Menu</span>
+          <span className="sr-only">{t("common.toggleMenu")}</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">
@@ -62,18 +64,18 @@ export function MobileNav({ locale }: { locale?: string }) {
         </SheetHeader>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-            <h3 className="text-small mt-6">Menu</h3>
+            <h3 className="text-small mt-6">{t("common.menu")}</h3>
             <Separator />
             {Object.entries(mainMenu).map(([key, href]) => (
               <MobileLink key={key} href={localizeHref(href, locale)} onOpenChange={setOpen}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}
+                {t(`nav.${key}`)}
               </MobileLink>
             ))}
-            <h3 className="text-small pt-6">Blog Menu</h3>
+            <h3 className="text-small pt-6">{t("common.blogMenu")}</h3>
             <Separator />
             {Object.entries(contentMenu).map(([key, href]) => (
-              <MobileLink key={key} href={href} onOpenChange={setOpen}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}
+              <MobileLink key={key} href={localizeHref(href, locale)} onOpenChange={setOpen}>
+                {t(`nav.${key}`)}
               </MobileLink>
             ))}
           </div>

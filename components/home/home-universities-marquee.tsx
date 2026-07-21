@@ -27,7 +27,7 @@ export function HomeUniversitiesMarquee({ items }: HomeUniversitiesMarqueeProps)
                             {t("universities.description")}
                         </p>
                     </div>
-                    <span className="poster-ribbon w-fit">Scholarship destinations</span>
+                    <span className="poster-ribbon w-fit">{t("universities.ribbon")}</span>
                 </div>
             </div>
 
